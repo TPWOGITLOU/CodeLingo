@@ -1,13 +1,12 @@
-import Image from "next/image";
+import Header from "@/components/Header";
 import Link from "next/link";
 
 const Home=() : JSX.Element=> {
   return (
-    <main >
-      <h1>Welcome to CodeLingo</h1>
-      <Link href="/about">about</Link>
+    <main className="">
+      <Header />
     </main>
   );
 }
-
+//bg-white text-black dark:bg-slate-700 dark:text-white
 export default Home
