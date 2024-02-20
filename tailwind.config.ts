@@ -1,5 +1,5 @@
 import type { Config } from "tailwindcss";
-const {nextui} = require("@nextui-org/react");
+const { nextui } = require("@nextui-org/react");
 
 const config: Config = {
   content: [
@@ -15,23 +15,33 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      colors: {
+        "text-purple": "#58355E",
+        "light-purple": "#7E7F9A",
+        "button-coral": "#EB9486",
+        "link-orange": "#FFB400",
+        "nice-yellow": "#F6FDC3",
+        "back-green": "#CAE7B9",
+      },
     },
   },
-  plugins: [nextui({
-    themes: {
-      light:{
-        layout:{},
-        colors: {
-          background: '#71717A',
-          foreground: '#17C964'
-        }
+  plugins: [
+    nextui({
+      themes: {
+        light: {
+          layout: {},
+          colors: {
+            background: "#CDFADB",
+            foreground: "#58355E",
+          },
+        },
+        dark: {
+          layout: {},
+          colors: {},
+        },
       },
-      dark:{
-        layout:{},
-        colors: {}
-      }
-    }
-  })],
-  darkMode: 'class'
+    }),
+  ],
+  darkMode: "class",
 };
 export default config;
