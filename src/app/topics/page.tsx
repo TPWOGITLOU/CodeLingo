@@ -3,6 +3,7 @@
 import Header from "@/components/Header";
 import Link from "next/link"
 import { useSearchParams } from "next/navigation"
+import TopicTile from "@/components/TopicTile";
 
 const fetchTopics = (language: string | null) => {
 
@@ -98,6 +99,14 @@ const fetchTopics = (language: string | null) => {
 }
 
 const Topics = () : JSX.Element => {
+
+    // type Topic = {
+    //     topic: string
+    //     language: string
+    //     topicSlug: string
+    //     topicInfo: any
+    // }
+
     const searchParams = useSearchParams()
     const language = searchParams.get('language')
     const topicArray = fetchTopics(language)
@@ -108,11 +117,11 @@ const Topics = () : JSX.Element => {
             <Link href="/">home</Link>
             <h1 className="p-2 text-xl">Topics</h1>
             <h2>Here are the topics for {language ? language : 'all languages'}</h2>
-            <ul className="place-content-center">
-                {topicArray.map((topic) => {
-                    return (<li key={topic.language + topic.topic}>
-                        <p>{topic.topic}</p>
-                    </li>)
+            <ul className="">
+                {topicArray.map((topicData) => {
+                    return (
+                        <TopicTile  name={topicData.topic} slug={topicData.topicSlug} />
+                    )
                 })}
             </ul>
         </div>
