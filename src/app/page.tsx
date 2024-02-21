@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import SpriteAnimator from "@/components/SpriteAnimator";
+import Link from "next/link";
 
 const Home: React.FC = (): JSX.Element => {
   return (
@@ -12,42 +13,46 @@ const Home: React.FC = (): JSX.Element => {
           <p>Which language would you like to learn?</p>
         </div>
         <div className="flex flex-row justify-between p-2 m-2">
-          <div className="p-2 flex flex-col items-center border-8 border-button-coral bg-nice-yellow bg-opacity-50 mr-3">
-            <h3 className="mb-5 p-5 pt-1 text-center text-lg bg-white rounded-lg">
-              Python
-            </h3>
-            <SpriteAnimator
-              spriteWidth={256}
-              spriteHeight={256}
-              borderWidth={0}
-              spacingWidth={0}
-              animationCycle={[
-                { x: 0, y: 0 },
-                { x: 256, y: 0 },
-                { x: 512, y: 0 },
-              ]}
-              animationSpeed={200}
-              imageSrc="/snake.png"
-            />
-          </div>
-          <div className="p-2 flex flex-col items-center border-8 border-button-coral bg-nice-yellow bg-opacity-50">
-            <h3 className="mb-5 p-5 pt-1 text-center text-lg bg-white rounded-lg">
-              JavaScript
-            </h3>
-            <SpriteAnimator
-              spriteWidth={256}
-              spriteHeight={256}
-              borderWidth={0}
-              spacingWidth={0}
-              animationCycle={[
-                { x: 0, y: 0 },
-                { x: 256, y: 0 },
-                { x: 512, y: 0 },
-              ]}
-              animationSpeed={200}
-              imageSrc="/coffeebean.png"
-            />
-          </div>
+            <Link href='/topics?language=python'>
+              <div className="p-2 flex flex-col items-center border-8 border-button-coral bg-nice-yellow bg-opacity-50 mr-3">
+                <h3 className="mb-5 p-5 pt-1 text-center text-lg bg-white rounded-lg">
+                  Python
+                </h3>
+                <SpriteAnimator
+                  spriteWidth={256}
+                  spriteHeight={256}
+                  borderWidth={0}
+                  spacingWidth={0}
+                  animationCycle={[
+                    { x: 0, y: 0 },
+                    { x: 256, y: 0 },
+                    { x: 512, y: 0 },
+                  ]}
+                  animationSpeed={200}
+                  imageSrc="/snake.png"
+                  />
+              </div>
+            </Link>
+            <Link href='/topics?language=javascript'>
+              <div className="p-2 flex flex-col items-center border-8 border-button-coral bg-nice-yellow bg-opacity-50">
+                <h3 className="mb-5 p-5 pt-1 text-center text-lg bg-white rounded-lg">
+                  JavaScript
+                </h3>
+                <SpriteAnimator
+                  spriteWidth={256}
+                  spriteHeight={256}
+                  borderWidth={0}
+                  spacingWidth={0}
+                  animationCycle={[
+                    { x: 0, y: 0 },
+                    { x: 256, y: 0 },
+                    { x: 512, y: 0 },
+                  ]}
+                  animationSpeed={200}
+                  imageSrc="/coffeebean.png"
+                  />
+              </div>
+            </Link>
         </div>
       </div>
     </main>
