@@ -1,12 +1,3 @@
-// type Topic = {
-//     topic: string
-//     language: string
-//     topicSlug: string
-//     topicInfo: {
-//         [key: string]: string
-//     }
-// }
-
 interface Props {
     name: string
     slug: string
@@ -16,12 +7,14 @@ const TopicTile = (props: Props) : JSX.Element => {
     
 
     
-    return(
-        <li  className="p-8 text-xl" >
-            <p >{props.name}</p>
-            <p className="">{props.slug}</p>
-        </li>
-    )
+    return(<>
+                <p className="">{props.slug}</p>
+                <div className="px-20 flex flex-row justify-between text-link-orange">
+                    <p>learning link here</p>
+                    <p>challenge link here</p>
+                </div>
+        </>
+        )
 }
 
 export default TopicTile

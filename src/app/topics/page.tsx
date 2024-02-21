@@ -4,6 +4,8 @@ import Header from "@/components/Header";
 import Link from "next/link"
 import { useSearchParams } from "next/navigation"
 import TopicTile from "@/components/TopicTile";
+import {Accordion, AccordionItem} from "@nextui-org/react";
+import TopicProgress from "@/components/TopicProgress";
 
 const fetchTopics = (language: string | null) => {
 
@@ -117,13 +119,16 @@ const Topics = () : JSX.Element => {
             <Link href="/">home</Link>
             <h1 className="p-2 text-xl">Topics</h1>
             <h2>Here are the topics for {language ? language : 'all languages'}</h2>
-            <ul className="">
+            <Accordion variant="splitted" className="px-80">
                 {topicArray.map((topicData) => {
                     return (
-                        <TopicTile  name={topicData.topic} slug={topicData.topicSlug} />
-                    )
-                })}
-            </ul>
+                        
+                        <AccordionItem className="" key={topicData.topicSlug} aria-label={"Accordion-" + topicData.topic} title={<span className="flex flex-row place-items-center justify-between"><p>{topicData.topic}</p><TopicProgress /></span>}>
+                            <TopicTile key={topicData.topic} name={topicData.topic} slug={topicData.topicSlug} />
+                        </AccordionItem>
+                        )
+                    })}
+            </Accordion>
         </div>
     </section>)
 }
