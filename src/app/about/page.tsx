@@ -1,12 +1,14 @@
 import Link from "next/link";
+import MultipleChoice from "@/components/MultipleChoice";
+import Header from "@/components/Header";
 
-const About= ()  : JSX.Element =>{
+const About = (): JSX.Element => {
   return (
     <section>
-      <h1>about</h1>
-      <Link href="/">home</Link>
-      </section>
+      <Header />
+      <MultipleChoice />
+    </section>
   );
-}
+};
 
-export default About
+export default About;
