@@ -7,10 +7,6 @@ interface Props {
 }
 
 const TopicTile = (props: Props) : JSX.Element => {
-    
-    console.log(props.name, "prop name")
-
-    
     return(<>
                 <p className="">{props.slug}</p>
                 <div className="px-20 flex flex-row justify-between text-link-orange">
