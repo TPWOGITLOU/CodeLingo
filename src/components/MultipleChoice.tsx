@@ -5,49 +5,50 @@ import {
   CardBody,
   CardFooter,
   Divider,
+  Image,
   Link,
 } from "@nextui-org/react";
 import ChallengeFooter from "./ChallengeFooter";
 
 const MultipleChoice = (): JSX.Element => {
   return (
-    <section className="min-h-screen flex flex-col flex-wrap gap-8 items-center justify-center">
-      <section className="max-w-[900px] flex flex-row flex-wrap gap-5">
-        <div className="flex flex-col flex-wrap gap-5">
-          <Card className="max-w-[550px] border-8 border-button-coral  bg-nice-yellow bg-opacity-50 flex-wrap">
+    <section className="h-[90%] w-[80%] mt-10 ml-[10%] flex flex-col flex-wrap gap-8 items-center align-middle justify-center ">
+      <section className="flex flex-row flex-wrap justify-between gap-5">
+        <div className="md:max-w-[62%] w-[100%] flex flex-col flex-wrap gap-5">
+          <Card className="w-full border-8 border-border-colour  bg-nice-yellow bg-opacity-50 flex-wrap p-5">
             <CardHeader className="flex gap-3">
               <div className="flex flex-col">
-                <p className="text-lg font-bold">Multiple Choice</p>
+                <p className="text-3xl font-bold">Multiple Choice</p>
               </div>
             </CardHeader>
             <Divider />
             <CardBody>
               <p>Pick one of the answers below based on the following q:</p>
             </CardBody>
-            <div className="flex flex-wrap gap-8 p-2 mb-2 color=success">
-              <Code size="sm">Code snippet</Code>
+            <div className="flex flex-wrap gap-8 mb-2 p-5 color=success">
+              <Code size="sm">Example question with code?</Code>
             </div>
             <Divider />
           </Card>
-          <Card className="max-w-[550px] gap-3 pt-10 pb-10 border-8 border-button-coral  bg-nice-yellow bg-opacity-60">
+          <Card className="gap-3 pt-10 pb-10 border-8 border-border-colour  bg-nice-yellow bg-opacity-50">
             <CardBody>
               <div className="flex flex-wrap gap-4 items-center justify-around">
-                <Code color="secondary">exampleCode("exampleCode")</Code>
-                <Code color="secondary">exampleCode("exampleCode")</Code>
-                <Code color="secondary">exampleCode("exampleCode")</Code>
-                <Code color="secondary">exampleCode("exampleCode")</Code>
-                <Code color="secondary">exampleCode("exampleCode")</Code>
-                <Code color="secondary">exampleCode("exampleCode")</Code>
+                <Code color="secondary">A. exampleCode("exampleCode")</Code>
+                <Code color="secondary">B. exampleCode("exampleCode")</Code>
+                <Code color="secondary">C. exampleCode("exampleCode")</Code>
+                <Code color="secondary">D. exampleCode("exampleCode")</Code>
+                <Code color="secondary">E. exampleCode("exampleCode")</Code>
+                <Code color="secondary">F. exampleCode("exampleCode")</Code>
               </div>
             </CardBody>
           </Card>
         </div>
-        <Card className="max-w-[320px] md:w-full md:h-auto h-full border-medium border-button-coral bg-nice-yellow bg-opacity-50">
+        <Card className="md:max-w-[35%] w-100% h-auto border-8 border-border-colour bg-nice-yellow bg-opacity-50 p-5">
           <CardBody>
             <p>Explanation of the task and link to the information page</p>
           </CardBody>
           <CardFooter className="justify-end">
-            <img
+            <Image
               src="/character2.png"
               alt="2d pixel character with her arms in the air"
               className="float-right"
