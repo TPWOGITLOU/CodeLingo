@@ -3,6 +3,7 @@ import Link from "next/link"
 import TopicTile from "@/components/TopicTile";
 
 import { Topic, getTopics } from "../../../../lib/mongo/utils";
+import AccordionUI from "@/components/AccordionUI";
 
 const fetchTopics = async (language: string)=>{
     let collection:string;
@@ -35,9 +36,13 @@ return (<section>
             <h1 className="p-2 text-xl">Topics</h1>
             <h2>Here are the topics for {language}</h2>
             <div>
-                {!topicsList? <p>loading</p>: topicsList.map((topic: Topic)  => (
+                {!topicsList? <p>loading</p>: 
+                <AccordionUI topicList={topicsList}/>}
+                
+                {/* topicsList.map((topic: Topic)  => (
                     <TopicTile key={topic._id} name={topic.topic} slug={topic.topicSlug} language={language} />
-                    ))}
+                    )) */}
+                    
             </div>           
         </div>
     </section>)
