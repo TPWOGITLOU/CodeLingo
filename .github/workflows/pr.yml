@@ -13,13 +13,11 @@ jobs:
         uses: actions/checkout@v3
       - name: install dependencies
         run: npm install
-      - name: expose environment variable
+      - name: build the application
         env:
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
-        run: echo $MONGODB_URI
-      - name: test
-        run: echo $MONGODB_URI
-      - name: build the application
         run: npm run build
       - name: start the application
+        env:
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
         run: npm run dev
