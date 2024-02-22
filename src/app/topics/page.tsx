@@ -122,9 +122,8 @@ const Topics = () : JSX.Element => {
             <Accordion variant="splitted" className="px-80">
                 {topicArray.map((topicData) => {
                     return (
-                        
-                        <AccordionItem className="" key={topicData.topicSlug} aria-label={"Accordion-" + topicData.topic} title={<span className="flex flex-row place-items-center justify-between"><p>{topicData.topic}</p><TopicProgress /></span>}>
-                            <TopicTile key={topicData.topic} name={topicData.topic} slug={topicData.topicSlug} />
+                                <AccordionItem className="" key={topicData.topicSlug} aria-label={"Accordion-" + topicData.topic} title={<span className="flex flex-row place-items-center justify-between"><p>{topicData.topic}</p><TopicProgress /></span>}>
+                            <TopicTile key={topicData.topic} name={topicData.topic} slug={topicData.topicSlug} language={language} />
                         </AccordionItem>
                         )
                     })}
