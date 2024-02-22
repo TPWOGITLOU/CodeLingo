@@ -32,7 +32,7 @@ const Learning = (): JSX.Element =>  {
             <Link href="/">Home</Link>
             <h1 className="content-center">Learning</h1>
             <h2 className="content-center">Welcome to Learning</h2>
-            <p> className="content-center"Here is some useful information describing {topic}</p>
+            <p className="content-center">Here is some useful information describing {topic}</p>
             <ul className="content-center">{topicInfoArray.map((individualInfo: string) => {return <li key={individualInfo}>{individualInfo}</li>})}</ul>
         </section>
         )
