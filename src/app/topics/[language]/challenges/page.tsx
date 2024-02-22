@@ -1,6 +1,5 @@
 import Header from "@/components/Header";
 import Link from "next/link"
-import TopicTile from "@/components/TopicTile";
 
 import { getQuestions } from "../../../../../lib/mongo/utils";
 
@@ -8,10 +7,10 @@ const fetchQuestions = async (language: string)=>{
     let collection:string;
     switch (language) {
         case "javascript":
-            collection="JS-Topics"
+            collection="JS-Questions"
             break;
         case "python":
-            collection="PY-Topics"
+            collection="PY-Questions"
         break;
         default:
             collection="";
@@ -39,7 +38,7 @@ return (<section>
 
                 {!questionList? <p>loading</p>: questionList.map((question: any)  => (
                     <li key={question._id}>
-                        <p>hi</p>
+                        <p>{question.challengeQuestion}</p>
                     </li>
                     ))}
                 </ul>
