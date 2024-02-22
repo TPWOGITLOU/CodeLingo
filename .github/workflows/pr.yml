@@ -17,7 +17,3 @@ jobs:
         env:
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
         run: npm run build
-      - name: start the application
-        env:
-          MONGODB_URI: ${{ secrets.MONGODB_URI }}
-        run: npm run dev
