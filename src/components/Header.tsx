@@ -3,25 +3,25 @@ import ToggleTheme from "./ToggleTheme";
 
 const Header = (): JSX.Element => {
   return (
-    <>
-      <header className="fixed flex flex-col text-xl align-middle">
-        <div className="flex flex-row contents-center">
-          <h1 className="font-bold text-3xl light-purple">CodeLingo</h1>
-          <div className="self-end">
-            <ToggleTheme />
-          </div>
-        </div>
-        <Link className="pt-5" href="/about">
+    <header className="h-auto flex flex-row justify-between text-xl p-4 border-b-medium border-black shadow-lg bg-header-colour text-slate-900">
+      <div className="flex flex-row">
+        <Link href="/">
+          <h1 className="font-bold text-3xl ">CodeLingo</h1>
+        </Link>
+        <ToggleTheme />
+      </div>
+      <nav className="p-2 align-end">
+        <Link className="p-2" href="/about">
           About
         </Link>
-        <Link className="pt-5" href="/topics">
+        <Link className="p-2" href="/topics">
           Topics
         </Link>
-        <Link className="pt-5" href="/progress">
+        <Link className="p-2" href="/progress">
           Progress
         </Link>
-      </header>
-    </>
+      </nav>
+    </header>
   );
 };
 

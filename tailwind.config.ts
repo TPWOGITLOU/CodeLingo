@@ -22,6 +22,9 @@ const config: Config = {
         "link-orange": "#FFB400",
         "nice-yellow": "#F6FDC3",
         "back-green": "#CAE7B9",
+        "border-colour": "#85586F",
+        "card-colour": "#F5EEE6",
+        "header-colour": "#8fc9a1",
       },
     },
   },
@@ -40,7 +43,7 @@ const config: Config = {
           colors: {},
         },
       },
-    }),   
+    }),
   ],
   darkMode: "class",
 };
