@@ -72,7 +72,7 @@ const SpriteAnimator: React.FC<SpriteAnimationProps> = ({
     }
 
     return () => clearInterval(undefined);
-  }, []);
+  }, [animationCycle, animationSpeed, imageSrc, spriteWidth, spriteHeight]);
 
   return <canvas ref={canvasRef} width={spriteWidth} height={spriteHeight} />;
 };

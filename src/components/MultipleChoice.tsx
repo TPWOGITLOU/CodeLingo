@@ -33,12 +33,12 @@ const MultipleChoice = (): JSX.Element => {
           <Card className="gap-3 pt-10 pb-10 border-8 border-border-colour  bg-nice-yellow bg-opacity-50">
             <CardBody>
               <div className="flex flex-wrap gap-4 items-center justify-around">
-                <Code color="secondary">A. exampleCode("exampleCode")</Code>
-                <Code color="secondary">B. exampleCode("exampleCode")</Code>
-                <Code color="secondary">C. exampleCode("exampleCode")</Code>
-                <Code color="secondary">D. exampleCode("exampleCode")</Code>
-                <Code color="secondary">E. exampleCode("exampleCode")</Code>
-                <Code color="secondary">F. exampleCode("exampleCode")</Code>
+                <Code color="secondary">A. exampleCode(exampleCode)</Code>
+                <Code color="secondary">B. exampleCode(exampleCode)</Code>
+                <Code color="secondary">C. exampleCode(exampleCode)</Code>
+                <Code color="secondary">D. exampleCode(exampleCode)</Code>
+                <Code color="secondary">E. exampleCode(exampleCode)</Code>
+                <Code color="secondary">F. exampleCode(exampleCode)</Code>
               </div>
             </CardBody>
           </Card>
