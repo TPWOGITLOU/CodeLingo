@@ -1,8 +1,18 @@
+"use client";
+
 import Header from "@/components/Header";
 import SpriteAnimator from "@/components/SpriteAnimator";
 import Link from "next/link";
+import { LanguageContext } from "../../contexts/languageContext";
+import { useContext, useEffect } from "react";
 
 const Home: React.FC = (): JSX.Element => {
+  let { language, setLanguage, setImgUrl } = useContext(LanguageContext);
+
+  useEffect(() => {
+    localStorage.setItem("language", JSON.stringify(language));
+  }, [language]);
+
   return (
     <main>
       <Header />
@@ -14,7 +24,13 @@ const Home: React.FC = (): JSX.Element => {
         </div>
         <div className="flex flex-row justify-between p-2 m-2">
           <Link href="/topics?language=python">
-            <div className="p-2 flex flex-col items-center border-8 border-button-coral bg-nice-yellow bg-opacity-50 mr-3">
+            <div
+              onClick={() => {
+                setLanguage("python");
+                setImgUrl("/snakeIcon.png");
+              }}
+              className="p-2 flex flex-col items-center border-8 border-button-coral bg-nice-yellow bg-opacity-50 mr-3"
+            >
               <h3 className="mb-5 p-5 pt-1 text-center text-lg bg-white rounded-lg">
                 Python
               </h3>
@@ -34,7 +50,13 @@ const Home: React.FC = (): JSX.Element => {
             </div>
           </Link>
           <Link href="/topics?language=javascript">
-            <div className="p-2 flex flex-col items-center border-8 border-button-coral bg-nice-yellow bg-opacity-50">
+            <div
+              onClick={() => {
+                setLanguage("javascript");
+                setImgUrl("/coffeebeanIcon.png");
+              }}
+              className="p-2 flex flex-col items-center border-8 border-button-coral bg-nice-yellow bg-opacity-50"
+            >
               <h3 className="mb-5 p-5 pt-1 text-center text-lg bg-white rounded-lg">
                 JavaScript
               </h3>
