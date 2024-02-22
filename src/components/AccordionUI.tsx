@@ -5,13 +5,14 @@ import TopicProgress from "@/components/TopicProgress";
 import { Topic } from "../../lib/mongo/utils"
 import TopicTile from "./TopicTile";
 
+interface Prop {
+ topicList: Topic[]
+}
 
-const AccordionUI = (topicsList: Topic[]): JSX.Element => {
 
+const AccordionUI = (topicsList: Prop): JSX.Element => {
 
-    console.log(typeof topicsList.topics, "topic List")
-
-    return(<section className="h-screen flex flex-col items-center justify-center content-center font-bold text-center font-mono">
+    return(<section className="py-6 flex flex-col items-center justify-center content-center font-bold text-center font-mono">
     <Accordion variant="splitted" className="px-80">
         {topicsList.topicList.map((topicData) => {
             return (

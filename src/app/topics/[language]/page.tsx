@@ -37,12 +37,7 @@ return (<section>
             <h2>Here are the topics for {language}</h2>
             <div>
                 {!topicsList? <p>loading</p>: 
-                <AccordionUI topicList={topicsList}/>}
-                
-                {/* topicsList.map((topic: Topic)  => (
-                    <TopicTile key={topic._id} name={topic.topic} slug={topic.topicSlug} language={language} />
-                    )) */}
-                    
+                <AccordionUI topicList={topicsList}/>}          
             </div>           
         </div>
     </section>)
