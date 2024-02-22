@@ -1,11 +1,27 @@
-"use client";
-
 import Header from "@/components/Header";
 import Link from "next/link"
-import { useSearchParams } from "next/navigation"
+// import { useSearchParams } from "next/navigation"
 import TopicTile from "@/components/TopicTile";
-import {Accordion, AccordionItem} from "@nextui-org/react";
-import TopicProgress from "@/components/TopicProgress";
+
+import { getTopics } from "../../../lib/mongo/utils";
+interface Topic {
+    [key: string]: string | object;
+  }
+
+  let mongoTopics: Topic[] | undefined
+
+const fetchTopicsMongo = async ()=>{
+
+    try{
+        mongoTopics = await getTopics();
+    }catch(err){
+        console.log(err)
+        throw new Error("There was a problem fetching the data in the topics page");
+    }
+}
+fetchTopicsMongo()
+
+
 
 const fetchTopics = (language: string | null) => {
 
@@ -90,7 +106,7 @@ const fetchTopics = (language: string | null) => {
             p2: '#Naming Conventions Different programming languages have different **conventions** for all sorts of things, including...'
           }
         }
-      ]
+    ]
     if(language === 'python'){
         return pythonTopics
     } else if(language === 'javascript'){
@@ -109,8 +125,9 @@ const Topics = () : JSX.Element => {
     //     topicInfo: any
     // }
 
-    const searchParams = useSearchParams()
-    const language = searchParams.get('language')
+    // const searchParams = useSearchParams()
+    // const language = searchParams.get('language')
+    const language = 'javascript'
     const topicArray = fetchTopics(language)
     
     return (<section>
@@ -119,15 +136,13 @@ const Topics = () : JSX.Element => {
             <Link href="/">home</Link>
             <h1 className="p-2 text-xl">Topics</h1>
             <h2>Here are the topics for {language ? language : 'all languages'}</h2>
-            <Accordion variant="splitted" className="px-80">
-                {topicArray.map((topicData) => {
-                    return (
-                                <AccordionItem className="" key={topicData.topicSlug} aria-label={"Accordion-" + topicData.topic} title={<span className="flex flex-row place-items-center justify-between"><p>{topicData.topic}</p><TopicProgress /></span>}>
-                            <TopicTile key={topicData.topic} name={topicData.topic} slug={topicData.topicSlug} language={language} />
-                        </AccordionItem>
-                        )
-                    })}
-            </Accordion>
+            <div>
+            {!mongoTopics?<p>loading Topic Tiles</p> :
+                mongoTopics.map((topic: any)  => (
+                    <TopicTile key={topic._id} name={topic.topic} slug={topic.topicSlug} language={language} />
+                    ))
+                }
+            </div>           
         </div>
     </section>)
 }
