@@ -1,8 +1,9 @@
 import Header from "@/components/Header";
 import Link from "next/link"
-import TopicTile from "@/components/TopicTile";
 
-import { Topic, getTopics } from "../../../../lib/mongo/utils";
+
+import { getTopics } from "../../../../lib/mongo/utils";
+import AccordionUI from "@/components/AccordionUI";
 
 const fetchTopics = async (language: string)=>{
     let collection:string;
@@ -24,22 +25,20 @@ const fetchTopics = async (language: string)=>{
     }
 }
 
+
 const Topics = async ({params}: {params:{language:string}}) => {
     const language = params.language;
-    const topicsList = await fetchTopics(language)
+    const topics = await fetchTopics(language)
 
 return (<section>
         <Header />
-        <div className="h-screen flex flex-col items-center justify-center content-center font-bold text-center font-mono">
-            <Link href="/">home</Link>
+        <div className="mt-6 flex flex-col items-center justify-center font-bold text-center font-mono">
+            <Link href="/">home</Link>           
             <h1 className="p-2 text-xl">Topics</h1>
             <h2>Here are the topics for {language}</h2>
-            <div>
-                {!topicsList? <p>loading</p>: topicsList.map((topic: Topic)  => (
-                    <TopicTile key={topic._id} name={topic.topic} slug={topic.topicSlug} language={language} />
-                    ))}
-            </div>           
-        </div>
+            </div>
+                {!topics? <p>loading</p>: 
+                <AccordionUI list={topics} language={language}/>}          
     </section>)
 }
 
