@@ -41,7 +41,7 @@ return (<section>
                         <div className="flex flex-row p-2 gap-2">
                         <p>{(counter + 1) + "."}</p>
                         <p>{question.challengeQuestion}</p>
-                        <Link href={`../${question._id}`}><p className="px-1 border-solid rounded hover:bg-link-orange">GO-{'>'}</p></Link>
+                        <Link href={`./${question._id}`}><p className="px-1 border-solid rounded hover:bg-link-orange">GO-{'>'}</p></Link>
                         </div>
                     </li>
                     ))}
