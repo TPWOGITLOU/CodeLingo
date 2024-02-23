@@ -1,8 +1,8 @@
 import Header from "@/components/Header";
 import Link from "next/link"
-import TopicTile from "@/components/TopicTile";
 
-import { Topic, getTopics } from "../../../../lib/mongo/utils";
+
+import { getTopics } from "../../../../lib/mongo/utils";
 import AccordionUI from "@/components/AccordionUI";
 
 const fetchTopics = async (language: string)=>{
@@ -25,21 +25,21 @@ const fetchTopics = async (language: string)=>{
     }
 }
 
+
 const Topics = async ({params}: {params:{language:string}}) => {
     const language = params.language;
-    const topicsList = await fetchTopics(language)
+    const topics = await fetchTopics(language)
+    console.log(topics, "in topic tile")
 
 return (<section>
         <Header />
-        <div className="h-screen flex flex-col items-center justify-center content-center font-bold text-center font-mono">
-            <Link href="/">home</Link>
+        <div className="mt-6 flex flex-col items-center justify-center font-bold text-center font-mono">
+            <Link href="/">home</Link>           
             <h1 className="p-2 text-xl">Topics</h1>
             <h2>Here are the topics for {language}</h2>
-            <div>
-                {!topicsList? <p>loading</p>: 
-                <AccordionUI topicList={topicsList}/>}          
-            </div>           
-        </div>
+            </div>
+                {!topics? <p>loading</p>: 
+                <AccordionUI topics={topics}/>}          
     </section>)
 }
 
