@@ -1,3 +1,4 @@
+import { ObjectId } from "mongodb";
 import client from "./connection";
 
 export interface Topic {
@@ -34,4 +35,18 @@ const getQuestions = async (language: string, topic: string) => {
   }
 };
 
-export { getTopics, getQuestions };
+const getChallenge = async (language: string, challenge: string) => {
+  try {
+    const questionsCollection = client.db("CodeLingo").collection("PY-Questions");
+    const question: any = await questionsCollection
+      .findOne({_id: new ObjectId(challenge)})
+    if (question) {
+      return question;
+    }
+  } catch (error) {
+    throw new Error("There was a problem fetching that challenge");
+  }
+};
+
+
+export { getTopics, getQuestions, getChallenge };
