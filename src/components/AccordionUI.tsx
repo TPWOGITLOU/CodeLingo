@@ -6,16 +6,20 @@ import { Topic } from "../../lib/mongo/utils";
 import TopicTile from "./TopicTile";
 
 interface Prop {
-  topics: Topic[];
+  list: Topic[]; // may need to be a union for challengeList prop type
 }
 
-const AccordionUI = ({ topics }: Prop): JSX.Element => {
+const AccordionUI = ({ list }: Prop): JSX.Element => {
+  let topicsOrChallenges: boolean = true
+  if (!list[1].topicInfo) {
+    topicsOrChallenges = false
+  }
 
   return (
-    <section className="mt-6 flex justify-center">
+    <section className="mt-6 flex items-center justify-center w-full">
       <Accordion
-      variant="splitted"
-      className="w-2/3"
+        variant="splitted"
+        className="flex w-[90%] md:w-[50%]"
         motionProps={{
           variants: {
             enter: {
@@ -51,27 +55,40 @@ const AccordionUI = ({ topics }: Prop): JSX.Element => {
               },
             },
           },
-        }}>
-
-        {topics.map((topicData) => {
+        }}
+      >
+        {topicsOrChallenges ? list.map((topicData, index) => {
           return (
             <AccordionItem
-              key={topicData.topicSlug}
+              key={topicData.topicSlug + index}
               aria-label={"Accordion-" + topicData.topic}
               title={
-                <span className="flex flex-row justify-between" >
+                <span className="flex flex-row justify-between">
                   <p>{topicData.topic}</p>
                   {/* <TopicProgress /> */}
                 </span>
               }
             >
-              <TopicTile
-                key={topicData.topic}
-                slug={topicData.topicSlug}
-              />
+              <TopicTile key={topicData.topic} slug={topicData.topicSlug} />
+            </AccordionItem>
+          )
+        }): 
+        list.map((challengeData, index) => {
+          return (
+            <AccordionItem
+              key={challengeData._id}
+              aria-label={"Accordion-" + challengeData.topic}
+              title={
+                <span className="flex flex-row justify-between">
+                  <p> Challenge {index +1}</p>
+                </span>
+              }
+            >
+             {challengeData.challengeQuestion}
             </AccordionItem>
           );
-        })}
+        })
+        }
       </Accordion>
     </section>
   );

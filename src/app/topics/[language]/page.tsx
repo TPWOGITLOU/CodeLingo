@@ -38,7 +38,7 @@ return (<section>
             <h2>Here are the topics for {language}</h2>
             </div>
                 {!topics? <p>loading</p>: 
-                <AccordionUI topics={topics}/>}          
+                <AccordionUI list={topics}/>}          
     </section>)
 }
 
