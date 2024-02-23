@@ -10,9 +10,9 @@ interface Prop {
 }
 
 const AccordionUI = ({ list }: Prop): JSX.Element => {
-  let topicsOrChallenges: boolean = true
+  let topicsOrChallenges: boolean = true;
   if (!list[1].topicInfo) {
-    topicsOrChallenges = false
+    topicsOrChallenges = false;
   }
 
   return (
@@ -57,38 +57,38 @@ const AccordionUI = ({ list }: Prop): JSX.Element => {
           },
         }}
       >
-        {topicsOrChallenges ? list.map((topicData, index) => {
-          return (
-            <AccordionItem
-              key={topicData.topicSlug + index}
-              aria-label={"Accordion-" + topicData.topic}
-              title={
-                <span className="flex flex-row justify-between">
-                  <p>{topicData.topic}</p>
-                  {/* <TopicProgress /> */}
-                </span>
-              }
-            >
-              <TopicTile key={topicData.topic} slug={topicData.topicSlug} />
-            </AccordionItem>
-          )
-        }): 
-        list.map((challengeData, index) => {
-          return (
-            <AccordionItem
-              key={challengeData._id}
-              aria-label={"Accordion-" + challengeData.topic}
-              title={
-                <span className="flex flex-row justify-between">
-                  <p> Challenge {index +1}</p>
-                </span>
-              }
-            >
-             {challengeData.challengeQuestion}
-            </AccordionItem>
-          );
-        })
-        }
+        {topicsOrChallenges
+          ? list.map((topicData, index) => {
+              return (
+                <AccordionItem
+                  key={topicData._id}
+                  aria-label={`Dropdown menu for ${topicData.topic}`}
+                  title={
+                    <span className="flex flex-row justify-between">
+                      <p>{topicData.topic}</p>
+                      {/* <TopicProgress /> */}
+                    </span>
+                  }
+                >
+                  <TopicTile key={topicData.topic} slug={topicData.topicSlug} />
+                </AccordionItem>
+              );
+            })
+          : list.map((challengeData, index) => {
+              return (
+                <AccordionItem
+                  key={challengeData._id}
+                  aria-label={"Accordion-" + challengeData.topic}
+                  title={
+                    <span className="flex flex-row justify-between">
+                      <p> Challenge {index + 1}</p>
+                    </span>
+                  }
+                >
+                  {challengeData.challengeQuestion}
+                </AccordionItem>
+              );
+            })}
       </Accordion>
     </section>
   );
