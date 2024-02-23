@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Code,
   Card,
@@ -9,6 +11,7 @@ import {
   Link,
 } from "@nextui-org/react";
 import ChallengeFooter from "./ChallengeFooter";
+import { useLanguageContext } from "../../contexts";
 
 const MultipleChoice = (): JSX.Element => {
   return (
