@@ -19,11 +19,11 @@ const getTopics = async (language: string) => {
   }
 };
 
-const getQuestions = async (language: string) => {
+const getQuestions = async (language: string, topic: string) => {
   try {
     const questionsCollection = client.db("CodeLingo").collection(language);
     const questions: Topic[] = await questionsCollection
-      .find({})
+      .find({topic})
       .map((question: Topic) => ({ ...question, _id: question._id.toString() }))
       .toArray();
     if (questions) {
