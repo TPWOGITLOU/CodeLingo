@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "@nextui-org/react";
+import Link from "next/link";
 
 interface Props {
   slug: string;
@@ -11,6 +12,7 @@ const TopicTile = (props: Props): JSX.Element => {
       <p>{props.slug}</p>
       <div className="mt-4 mb-2 px-20 flex flex-row justify-between">
         <Button radius="full" size="sm" color="secondary" variant="bordered">Learn More </Button>
+        <Link href="">
         <Button
           radius="full"
           size="sm"
@@ -18,6 +20,7 @@ const TopicTile = (props: Props): JSX.Element => {
         >
           Challenges
         </Button>
+        </Link>
       </div>
     </>
   );
