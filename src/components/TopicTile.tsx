@@ -5,12 +5,14 @@ interface Props {
   slug: string;
 }
 
+
 const TopicTile = (props: Props): JSX.Element => {
   return (
     <>
       <p>{props.slug}</p>
       <div className="mt-4 mb-2 px-20 flex flex-row justify-between">
         <Button radius="full" size="sm" color="secondary" variant="bordered">Learn More </Button>
+           <Link href={`${props.language}/${props.name}/challenges`}>
         <Button
           radius="full"
           size="sm"
@@ -18,10 +20,12 @@ const TopicTile = (props: Props): JSX.Element => {
         >
           Challenges
         </Button>
+       </Link>
       </div>
     </>
   );
 };
 
 export default TopicTile;
+
 
