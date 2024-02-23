@@ -13,7 +13,9 @@ const TopicTile = (props: Props) : JSX.Element => {
                     <Link href={`topics/learning?language=${props.language}&topic=${props.name}`}>
                     <p>learning link here</p>
                     </Link>
+                    <Link href={`${props.language}/${props.name}/challenges`}>
                     <p>challenge link here</p>
+                    </Link>
                 </div>
         </>
         )

@@ -19,4 +19,19 @@ const getTopics = async (language: string) => {
   }
 };
 
-export { getTopics };
+const getQuestions = async (language: string, topic: string) => {
+  try {
+    const questionsCollection = client.db("CodeLingo").collection(language);
+    const questions: Topic[] = await questionsCollection
+      .find({topic})
+      .map((question: Topic) => ({ ...question, _id: question._id.toString() }))
+      .toArray();
+    if (questions) {
+      return questions;
+    }
+  } catch (error) {
+    throw new Error("There was a problem fetching the data");
+  }
+};
+
+export { getTopics, getQuestions };
