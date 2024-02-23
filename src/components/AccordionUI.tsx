@@ -10,12 +10,12 @@ interface Prop {
 }
 
 const AccordionUI = ({ topics }: Prop): JSX.Element => {
+
   return (
     <section className="mt-6 flex justify-center">
       <Accordion
       variant="splitted"
       className="w-2/3"
-
         motionProps={{
           variants: {
             enter: {
@@ -51,9 +51,8 @@ const AccordionUI = ({ topics }: Prop): JSX.Element => {
               },
             },
           },
-        }}
-        
-      >
+        }}>
+
         {topics.map((topicData) => {
           return (
             <AccordionItem
@@ -68,7 +67,6 @@ const AccordionUI = ({ topics }: Prop): JSX.Element => {
             >
               <TopicTile
                 key={topicData.topic}
-                name={topicData.topic}
                 slug={topicData.topicSlug}
               />
             </AccordionItem>
