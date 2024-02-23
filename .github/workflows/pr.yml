@@ -1,0 +1,19 @@
+name: PR
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  run-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout and clone repo
+        uses: actions/checkout@v3
+      - name: install dependencies
+        run: npm install
+      - name: build the application
+        env:
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
+        run: npm run build

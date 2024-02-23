@@ -1,12 +1,12 @@
 import client from "./connection";
 
-interface Topic {
-  [key: string]: string | object;
+export interface Topic {
+  [key: string]: string ;
 }
 
-const getTopics = async () => {
+const getTopics = async (language: string) => {
   try {
-    const topicsCollection = client.db("CodeLingo").collection("JS-Topics");
+    const topicsCollection = client.db("CodeLingo").collection(language);
     const topics: Topic[] = await topicsCollection
       .find({})
       .map((topic: Topic) => ({ ...topic, _id: topic._id.toString() }))
