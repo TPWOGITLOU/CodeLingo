@@ -39,7 +39,7 @@ const getQuestions = async (language: string, topic: string) => {
 
 const getChallenge = async (language: string, challenge: string) => {
   try {
-    const questionsCollection = client.db(databaseName).collection(language);
+    const questionsCollection: any = client.db(databaseName).collection(language);
     const question = await questionsCollection
       .findOne({_id: new ObjectId(challenge)})
     if (question) {
