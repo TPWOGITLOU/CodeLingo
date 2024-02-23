@@ -1,13 +1,15 @@
 import { ObjectId } from "mongodb";
 import client from "./connection";
 
+const databaseName = "CodeLingo"
+
 export interface Topic {
   [key: string]: string ;
 }
 
 const getTopics = async (language: string) => {
   try {
-    const topicsCollection = client.db("CodeLingo").collection(language);
+    const topicsCollection = client.db(databaseName).collection(language);
     const topics: Topic[] = await topicsCollection
       .find({})
       .map((topic: Topic) => ({ ...topic, _id: topic._id.toString() }))
@@ -22,7 +24,7 @@ const getTopics = async (language: string) => {
 
 const getQuestions = async (language: string, topic: string) => {
   try {
-    const questionsCollection = client.db("CodeLingo").collection(language);
+    const questionsCollection = client.db(databaseName).collection(language);
     const questions: Topic[] = await questionsCollection
       .find({topic})
       .map((question: Topic) => ({ ...question, _id: question._id.toString() }))
@@ -37,8 +39,8 @@ const getQuestions = async (language: string, topic: string) => {
 
 const getChallenge = async (language: string, challenge: string) => {
   try {
-    const questionsCollection = client.db("CodeLingo").collection("PY-Questions");
-    const question: any = await questionsCollection
+    const questionsCollection: any = client.db(databaseName).collection(language);
+    const question = await questionsCollection
       .findOne({_id: new ObjectId(challenge)})
     if (question) {
       return question;
