@@ -7,11 +7,12 @@ import TopicTile from "./TopicTile";
 
 interface Prop {
   list: Topic[]; // may need to be a union for challengeList prop type
+  language: string
 }
 
-const AccordionUI = ({ list }: Prop): JSX.Element => {
+const AccordionUI = ({ list, language }: Prop): JSX.Element => {
   let topicsOrChallenges: boolean = true;
-  if (!list[1].topicInfo) {
+  if (!list[0].hasOwnProperty("topicInfo")) {
     topicsOrChallenges = false;
   }
 
@@ -58,7 +59,7 @@ const AccordionUI = ({ list }: Prop): JSX.Element => {
         }}
       >
         {topicsOrChallenges
-          ? list.map((topicData, index) => {
+          ? list.map((topicData) => {
               return (
                 <AccordionItem
                   key={topicData._id}
@@ -70,7 +71,7 @@ const AccordionUI = ({ list }: Prop): JSX.Element => {
                     </span>
                   }
                 >
-                  <TopicTile key={topicData.topic} slug={topicData.topicSlug} />
+                  <TopicTile key={topicData.topic} slug={topicData.topicSlug} name={topicData.topic} language={language}/>
                 </AccordionItem>
               );
             })
