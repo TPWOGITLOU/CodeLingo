@@ -24,3 +24,4 @@ const TopicTile = (props: Props): JSX.Element => {
 };
 
 export default TopicTile;
+
