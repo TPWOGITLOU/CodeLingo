@@ -29,7 +29,6 @@ const fetchTopics = async (language: string)=>{
 const Topics = async ({params}: {params:{language:string}}) => {
     const language = params.language;
     const topics = await fetchTopics(language)
-    console.log(topics, "in topic tile")
 
 return (<section>
         <Header />
