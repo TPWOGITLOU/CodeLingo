@@ -1,27 +1,65 @@
+"use client";
 import Link from "next/link";
+import Image from "next/image";
 import ToggleTheme from "./ToggleTheme";
+import { useLanguageContext } from "../../contexts";
+import { useEffect } from "react";
+import { Tooltip } from "@nextui-org/react";
+import DropdownCard from "./DropdownCard";
 
 const Header = (): JSX.Element => {
+  let { language, imgUrl } = useLanguageContext();
+
+  useEffect(() => {
+    localStorage.setItem("image", JSON.stringify(imgUrl));
+  }, [imgUrl]);
+
   return (
-    <header className="h-auto flex flex-row justify-between text-xl p-4 border-b-medium border-black shadow-lg bg-header-colour text-slate-900">
-      <div className="flex flex-row">
-        <Link href="/">
-          <h1 className="font-bold text-3xl ">CodeLingo</h1>
-        </Link>
-        <ToggleTheme />
-      </div>
-      <nav className="p-2 align-end">
-        <Link className="p-2" href="/about">
-          About
-        </Link>
-        <Link className="p-2" href="/topics">
-          Topics
-        </Link>
-        <Link className="p-2" href="/progress">
-          Progress
-        </Link>
-      </nav>
-    </header>
+    <>
+      <header className="h-auto flex flex-row justify-between items-center p-2 text-xl border-b-medium border-black shadow-lg bg-header-colour text-slate-900">
+        <div className="flex flex-row">
+          <Link href="/">
+            <h1 className="font-bold text-3xl p-2">CodeLingo</h1>
+          </Link>
+          <ToggleTheme />
+        </div>
+        <nav className="md:flex md:flex-row md:items-center hidden">
+          <Link className="p-2" href="/about">
+            About
+          </Link>
+          <Link className="p-2" href="/topics">
+            Topics
+          </Link>
+          <Link className="p-2" href="/progress">
+            Progress
+          </Link>
+          {language && (
+            <Tooltip
+              content={
+                <div className="px-1 py-2">
+                  <div className="text-small font-bold">
+                    Studying{" "}
+                    {language.slice(0, 1).toUpperCase() + language.slice(1)}
+                  </div>
+                  <div className="text-tiny">Click me to switch languages</div>
+                </div>
+              }
+            >
+              <Image
+                className="p-0, m-0"
+                src={imgUrl}
+                alt={`${language} character icon`}
+                width={64}
+                height={64}
+              ></Image>
+            </Tooltip>
+          )}
+        </nav>
+        <div className="md:hidden">
+          <DropdownCard />
+        </div>
+      </header>
+    </>
   );
 };
 
