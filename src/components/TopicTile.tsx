@@ -6,7 +6,6 @@ interface Props {
   slug: string;
   name: string;
   language:string;
-
 }
 
 const TopicTile = (props: Props): JSX.Element => {
