@@ -6,7 +6,6 @@ const About = (): JSX.Element => {
   return (
     <section>
       <Header />
-      <MultipleChoice />
     </section>
   );
 };

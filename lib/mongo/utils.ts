@@ -7,6 +7,16 @@ export interface Topic {
   [key: string]: string ;
 }
 
+export interface challenge{
+  _id: string;
+  topic: string;
+  language: string;
+  challengeType: string;
+  challengeQuestion:  string;
+  challengeSnippets: {};
+  answer:string|{};
+}
+
 const getTopics = async (language: string) => {
   try {
     const topicsCollection = client.db(databaseName).collection(language);
@@ -39,10 +49,19 @@ const getQuestions = async (language: string, topic: string) => {
 
 const getChallenge = async (language: string, challenge: string) => {
   try {
-    const questionsCollection: any = client.db(databaseName).collection(language);
-    const question = await questionsCollection
+    const questionsCollection = client.db(databaseName).collection(language);
+    const result = await questionsCollection
       .findOne({_id: new ObjectId(challenge)})
-    if (question) {
+    if (result) {
+      const question: challenge ={
+        _id: result._id.toString(),
+        topic: result.topic,
+        language: result.language,
+        challengeType: result.challengeType,
+        challengeQuestion: result.challengeQuestion,
+        challengeSnippets: result.challengeSnippet,
+        answer: result.answer,
+      };
       return question;
     }
   } catch (error) {

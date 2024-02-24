@@ -25,24 +25,25 @@ const fetchChallenge = async (language: string, challenge_id :string)=>{
   }
 }
 
-
 const Challenge = async ({params}: {params:{language:string, topic:string, challenge:string}}) => {
     const language = params.language;
     const challenge_id = params.challenge;
-    const challengeData = await fetchChallenge(language, challenge_id)
-    switch (challengeData.challengeType) {
-      case "multiChoice":
-          return <MultipleChoice/>
-          break;
-      case "match":
-          return <Matching/>
-          break;
-      case "typed":
-          return <Typed/>
-          break;
-      case "block":
-          return <Block/>
-          break;
+    const result = await fetchChallenge(language, challenge_id)
+    if (result){
+        const challengeData = result;
+        switch (challengeData.challengeType) {
+        case "multiChoice":
+            return <MultipleChoice {...challengeData}/>
+        case "match":
+            return <Matching {...challengeData}/>
+        case "typed":
+            return <Typed {...challengeData}/>
+        case "block":
+            return <Block {...challengeData}/>
+        default:
+            throw new Error ("There was a problem")
+            
+    }
   }
   
 };
