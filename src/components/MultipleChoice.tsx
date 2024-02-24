@@ -1,4 +1,5 @@
 "use client";
+import { challenge } from "../../lib/mongo/utils"
 
 import {
   Code,
@@ -13,7 +14,7 @@ import {
 import ChallengeFooter from "./ChallengeFooter";
 import { useLanguageContext } from "../../contexts";
 
-const MultipleChoice = (): JSX.Element => {
+const MultipleChoice = (challengeData: challenge): JSX.Element => {
   return (
     <section className="h-[90%] w-[80%] mt-10 ml-[10%] flex flex-col flex-wrap gap-8 items-center align-middle justify-center ">
       <section className="flex flex-row flex-wrap justify-between gap-5">
