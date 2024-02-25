@@ -31,6 +31,7 @@ const Challenge = async ({params}: {params:{language:string, topic:string, chall
     const result = await fetchChallenge(language, challenge_id)
     if (result){
         const challengeData = result;
+        challengeData.challengeType = "block"  //hard coded to block!
         switch (challengeData.challengeType) {
         case "multiChoice":
             return <MultipleChoice {...challengeData}/>
