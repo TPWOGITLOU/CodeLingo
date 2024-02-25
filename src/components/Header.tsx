@@ -33,6 +33,9 @@ const Header = (): JSX.Element => {
           <Link className="p-2" href="/progress">
             Progress
           </Link>
+          <Link className="p-2" href="/sandbox">
+            Sandbox
+          </Link>
           {language && (
             <Tooltip
               content={
