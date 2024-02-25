@@ -5,6 +5,7 @@ import { Providers } from "../../contexts/providers";
 import { Suspense } from "react";
 import Loading from "./loading";
 
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {

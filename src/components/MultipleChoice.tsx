@@ -1,5 +1,5 @@
 "use client";
-import { challenge } from "../../lib/mongo/utils"
+import { challenge } from "../../lib/mongo/utils";
 
 import {
   Code,
@@ -47,7 +47,7 @@ const MultipleChoice = (challengeData: challenge): JSX.Element => {
             </CardBody>
           </Card>
         </div>
-        <Card className="md:max-w-[35%] w-100% h-auto border-8 border-border-colour bg-nice-yellow bg-opacity-50 p-5">
+        <Card className="md:max-w-[50%] w-100% h-auto border-8 border-border-colour bg-nice-yellow bg-opacity-50 p-5">
           <CardBody>
             <p>Explanation of the task and link to the information page</p>
           </CardBody>
