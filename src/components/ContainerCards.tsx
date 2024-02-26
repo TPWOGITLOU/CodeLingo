@@ -6,10 +6,11 @@ interface Props {
     status: Status
     isDragging: boolean
     handleDragging: (dragging: boolean) => void
-    handleUpdateList: (id: number, status: Status) => void
+    handleUpdateList: (id: number, status: Status, e: React.DragEvent<HTMLDivElement>, index: string) => void
+    setTarget: (target: string) => void
 }
 
-export const ContainerCards = ({items = [], status, handleDragging, isDragging, handleUpdateList}: Props) => {
+export const ContainerCards = ({items = [], status, handleDragging, isDragging, handleUpdateList, setTarget}: Props) => {
     const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
         e.preventDefault()
     }
@@ -17,7 +18,8 @@ export const ContainerCards = ({items = [], status, handleDragging, isDragging, 
     const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
         e.preventDefault()
         const id = +e.dataTransfer.getData('text')
-        handleUpdateList(id, status)
+        const index = e.dataTransfer.getData('index')
+        handleUpdateList(id, status, e, index)
         handleDragging(false)
     }
     return (
@@ -26,16 +28,21 @@ export const ContainerCards = ({items = [], status, handleDragging, isDragging, 
         onDragOver={handleDragOver}
         onDrop={handleDrop}>
             <p className="underline underline-offset-1">{status} block</p>
-            {
-                items.map(item => (
-                    status === item.status &&
-                    <CardItem
+            <div className="flex flex-row">
+
+                {
+                    items.map((item, index) => (
+                        status === item.status &&
+                        <CardItem
                         data={item}
                         key={item.id}
                         handleDragging={handleDragging}
-                    />
-                ))
-            }
+                        index={index}
+                        setTarget={setTarget}
+                        />
+                        ))
+                    }
+            </div>
         </div>
     )
 }

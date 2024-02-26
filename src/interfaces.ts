@@ -1,4 +1,4 @@
-export type Status = 'first' | 'second'
+export type Status = 'question' | 'answer'
 
 export interface Data {
     id: number
