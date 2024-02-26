@@ -1,65 +1,59 @@
 'use client'
 
 import { challenge } from "../../lib/mongo/utils"
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
 const Block = (challengeData: challenge)=>{
-    const {_id,
-      topic,
-      language,
-      challengeType,
-      challengeQuestion,
-      challengeSnippets,
-      answer,} = challengeData
+  const draggingItem = useRef();
+  const dragOverItem = useRef();
 
+  const [list, setList] = useState([
+    'console',
+    '.',
+    'log',
+    '(',
+    'hello world',
+    ')',
+  ]);
 
-    const [answerBlocks, setAnswerBlocks] = useState<string[]>([])
-    
-    const handleOnDrag = (event: React.DragEvent, itemContents: string) => {
-      event.dataTransfer.setData('itemContents', itemContents)
-    }
+  const handleDragStart = (e, position) => {
+    draggingItem.current = position;
+    console.log(e.target.innerHTML);
+  };
 
-    const handleOnDrop = (event: React.DragEvent) => {
-      const itemContents = event.dataTransfer.getData('itemContents')
-      console.log('itemContents: ', itemContents)
-      setAnswerBlocks([...answerBlocks, itemContents])
-    }
+  const handleDragEnter = (e, position) => {
+    dragOverItem.current = position;
+    console.log(e.target.innerHTML);
+    const listCopy = [...list];
+    console.log(draggingItem.current, dragOverItem.current);
+    const draggingItemContent = listCopy[draggingItem.current];
+    listCopy.splice(draggingItem.current, 1);
+    listCopy.splice(dragOverItem.current, 0, draggingItemContent);
 
-    const handleDragOver = (event: React.DragEvent) => {
-      event.preventDefault()
-    }
+    draggingItem.current = dragOverItem.current;
+    dragOverItem.current = null;
+    setList(listCopy);
+  };
 
+  return (
+    <><div className="flex flex-row">
 
-    return <div>
-    
-    <p>this is a block challenge about {topic}</p>
-    <div className="">
-        <div className="">
-            <div className="flex flex-row" id="todo-lane">
-                <h3>TODO</h3>
-                <p className="" draggable="true" onDragStart={(event) => handleOnDrag(event, ')')}>)</p>
-                <p className="" draggable="true" onDragStart={(event) => handleOnDrag(event, '.')}>.</p>
-                <p className="" draggable="true" onDragStart={(event) => handleOnDrag(event, 'log')}>log</p>
-                <p className="" draggable="true" onDragStart={(event) => handleOnDrag(event, '(')}>(</p>
-                <p className="" draggable="true" onDragStart={(event) => handleOnDrag(event, 'hello world')}>'hello world'</p>
-                <p className="" draggable="true" onDragStart={(event) => handleOnDrag(event, 'console')}>console</p>
-            </div>
-
-            <div className="" onDrop={handleOnDrop} onDragOver={handleDragOver}>
-                <h3>DONE</h3>
-                <ul className="flex flex-row">
-
-                {answerBlocks.map((block, index) => {
-                  return <li key={index}>
-                      <p>{block}</p>
-                  </li>
-                })}
-                </ul>
-            </div>
-
+      {list &&
+        list.map((item, index) => (
+          <h1 className="min-w-24 border-2 border-black"
+          onDragStart={(e) => handleDragStart(e, index)}
+          onDragOver={(e) => e.preventDefault()}
+          onDragEnter={(e) => handleDragEnter(e, index)}
+          key={index}
+          draggable
+          >
+            {item}
+          </h1>
+        ))}
         </div>
-    </div>
-    </div>
-}
+    </>
+  );
+};
+
 
 export default Block
