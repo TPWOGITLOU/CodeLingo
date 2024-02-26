@@ -29,7 +29,6 @@ const Topics = async () => {
 
   return (
     <section>
-      <Header />
       <div className="h-screen flex flex-col items-center justify-center content-center font-bold text-center font-mono">
         <h1 className="p-2 text-xl">All topics, For all languages</h1>
         <span>go back to <Link href="/" className="text-link-orange">home</Link> to select either language</span>
