@@ -4,7 +4,7 @@ import OutputWindow from "../../components/OutputWindow";
 import CodeEditor from "../../components/CodeEditor";
 import LanguageOptions from "../../components/LanguageOptions";
 import { Card, CardBody, Image, Button } from "@nextui-org/react";
-import { compileCode, checkStatus } from "./api";
+import { handleCompile } from "../../../lib/mongo/judge0/judge-utils";
 import Header from "@/components/Header";
 import ThemeOptions from "@/components/ThemeOptions";
 import { GlobalContext } from "../../../contexts/globalContext";
@@ -82,34 +82,9 @@ const Sandbox: React.FC = (): JSX.Element => {
     }
   };
 
-  const handleCompile = async () => {
-    setProcessing(true);
-    try {
-      const response = await compileCode(language.id, code);
-      const token = response;
-      checkCompileStatus(token);
-    } catch (error: unknown) {
-      setProcessing(false);
-    }
-  };
-
-  const checkCompileStatus = async (token: string) => {
-    try {
-      const response = await checkStatus(token);
-      const statusId = response.status?.id;
-
-      if (statusId === 1 || statusId === 2) {
-        setTimeout(() => {
-          checkCompileStatus(token);
-        }, 2000);
-      } else {
-        setProcessing(false);
-        setOutputDetails(response);
-      }
-    } catch (error: unknown) {
-      setProcessing(false);
-    }
-  };
+  const fetchHandleCompile = async () => {
+    return await handleCompile(language, code, setProcessing, setOutputDetails)
+  }
 
   return (
     <main>
@@ -147,7 +122,7 @@ const Sandbox: React.FC = (): JSX.Element => {
             <OutputWindow outputDetails={outputDetails} />
             <div className="flex flex-row justify-between">
               <Button
-                onClick={handleCompile}
+                onClick={fetchHandleCompile}
                 disabled={!code}
                 radius="full"
                 className="bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg"

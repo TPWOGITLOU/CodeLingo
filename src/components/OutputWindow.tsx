@@ -4,8 +4,10 @@ interface CodeProps {
     compile_output: string;
     stdout: string;
     stderr: string;
-  };
+  },
+  feedback?: {feedback:string}
 }
+
 
 const OutputWindow = (props: CodeProps): JSX.Element => {
   const getOutput = () => {
@@ -28,14 +30,16 @@ const OutputWindow = (props: CodeProps): JSX.Element => {
       return <pre>{atob(props.outputDetails?.stderr)}</pre>;
     }
   };
+
   return (
     <>
       <h1 className="text-xl font-bold ml-2">Output:</h1>
       <div className="h-[90%] border-small border-slate-300 rounded-small p-5 overflow-scroll text-small">
-        {props.outputDetails ? <>{getOutput()}</> : null}
+        {props.outputDetails ? <>{getOutput()} <br></br> {props.feedback && props.feedback.length === 30 ? <p className="text-green-500">{props.feedback}</p> : <p className="text-red-400">{props.feedback}</p>}</> : null}
       </div>
     </>
   );
 };
+
 
 export default OutputWindow;
