@@ -13,10 +13,8 @@ interface GlobalContextProps {
   setProcessing: (processing: boolean) => void;
   theme: string;
   setTheme: (theme: string) => void;
-  pythonProgress: {};
-  setPythonProgress: (pythonProgress: {}[]) => void;
-  jsProgress: {};
-  setJsProgress: (jsProgress: {}[]) => void;
+  completedChallenges: string[];
+  setCompletedChallenges: (completedChallenges: []) => void;
 }
 
 interface GlobalContextProviderProps {
@@ -36,10 +34,8 @@ export const GlobalContext = React.createContext<GlobalContextProps>({
   setProcessing: () => {},
   theme: "",
   setTheme: () => {},
-  pythonProgress: {},
-  setPythonProgress: () => {},
-  jsProgress: {},
-  setJsProgress: () => {},
+  completedChallenges: [],
+  setCompletedChallenges: () => {},
 });
 
 const GlobalContextProvider = (props: GlobalContextProviderProps) => {
@@ -49,8 +45,7 @@ const GlobalContextProvider = (props: GlobalContextProviderProps) => {
   const [code, setCode] = useState<string>("console.log('hello world!')");
   const [processing, setProcessing] = useState(false);
   const [theme, setTheme] = useState("vs-dark");
-  const [pythonProgress, setPythonProgress] = useState({});
-  const [jsProgress, setJsProgress] = useState({});
+  const [completedChallenges, setCompletedChallenges] = useState([]);
 
   useEffect(() => {
     const getLanguage = () => {
@@ -63,7 +58,13 @@ const GlobalContextProvider = (props: GlobalContextProviderProps) => {
       return image ? JSON.parse(image) : "";
     };
 
+    const getCompletedChallenges = () => {
+      const completedChallenges = localStorage.getItem("completedChallenges");
+      return completedChallenges ? JSON.parse(completedChallenges) : [];
+    };
+
     if (typeof window !== "undefined") {
+      setCompletedChallenges(getCompletedChallenges());
       setCurrentLanguage(getLanguage());
       setImgUrl(getImage());
     }
@@ -84,10 +85,8 @@ const GlobalContextProvider = (props: GlobalContextProviderProps) => {
         setProcessing: setProcessing,
         theme: theme,
         setTheme: setTheme,
-        pythonProgress: pythonProgress,
-        setPythonProgress: setPythonProgress,
-        jsProgress: jsProgress,
-        setJsProgress: setJsProgress,
+        completedChallenges: completedChallenges,
+        setCompletedChallenges: setCompletedChallenges,
       }}
     >
       {props.children}
