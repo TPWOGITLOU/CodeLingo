@@ -33,7 +33,6 @@ const Challanges = async ({params}: {params:{language:string, topic:string}}) =>
     const questionList = await fetchQuestions(language, topic)
 
 return (<section>
-        <Header />
         <div className="h-screen flex flex-col items-center justify-center content-center font-bold text-center font-mono">
             <h1 className="p-2 text-xl">Challenges: {language}</h1>
             <h2>Here are the {topic} challenges</h2>
