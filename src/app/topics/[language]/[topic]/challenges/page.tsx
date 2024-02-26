@@ -23,6 +23,8 @@ const fetchQuestions = async (language: string, topic :string)=>{
     }
 }
 
+
+
 const Challanges = async ({params}: {params:{language:string, topic:string}}) => {
     const language = params.language;
     const topic = params.topic

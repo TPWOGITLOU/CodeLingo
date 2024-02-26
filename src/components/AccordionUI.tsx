@@ -4,10 +4,11 @@ import { Accordion, AccordionItem } from "@nextui-org/react";
 import TopicProgress from "@/components/TopicProgress";
 import { Topic } from "../../lib/mongo/utils";
 import TopicTile from "./TopicTile";
+import ProgressBar from "./ProgressBar";
 
 interface Prop {
   list: Topic[]; // may need to be a union for challengeList prop type
-  language: string
+  language: string;
 }
 
 const AccordionUI = ({ list, language }: Prop): JSX.Element => {
@@ -16,8 +17,14 @@ const AccordionUI = ({ list, language }: Prop): JSX.Element => {
     topicsOrChallenges = false;
   }
 
+  const topicOrChallengeIds: string[] | false =
+    topicsOrChallenges &&
+    list.map((data) => {
+      return data._id;
+    });
+
   return (
-    <section className="mt-6 flex items-center justify-center w-full">
+    <section className="mt-6 flex flex-col items-center justify-center w-full">
       <Accordion
         variant="splitted"
         className="flex w-[90%] md:w-[50%]"
@@ -71,7 +78,12 @@ const AccordionUI = ({ list, language }: Prop): JSX.Element => {
                     </span>
                   }
                 >
-                  <TopicTile key={topicData.topic} slug={topicData.topicSlug} name={topicData.topic} language={language}/>
+                  <TopicTile
+                    key={topicData.topic}
+                    slug={topicData.topicSlug}
+                    name={topicData.topic}
+                    language={language}
+                  />
                 </AccordionItem>
               );
             })
@@ -91,6 +103,7 @@ const AccordionUI = ({ list, language }: Prop): JSX.Element => {
               );
             })}
       </Accordion>
+      <ProgressBar topicOrChallengeIds={topicOrChallengeIds} />
     </section>
   );
 };
