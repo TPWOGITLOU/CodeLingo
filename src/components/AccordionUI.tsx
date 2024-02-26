@@ -1,10 +1,12 @@
 "use client";
 
-import { Accordion, AccordionItem } from "@nextui-org/react";
+import { Accordion, AccordionItem, Button } from "@nextui-org/react";
 import TopicProgress from "@/components/TopicProgress";
 import { Topic } from "../../lib/mongo/utils";
 import TopicTile from "./TopicTile";
 import ProgressBar from "./ProgressBar";
+import Link from "next/link";
+
 
 interface Prop {
   list: Topic[]; // may need to be a union for challengeList prop type
@@ -98,7 +100,21 @@ const AccordionUI = ({ list, language }: Prop): JSX.Element => {
                     </span>
                   }
                 >
-                  {challengeData.challengeQuestion}
+                  <div className="flex flex-row justify-between">
+                    <p className="text-left">
+                      {challengeData.challengeQuestion}{" "}
+                    </p>
+                    <Link href={`./${challengeData._id}`}>
+                      {" "}
+                      <Button
+                        radius="full"
+                        size="sm"
+                        className="bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg"
+                      >
+                        GO!
+                      </Button>
+                    </Link>
+                  </div>
                 </AccordionItem>
               );
             })}
