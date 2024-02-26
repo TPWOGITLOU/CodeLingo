@@ -2,13 +2,13 @@
 import Link from "next/link";
 import Image from "next/image";
 import ToggleTheme from "./ToggleTheme";
-import { useLanguageContext } from "../../contexts";
+import { useGlobalContext } from "../../contexts";
 import { useEffect } from "react";
 import { Tooltip } from "@nextui-org/react";
 import DropdownCard from "./DropdownCard";
 
 const Header = (): JSX.Element => {
-  let { language, imgUrl } = useLanguageContext();
+  let { language, imgUrl } = useGlobalContext();
 
   useEffect(() => {
     localStorage.setItem("image", JSON.stringify(imgUrl));
@@ -42,19 +42,21 @@ const Header = (): JSX.Element => {
                 <div className="px-1 py-2">
                   <div className="text-small font-bold">
                     Studying{" "}
-                    {language.slice(0, 1).toUpperCase() + language.slice(1)}
+                    {language === "javascript" ? "JavaScript" : "Python"}
                   </div>
                   <div className="text-tiny">Click me to switch languages</div>
                 </div>
               }
             >
-              <Image
-                className="p-0, m-0"
-                src={imgUrl}
-                alt={`${language} character icon`}
-                width={64}
-                height={64}
-              ></Image>
+              <Link href="/">
+                <Image
+                  className="p-0, m-0"
+                  src={imgUrl}
+                  alt={`${language} character icon`}
+                  width={64}
+                  height={64}
+                ></Image>
+              </Link>
             </Tooltip>
           )}
         </nav>

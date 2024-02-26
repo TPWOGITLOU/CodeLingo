@@ -1,13 +1,13 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import OutputWindow from "../../components/OutputWindow";
 import CodeEditor from "../../components/CodeEditor";
 import LanguageOptions from "../../components/LanguageOptions";
-import { Card, CardBody, Image, select } from "@nextui-org/react";
-import { Button } from "@nextui-org/react";
+import { Card, CardBody, Image, Button } from "@nextui-org/react";
 import { compileCode, checkStatus } from "./api";
 import Header from "@/components/Header";
 import ThemeOptions from "@/components/ThemeOptions";
+import { GlobalContext } from "../../../contexts/globalContext";
 
 const languages = [
   {
@@ -28,16 +28,22 @@ const javascriptDefault = "console.log('hello world!')";
 const pythonDefault = "print('hello world!')";
 
 const Sandbox: React.FC = (): JSX.Element => {
-  const [code, setCode] = useState<string>(javascriptDefault);
-  const [outputDetails, setOutputDetails] = useState<any>(undefined);
-  const [processing, setProcessing] = useState(false);
-  const [theme, setTheme] = useState("vs-dark");
   const [language, setLanguage] = useState<{
     id: number;
     name: string;
     label: string;
     value: string;
   }>(languages[0]);
+  let {
+    outputDetails,
+    setOutputDetails,
+    code,
+    setCode,
+    processing,
+    setProcessing,
+    theme,
+    setTheme,
+  } = useContext(GlobalContext);
 
   const onSelectChange = (selectedLanguage: string | null) => {
     if (selectedLanguage !== null) {
@@ -118,16 +124,25 @@ const Sandbox: React.FC = (): JSX.Element => {
 
       <div className="h-full w-[80%] ml-[10%] grid grid-cols-4 grid-rows-4 gap-5">
         <div className="col-start-1 col-end-3 row-span-full">
-          <Card className="row-span-full w-full border-8 border-border-colour bg-nice-yellow bg-opacity-50 p-2 mb-5">
+          <Card
+            className={
+              theme === "vs"
+                ? "row-span-full w-full border-8 border-white bg-white p-2 mb-5"
+                : theme === "vs-dark"
+                ? "row-span-full w-full border-8 border-neutral-800 bg-neutral-800 p-2 mb-5"
+                : "row-span-full w-full border-8 border-black bg-black p-2 mb-5"
+            }
+          >
             <CodeEditor
               code={code}
               onChange={onChange}
               language={language?.value}
               theme={theme}
+              height="70vh"
             />
           </Card>
         </div>
-        <div className="h-[34vh] col-start-3  col-span-3 row-start-3 row-span-2 mr-5 mb-5">
+        <div className="h-[34vh] col-start-3  col-span-3 row-start-3 row-span-2 mb-5">
           <Card className="h-[100%] gap-3 p-5 border-8 border-border-colour bg-nice-yellow bg-opacity-50">
             <OutputWindow outputDetails={outputDetails} />
             <div className="flex flex-row justify-between">
@@ -150,7 +165,7 @@ const Sandbox: React.FC = (): JSX.Element => {
             </div>
           </Card>
         </div>
-        <div className="h-[37vh] row-start-1 row-span-2 col-start-3 col-span-2">
+        <div className="h-[37vh] row-start-1 row-span-2 col-start-3 col-span-3">
           <Card className="h-[100%] border-8 border-border-colour bg-nice-yellow bg-opacity-50 p-5 relative">
             <CardBody className="h-[100%] w-[80%] relative">
               <p>

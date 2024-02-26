@@ -12,7 +12,6 @@ import {
   Link,
 } from "@nextui-org/react";
 import ChallengeFooter from "./ChallengeFooter";
-import { useLanguageContext } from "../../contexts";
 
 const MultipleChoice = (challengeData: challenge): JSX.Element => {
   return (

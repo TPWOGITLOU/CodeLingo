@@ -3,11 +3,11 @@
 import Header from "@/components/Header";
 import SpriteAnimator from "@/components/SpriteAnimator";
 import Link from "next/link";
-import { LanguageContext } from "../../contexts/languageContext";
+import { GlobalContext } from "../../contexts/globalContext";
 import { useContext, useEffect } from "react";
 
 const Home: React.FC = (): JSX.Element => {
-  let { language, setLanguage, setImgUrl } = useContext(LanguageContext);
+  let { language, setLanguage, setImgUrl } = useContext(GlobalContext);
 
   useEffect(() => {
     localStorage.setItem("language", JSON.stringify(language));
