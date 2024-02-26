@@ -26,6 +26,9 @@ const config: Config = {
         "card-colour": "#F5EEE6",
         "header-colour": "#8fc9a1",
       },
+      gridTemplateColumns: {
+        'matching-grid': '  grid-template-columns: 1fr 20px 1fr;',
+      }
     },
   },
   plugins: [
@@ -47,4 +50,5 @@ const config: Config = {
   ],
   darkMode: "class",
 };
+
 export default config;
