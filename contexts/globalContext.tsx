@@ -13,6 +13,10 @@ interface GlobalContextProps {
   setProcessing: (processing: boolean) => void;
   theme: string;
   setTheme: (theme: string) => void;
+  pythonProgress: {};
+  setPythonProgress: (pythonProgress: {}[]) => void;
+  jsProgress: {};
+  setJsProgress: (jsProgress: {}[]) => void;
 }
 
 interface GlobalContextProviderProps {
@@ -32,6 +36,10 @@ export const GlobalContext = React.createContext<GlobalContextProps>({
   setProcessing: () => {},
   theme: "",
   setTheme: () => {},
+  pythonProgress: {},
+  setPythonProgress: () => {},
+  jsProgress: {},
+  setJsProgress: () => {},
 });
 
 const GlobalContextProvider = (props: GlobalContextProviderProps) => {
@@ -41,6 +49,8 @@ const GlobalContextProvider = (props: GlobalContextProviderProps) => {
   const [code, setCode] = useState<string>("console.log('hello world!')");
   const [processing, setProcessing] = useState(false);
   const [theme, setTheme] = useState("vs-dark");
+  const [pythonProgress, setPythonProgress] = useState({});
+  const [jsProgress, setJsProgress] = useState({});
 
   useEffect(() => {
     const getLanguage = () => {
@@ -74,6 +84,10 @@ const GlobalContextProvider = (props: GlobalContextProviderProps) => {
         setProcessing: setProcessing,
         theme: theme,
         setTheme: setTheme,
+        pythonProgress: pythonProgress,
+        setPythonProgress: setPythonProgress,
+        jsProgress: jsProgress,
+        setJsProgress: setJsProgress,
       }}
     >
       {props.children}
