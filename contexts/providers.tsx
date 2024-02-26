@@ -1,6 +1,6 @@
 "use client";
 import { ThemeProvider } from "next-themes";
-import LanguageContextProvider from "./languageContext";
+import GlobalContextProvider from "./globalContext";
 
 export function Providers({
   children,
@@ -9,7 +9,7 @@ export function Providers({
 }): JSX.Element {
   return (
     <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-      <LanguageContextProvider>{children}</LanguageContextProvider>
+      <GlobalContextProvider>{children}</GlobalContextProvider>
     </ThemeProvider>
   );
 }

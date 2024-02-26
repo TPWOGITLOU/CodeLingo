@@ -6,6 +6,7 @@ interface CodeEditorProps {
   language: string;
   code: string;
   theme: string;
+  height: string;
 }
 
 const CodeEditor: React.FC<CodeEditorProps> = (props) => {
@@ -21,7 +22,7 @@ const CodeEditor: React.FC<CodeEditorProps> = (props) => {
   return (
     <div>
       <Editor
-        height="70vh"
+        height={props.height}
         width={`100%`}
         language={props.language || "javascript"}
         value={props.code}
