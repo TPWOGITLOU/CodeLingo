@@ -6,7 +6,7 @@ import Link from "next/link";
 import { GlobalContext } from "../../contexts/globalContext";
 import { useContext, useEffect } from "react";
 
-const Home: React.FC = (): JSX.Element => {
+const Home = (): JSX.Element => {
   let { language, setLanguage, setImgUrl } = useContext(GlobalContext);
 
   useEffect(() => {
