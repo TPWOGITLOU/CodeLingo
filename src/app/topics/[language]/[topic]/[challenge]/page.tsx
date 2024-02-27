@@ -2,7 +2,7 @@ import {getChallenge} from "@/../lib/mongo/utils"
 import MultipleChoice from "@/components/MultipleChoice";
 import Matching from "@/components/MatchingChallenge";
 import Block from "@/components/BlockChallenge";
-import Typed from "@/components/TypedChallenge";
+import TypedChallenge from "@/components/TypedChallenge";
 
 const fetchChallenge = async (language: string, challenge_id :string)=>{
   let collection:string;
@@ -37,7 +37,7 @@ const Challenge = async ({params}: {params:{language:string, topic:string, chall
         case "match":
             return <Matching {...challengeData}/>
         case "typed":
-            return <Typed {...challengeData}/>
+            return <TypedChallenge {...challengeData} language={language}/>
         case "block":
             return <Block {...challengeData}/>
         default:

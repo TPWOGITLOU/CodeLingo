@@ -59,7 +59,7 @@ const getChallenge = async (language: string, challenge: string) => {
         language: result.language,
         challengeType: result.challengeType,
         challengeQuestion: result.challengeQuestion,
-        challengeSnippets: result.challengeSnippet,
+        challengeSnippets: result.challengeSnippets,
         answer: result.answer,
       };
       return question;

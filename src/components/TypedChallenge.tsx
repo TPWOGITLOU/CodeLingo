@@ -9,10 +9,12 @@ import ChallengeFooter from "./ChallengeFooter";
 import { handleCompile, Language } from "../../lib/mongo/judge0/judge-utils";
 import { challenge } from "../../lib/mongo/utils";
 
+interface Test {
+  language: string
+}
 
-const TypedChallenge = () => {
-
-  const [feedback, setFeedback] = useState<{feedback:string}>("");
+const TypedChallenge = (challengeData: challenge) => {
+  const [feedback, setFeedback] = useState<{ feedback: string }>("");
 
   let {
     outputDetails,
@@ -23,26 +25,28 @@ const TypedChallenge = () => {
     setProcessing,
     theme,
   } = useContext(GlobalContext);
-  
-  const hardCodedChallenge: challenge[]  = [{
-    _id: "123456",
-    topic: "primitives",
-    language: "python",
-    challengeType: "typed",
-    challengeQuestion: "Change the code so that 'a' is printed to the console as the number 1 instead of a string",
-challengeSnippets: 
-`
-const a = "hello world" 
-console.log(a)
-`,
-    answer: 1,
-  }]
 
+
+//   const hardCodedChallenge: challenge[] = [
+//     {
+//       _id: "123456",
+//       topic: "primitives",
+//       language: "javascript",
+//       challengeType: "typed",
+//       challengeQuestion:
+//         "Change the code so that the data type of variable 'a' is changed from a string data type to a number data type",
+//       challengeSnippets: `
+// print()
+// `,
+//       answer: "Coding Rocks!",
+//     },
+//   ];
+
+console.log(challengeData, "challenge snippet")
 
   useEffect(() => {
-    setCode(hardCodedChallenge[0].challengeSnippets)
-  }, [] )
-
+    setCode(challengeData.challengeSnippets.trim());
+  }, []);
 
   const onChange = (action: unknown, data: string) => {
     switch (action) {
@@ -53,50 +57,57 @@ console.log(a)
     }
   };
 
-
   const checkAnswer = () => {
-   if(hardCodedChallenge[0].answer == atob(outputDetails.stdout)){
-    setFeedback("Well Done! You got that right!")
-   }
-   else{setFeedback("Not quite correct - take another look at your code")}
-  }
+   
+    if (challengeData.answer === atob(outputDetails.stdout).trim()) {
+      setFeedback("Well Done! You got that right!");
+    } else {
+      setFeedback("Not quite correct - take another look at your code");
+    }
+  };
 
-  const languageParams: string = "javascript"
-  
+  const languageParams: string = "python";
+
+
   const fetchHandleCompile = async () => {
-    let fetchLanguage: Language
+    let fetchLanguage: Language;
+    
+    setFeedback("");
 
     switch (languageParams) {
       case "javascript":
-          fetchLanguage ={
-            id: 63,
-            name: "JavaScript (Node.js 12.14.0)",
-            label: "JavaScript (Node.js 12.14.0)",
-            value: "javascript",
-          }
-          break;
-      case "python":
-        fetchLanguage=  {
-            id: 71,
-            name: "Python (3.8.1)",
-            label: "Python (3.8.1)",
-            value: "python",
-          }
-      break;
-      default:
-        fetchLanguage ={
+        fetchLanguage = {
           id: 63,
           name: "JavaScript (Node.js 12.14.0)",
           label: "JavaScript (Node.js 12.14.0)",
           value: "javascript",
-        }
-          break;
-        }
+        };
+        break;
+      case "python":
+        fetchLanguage = {
+          id: 71,
+          name: "Python (3.8.1)",
+          label: "Python (3.8.1)",
+          value: "python",
+        };
+        break;
+      default:
+        fetchLanguage = {
+          id: 63,
+          name: "JavaScript (Node.js 12.14.0)",
+          label: "JavaScript (Node.js 12.14.0)",
+          value: "javascript",
+        };
+        break;
+    }
 
-       setFeedback("")
-        
-    return await handleCompile(fetchLanguage, code, setProcessing, setOutputDetails)
-  }
+    return await handleCompile(
+      fetchLanguage,
+      code,
+      setProcessing,
+      setOutputDetails
+    );
+  };
 
   return (
     <>
@@ -108,7 +119,10 @@ console.log(a)
                 <p className="text-3xl font-bold">Typing Challenge</p>
               </div>
             </CardHeader>
-            <CardBody>Time to start typing....</CardBody>
+            <CardBody>
+              {" "}
+              <p className="text-xl">Time to start typing....</p>
+            </CardBody>
             <div className="bg-black">
               <CodeEditor
                 code={code}
@@ -122,7 +136,7 @@ console.log(a)
         </div>
         <div className="h-[34vh] col-start-3  col-span-3 row-start-3 row-span-2 mb-5">
           <Card className="h-[100%] gap-3 p-5 border-8 border-border-colour bg-nice-yellow bg-opacity-50">
-            <OutputWindow outputDetails={outputDetails} feedback={feedback}/>
+            <OutputWindow outputDetails={outputDetails} feedback={feedback} />
             <div className="flex flex-row justify-between">
               <Button
                 onClick={fetchHandleCompile}
@@ -146,9 +160,9 @@ console.log(a)
         <div className="row-start-1 row-span-2 col-start-3 col-span-3">
           <Card className="h-[100%] w-[100%] border-8 border-border-colour bg-nice-yellow bg-opacity-50  relative">
             <CardBody className=" p-5 h-[100%] w-[80%] relative">
-              <p className="text-lg">
+              <p className="text-xl">
                 <br /> <br />
-              {hardCodedChallenge[0].challengeQuestion}
+                {challengeData.challengeQuestion}
               </p>
             </CardBody>
             <div className="absolute right-5 bottom-5">
