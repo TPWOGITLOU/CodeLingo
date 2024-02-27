@@ -10,11 +10,13 @@ import {
   Image,
 } from "@nextui-org/react"
 import ChallengeFooter from "./ChallengeFooter"
+import { useState } from "react"
 
 const MultipleChoice = (challengeData: challenge): JSX.Element => {
   const defaultButtonStyle = "bg-blue-500 p-4 text-white rounded-lg hover:shadow-lg";
   const wrongButtonStyle = "bg-red-500 p-4 text-white rounded-lg hover:shadow-lg";
   const rightButtonStyle = "bg-green-500 p-4 text-white rounded-lg hover:shadow-lg";
+  const [finished, setFinished] = useState(false);
   
   const onClick = (e: any, targetID: string, buttonContent: string) => {
     let correctAns:boolean = false
@@ -26,6 +28,7 @@ const MultipleChoice = (challengeData: challenge): JSX.Element => {
           element.className = rightButtonStyle
           element.disabled = true
           correctAns = true
+          setFinished(true)
         }
         break
       }
@@ -123,7 +126,7 @@ const MultipleChoice = (challengeData: challenge): JSX.Element => {
           </CardFooter>
       </Card>
         </div>
-      <ChallengeFooter />
+      <ChallengeFooter  finished={finished} />
     </section>
   )
 }
