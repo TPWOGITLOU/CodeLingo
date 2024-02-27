@@ -6,7 +6,6 @@ import TypedChallenge from "@/components/TypedChallenge";
 const About = (): JSX.Element => {
   return (
     <section>
-      <Header />
       <TypedChallenge />
     </section>
   );

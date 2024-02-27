@@ -113,7 +113,6 @@ const Sandbox: React.FC = (): JSX.Element => {
 
   return (
     <main>
-      <Header />
       <div className="flex flex-row justify-center items-center p-4">
         <LanguageOptions
           onSelectChange={onSelectChange}
