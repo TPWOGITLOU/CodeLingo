@@ -14,11 +14,11 @@ interface GlobalContextProps {
   theme: string;
   setTheme: (theme: string) => void;
   completedChallenges: string[];
-  setCompletedChallenges: (completedChallenges: []) => void;
-  pyChallengeIds: string[];
-  setPyChallengeIds: (pyChallengeIds: string[]) => void;
-  jsChallengeIds: string[];
-  setJsChallengeIds: (jsChallengeIds: string[]) => void;
+  setCompletedChallenges: (completedChallenges: string[]) => void;
+  pythonChallengeIds: string[];
+  setPythonChallengeIds: (pythonChallengeIds: string[]) => void;
+  javascriptChallengeIds: string[];
+  setJavascriptChallengeIds: (javascriptChallengeIds: string[]) => void;
 }
 
 interface GlobalContextProviderProps {
@@ -40,10 +40,10 @@ export const GlobalContext = React.createContext<GlobalContextProps>({
   setTheme: () => {},
   completedChallenges: [],
   setCompletedChallenges: () => {},
-  pyChallengeIds: [""],
-  setPyChallengeIds: () => {},
-  jsChallengeIds: [""],
-  setJsChallengeIds: () => {},
+  pythonChallengeIds: [""],
+  setPythonChallengeIds: () => {},
+  javascriptChallengeIds: [""],
+  setJavascriptChallengeIds: () => {},
 });
 
 const GlobalContextProvider = (props: GlobalContextProviderProps) => {
@@ -54,8 +54,8 @@ const GlobalContextProvider = (props: GlobalContextProviderProps) => {
   const [processing, setProcessing] = useState(false);
   const [theme, setTheme] = useState("vs-dark");
   const [completedChallenges, setCompletedChallenges] = useState([""]);
-  const [pyChallengeIds, setPyChallengeIds] = useState([""]);
-  const [jsChallengeIds, setJsChallengeIds] = useState([""]);
+  const [pythonChallengeIds, setPythonChallengeIds] = useState([""]);
+  const [javascriptChallengeIds, setJavascriptChallengeIds] = useState([""]);
 
   useEffect(() => {
     const getLanguage = () => {
@@ -74,18 +74,20 @@ const GlobalContextProvider = (props: GlobalContextProviderProps) => {
     };
 
     const getPyChallengeIds = () => {
-      const pyChallengeIds = localStorage.getItem("pyChallengeIds");
-      return pyChallengeIds ? JSON.parse(pyChallengeIds) : [];
+      const pythonChallengeIds = localStorage.getItem("pythonChallengeIds");
+      return pythonChallengeIds ? JSON.parse(pythonChallengeIds) : [];
     };
 
     const getJsChallengeIds = () => {
-      const jsChallengeIds = localStorage.getItem("jsChallengeIds");
-      return jsChallengeIds ? JSON.parse(jsChallengeIds) : [];
+      const javascriptChallengeIds = localStorage.getItem(
+        "javascriptChallengeIds"
+      );
+      return javascriptChallengeIds ? JSON.parse(javascriptChallengeIds) : [];
     };
 
     if (typeof window !== "undefined") {
-      setJsChallengeIds(getJsChallengeIds());
-      setPyChallengeIds(getPyChallengeIds());
+      setJavascriptChallengeIds(getJsChallengeIds());
+      setPythonChallengeIds(getPyChallengeIds());
       setCompletedChallenges(getCompletedChallenges());
       setCurrentLanguage(getLanguage());
       setImgUrl(getImage());
@@ -109,10 +111,10 @@ const GlobalContextProvider = (props: GlobalContextProviderProps) => {
         setTheme: setTheme,
         completedChallenges: completedChallenges,
         setCompletedChallenges: setCompletedChallenges,
-        pyChallengeIds: pyChallengeIds,
-        setPyChallengeIds: setPyChallengeIds,
-        jsChallengeIds: jsChallengeIds,
-        setJsChallengeIds: setJsChallengeIds,
+        pythonChallengeIds: pythonChallengeIds,
+        setPythonChallengeIds: setPythonChallengeIds,
+        javascriptChallengeIds: javascriptChallengeIds,
+        setJavascriptChallengeIds: setJavascriptChallengeIds,
       }}
     >
       {props.children}
