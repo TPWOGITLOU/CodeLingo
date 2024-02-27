@@ -122,7 +122,9 @@ export default function Matching(
   useEffect(() => {
     const gridElement = document.getElementById("Grid");
     if (gridElement) {
-      gridElement.className = `gridElement.className = h-full w-full grid matching-grid grid-rows-${challenge.answer.length} justify-center mx-auto gap-6 z-10`;
+      gridElement.className = `
+      h-full w-full 
+      grid grid-flow-dense matching-grid gap-6`;
   }}, [challenge]);
 
   return (
@@ -161,17 +163,6 @@ export default function Matching(
           ">
             <CardBody className="p-5">
                 <div id="Grid">
-                  <ButtonAGen
-                    snippets={challenge.challengeSnippets[0]}
-                    selection1={selection1}
-                    setSelection1={setSelection1}
-                    setSelection2={setSelection2}
-                    setSelectionType={setSelectionType}
-                    setSelection1ID={setSelection1ID}
-                    selection2={selection2}
-                    selectionType={selectionType}
-                    setSelection2ID={setSelection2ID}
-                    />
                   <ButtonQGen
                     Qsnippets={challenge.challengeSnippets[1]}
                     selection1={selection1}
@@ -183,6 +174,18 @@ export default function Matching(
                     selectionType={selectionType}
                     setSelection2ID={setSelection2ID}
                     />
+                    <ButtonAGen
+                    snippets={challenge.challengeSnippets[0]}
+                    selection1={selection1}
+                    setSelection1={setSelection1}
+                    setSelection2={setSelection2}
+                    setSelectionType={setSelectionType}
+                    setSelection1ID={setSelection1ID}
+                    selection2={selection2}
+                    selectionType={selectionType}
+                    setSelection2ID={setSelection2ID}
+                    />
+                  
                 </div>
             </CardBody>
           </Card>
@@ -203,6 +206,7 @@ export default function Matching(
           </CardFooter>
         </Card>
         </div>
+        
         <ChallengeFooter/>
     </section>
   );
