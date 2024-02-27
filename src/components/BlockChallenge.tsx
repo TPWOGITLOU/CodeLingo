@@ -19,6 +19,8 @@ import {
   Image,
   Link,
 } from "@nextui-org/react";
+
+
 const data: Data[] = [
   {
       id: 2,
