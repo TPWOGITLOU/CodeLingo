@@ -24,7 +24,7 @@ export const CardItem = ({data, handleDragging, index, setTarget}: Props) => {
     const handleDragEnd = () => handleDragging(false)
 
     return(
-        <div className="border-1 border-black rounded my-1 p-0.5"
+        <div className="border-1 border-black bg-white rounded p-1 text-lg"
         draggable
         onDragStart={(e) => handleDragStart(e, index)}
         onDragEnd={handleDragEnd}

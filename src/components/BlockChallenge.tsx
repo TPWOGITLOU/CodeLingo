@@ -57,7 +57,7 @@ const Block = (challengeData: challenge)=>{
         <h1 className="text-lg mx-auto">{challengeData.challengeQuestion}</h1>
       </Card>
       <div id="activity-container"className="flex flex-row flex-wrap gap-5">
-        <Card id="activity-card" className="grow p-5
+        <Card id="activity-card" className="p-5
           border-8 border-border-colour bg-nice-yellow bg-opacity-50">
         <DragAndDrop 
         listItems={listItems}
@@ -67,8 +67,8 @@ const Block = (challengeData: challenge)=>{
         <Card id="feedback-card" className="grow p-5 
         border-8 border-border-colour bg-nice-yellow bg-opacity-50         
         items-center">
-            <div className="bg-white p-5 rounded-lg w-full min-w-[40px] h-40">{correctState ? 
-              <p className="text-l text-green-500 font-bold">correct</p> : 
+            <div className="bg-white p-5 rounded-lg w-full min-w-[40px] h-40 text-center">{correctState ? 
+              <p className="text-l text-green-500 font-bold">Well done! That is the correct answer.</p> : 
               <p className="text-l">drag and drop the code blocks to build the answer</p>}</div>
             <Image className="mb-2"
             src="/character2.png"

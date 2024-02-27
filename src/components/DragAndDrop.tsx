@@ -3,7 +3,6 @@ import { ContainerCards } from "./ContainerCards";
 import { useState } from "react";
 
 const typesBlocks: Status[] = ['answer', 'question']
-//65ddfcb6932244239cfc1734
 
 interface Props {
     listItems : Data[]
@@ -36,7 +35,7 @@ export const DragAndDrop = ({listItems, setListItems} : Props) => {
     }
 
     return (
-        <div className="flex flex-col text-center m-2 gap-8 w-96">
+        <div id="dNd-container" className="w-[400px]">
             {
                 typesBlocks.map( container => (
                     <ContainerCards
