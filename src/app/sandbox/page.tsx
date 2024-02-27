@@ -5,7 +5,6 @@ import CodeEditor from "../../components/CodeEditor";
 import LanguageOptions from "../../components/LanguageOptions";
 import { Card, CardBody, Image, Button } from "@nextui-org/react";
 import { compileCode, checkStatus } from "./api";
-import Header from "@/components/Header";
 import ThemeOptions from "@/components/ThemeOptions";
 import { GlobalContext } from "../../../contexts/globalContext";
 
