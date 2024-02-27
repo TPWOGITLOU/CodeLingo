@@ -1,4 +1,4 @@
-import { getChallenge } from "@/../lib/mongo/utils";
+import {challenge, getChallenge} from "@/../lib/mongo/utils"
 import MultipleChoice from "@/components/MultipleChoice";
 import Matching from "@/components/MatchingChallenge";
 import Block from "@/components/BlockChallenge";
@@ -18,13 +18,15 @@ const fetchChallenge = async (language: string, challenge_id: string) => {
       break;
   }
 
+
   try {
     const result = await getChallenge(collection, challenge_id);
     return result;
   } catch (err) {
     throw new Error("There was a problem fetching the challenge data");
   }
-};
+}
+
 
 const Challenge = async ({params}: {params:{language:string, topic:string, challenge:string}}) => {
     const language = params.language;
