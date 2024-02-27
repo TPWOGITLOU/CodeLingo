@@ -1,6 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Honk:SHLN@47.1&display=swap");
+
+@font-face {
+  font-family: "Honk";
+  src: url("/public/Honk-Regular.ttf");
+}
 
 * {
   font-family: monospace;
