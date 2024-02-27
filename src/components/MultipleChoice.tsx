@@ -46,28 +46,44 @@ const MultipleChoice = (challengeData: challenge): JSX.Element => {
     challengeData.challengeSnippets
   )
   return (
-    <section className="h-[90%] w-[80%] mt-10 ml-[10%] flex flex-col flex-wrap gap-8 items-center align-middle justify-center ">
-      <section className="flex flex-row flex-wrap justify-between gap-5">
-        <div className="md:max-w-[62%] w-[100%] flex flex-col flex-wrap gap-5">
-          <Card className="w-full border-8 border-border-colour  bg-nice-yellow bg-opacity-50 flex-wrap p-5">
+    <section id="component-container" className=" 
+    w-[80%]
+    min-w-[450px]
+    mt-10 ml-auto mr-auto
+    box-border
+    ">
+      <div id="head-container" className="
+        flex gap-5
+        mb-5
+        ">
+          <Card cid="question-card"
+          className="
+            w-full 
+            border-8 border-border-colour  bg-nice-yellow bg-opacity-50 
+            flex-wrap 
+            p-5
+            ">
             <CardHeader className="flex gap-3">
-              <div className="flex flex-col">
                 <p className="text-3xl font-bold">
-                 {challengeData.topic}
+                {challengeData.language} - {challengeData.topic}
                 </p>
-              </div>
             </CardHeader>
             <Divider />
             <CardBody>
-              <p>
-              {challengeData.challengeQuestion}
-              </p>
+              <p>{challengeData.challengeQuestion}</p>
             </CardBody>
-            <Divider />
           </Card>
-          <Card className="gap-3 pt-10 pb-10 border-8 border-border-colour  bg-nice-yellow bg-opacity-50">
-            <CardBody>
-              <div className="flex flex-wrap gap-4 items-center justify-around">
+    </div>
+    <div id="activity-container" className="flex flex-wrap gap-5 mb-5">
+    <Card
+          id="activity-card"
+          className="
+          grow
+          border-8 border-border-colour 
+          bg-nice-yellow bg-opacity-50
+          ">
+            <CardBody  className="p-5">
+              <div className="flex gap-4 items-center justify-around">
                 {questionSnippets &&
                   questionSnippets.map((question , index) => {
                     return (
@@ -82,7 +98,7 @@ const MultipleChoice = (challengeData: challenge): JSX.Element => {
                             (e.target as HTMLButtonElement)?.textContent || ""
                           )
                         }}
-                        className="pt-2 pr-2 pl-2 pb-2 border border-black rounded-md hover:shadow-md"
+                        className="bg-blue-500 p-4 text-white rounded-lg hover:shadow-lg"
                       >
                         {String(question)}
                       </button>
@@ -90,11 +106,14 @@ const MultipleChoice = (challengeData: challenge): JSX.Element => {
                   })}
               </div>
             </CardBody>
-          </Card>
-        </div>
-        <Card className="md:max-w-[50%] w-100% h-auto border-8 border-border-colour bg-nice-yellow bg-opacity-50 p-5">
-          <CardBody>
-            <p>{challengeData.challengeQuestion}</p>
+      </Card>
+      <Card id="information-card" className="          
+          border-8 border-border-colour bg-nice-yellow bg-opacity-50
+          grow 
+          p-5
+          ">
+          <CardBody className="p-5">
+            <p>Click the right answer.</p>
           </CardBody>
           <CardFooter className="justify-end">
             <Image
@@ -103,8 +122,8 @@ const MultipleChoice = (challengeData: challenge): JSX.Element => {
               className="float-right"
             />
           </CardFooter>
-        </Card>
-      </section>
+      </Card>
+        </div>
       <ChallengeFooter />
     </section>
   )
