@@ -18,11 +18,12 @@ const fetchChallenge = async (language: string, challenge_id: string) => {
       break;
   }
 
-  try{
-      const result = await getChallenge(collection, challenge_id);
-      return result
-  }catch(err){
-      throw new Error("There was a problem fetching the data in the topics page");
+
+  try {
+    const result = await getChallenge(collection, challenge_id);
+    return result;
+  } catch (err) {
+    throw new Error("There was a problem fetching the challenge data");
   }
 }
 
@@ -51,12 +52,12 @@ const Challenge = async ({params}: {params:{language:string, topic:string, chall
         case "match":
             return <Matching {...challengeData}/>
         case "typed":
-            return <TypedChallenge/>
+            return <TypedChallenge {...challengeData} />
+
         case "block":
             return <Block {...challengeData}/>
         default:
             throw new Error ("There was a problem")
-
     }
   }
 };

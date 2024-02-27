@@ -1,15 +1,18 @@
 "use client";
 
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "../../contexts/globalContext";
 import CodeEditor from "./CodeEditor";
 import OutputWindow from "./OutputWindow";
 import { Card, CardBody, Button, Image, CardHeader } from "@nextui-org/react";
 import ChallengeFooter from "./ChallengeFooter";
+import { handleCompile, Language } from "../../lib/mongo/judge0/judge-utils";
+import { challenge } from "../../lib/mongo/utils";
 
-const TypedChallenge = () => {
+const TypedChallenge = (challengeData: challenge) => {
+  const [feedback, setFeedback] = useState<string>("");
+
   let {
-    language,
     outputDetails,
     setOutputDetails,
     code,
@@ -17,8 +20,70 @@ const TypedChallenge = () => {
     processing,
     setProcessing,
     theme,
-    setTheme,
   } = useContext(GlobalContext);
+
+  useEffect(() => {
+    setCode(challengeData.challengeSnippets);
+  }, []);
+
+  const onChange = (action: unknown, data: string) => {
+    switch (action) {
+      case "code": {
+        setCode(data);
+        break;
+      }
+    }
+  };
+
+  const checkAnswer = () => {
+    if (challengeData.answer === atob(outputDetails.stdout).trim()) {
+      setFeedback("Well Done! You got that right!");
+    } else {
+      setFeedback("Not quite correct - take another look at your code");
+    }
+  };
+
+  const language: string = challengeData.language.toLowerCase();
+
+  const fetchHandleCompile = async () => {
+    let fetchLanguage: Language;
+
+    setFeedback("");
+
+    switch (language) {
+      case "javascript":
+        fetchLanguage = {
+          id: 63,
+          name: "JavaScript (Node.js 12.14.0)",
+          label: "JavaScript (Node.js 12.14.0)",
+          value: "javascript",
+        };
+        break;
+      case "python":
+        fetchLanguage = {
+          id: 71,
+          name: "Python (3.8.1)",
+          label: "Python (3.8.1)",
+          value: "python",
+        };
+        break;
+      default:
+        fetchLanguage = {
+          id: 63,
+          name: "JavaScript (Node.js 12.14.0)",
+          label: "JavaScript (Node.js 12.14.0)",
+          value: "javascript",
+        };
+        break;
+    }
+
+    return await handleCompile(
+      fetchLanguage,
+      code,
+      setProcessing,
+      setOutputDetails
+    );
+  };
 
   return (
     <>
@@ -30,11 +95,14 @@ const TypedChallenge = () => {
                 <p className="text-3xl font-bold">Typing Challenge</p>
               </div>
             </CardHeader>
-            <CardBody>Hello</CardBody>
+            <CardBody>
+              {" "}
+              <p className="text-xl">Time to start typing....</p>
+            </CardBody>
             <div className="bg-black">
               <CodeEditor
                 code={code}
-                onChange={() => {}}
+                onChange={onChange}
                 language={language}
                 theme={theme}
                 height="40vh"
@@ -44,10 +112,10 @@ const TypedChallenge = () => {
         </div>
         <div className="h-[34vh] col-start-3  col-span-3 row-start-3 row-span-2 mb-5">
           <Card className="h-[100%] gap-3 p-5 border-8 border-border-colour bg-nice-yellow bg-opacity-50">
-            <OutputWindow outputDetails={outputDetails} />
+            <OutputWindow outputDetails={outputDetails} feedback={feedback} />
             <div className="flex flex-row justify-between">
               <Button
-                onClick={() => {}}
+                onClick={fetchHandleCompile}
                 disabled={!code}
                 radius="full"
                 className="bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg"
@@ -55,7 +123,7 @@ const TypedChallenge = () => {
                 {processing ? "Loading ..." : "Run"}
               </Button>
               <Button
-                onClick={() => {}}
+                onClick={checkAnswer}
                 disabled={!code}
                 radius="full"
                 className="bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg"
@@ -68,9 +136,9 @@ const TypedChallenge = () => {
         <div className="row-start-1 row-span-2 col-start-3 col-span-3">
           <Card className="h-[100%] w-[100%] border-8 border-border-colour bg-nice-yellow bg-opacity-50  relative">
             <CardBody className=" p-5 h-[100%] w-[80%] relative">
-              <p>
-                Explanation of the task.
+              <p className="text-xl">
                 <br /> <br />
+                {challengeData.challengeQuestion}
               </p>
             </CardBody>
             <div className="absolute right-5 bottom-5">
