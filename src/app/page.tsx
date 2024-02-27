@@ -15,7 +15,6 @@ const Home = (): JSX.Element => {
 
   return (
     <main>
-      <Header />
       <div className="h-screen flex flex-col items-center justify-center content-center font-bold text-center font-mono">
         <div className="text-3xl">
           <h2>Welcome to CodeLingo!</h2>

@@ -66,6 +66,8 @@ export default function Matching(challenge: challenge): JSX.Element {
             [key: string]: [string, string];
           };
           // const answer = challenge.answer[x] as {};
+          }
+
           if (
             (answer[loop][0] === ans1[0] &&
               answer[loop][1] === ans1[1] &&
@@ -130,7 +132,7 @@ export default function Matching(challenge: challenge): JSX.Element {
       className=" 
     w-[80%]
     min-w-[450px]
-    mt-10 
+    mt-10 ml-auto mr-auto
     box-border
     "
     >

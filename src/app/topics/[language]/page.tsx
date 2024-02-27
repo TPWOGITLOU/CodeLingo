@@ -31,7 +31,6 @@ const Topics = async ({params}: {params:{language:string}}) => {
     const topics = await fetchTopics(language)
 
 return (<section>
-        <Header />
         <div className="mt-6 flex flex-col items-center justify-center font-bold text-center font-mono">
             <Link href="/">home</Link>           
             <h1 className="p-2 text-xl">Topics</h1>
