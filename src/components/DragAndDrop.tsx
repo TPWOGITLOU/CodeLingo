@@ -3,6 +3,7 @@ import { ContainerCards } from "./ContainerCards";
 import { useState } from "react";
 
 const typesBlocks: Status[] = ['answer', 'question']
+//65ddfcb6932244239cfc1734
 
 interface Props {
     listItems : Data[]

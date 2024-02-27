@@ -1,13 +1,10 @@
 'use client'
 
 import { challenge } from "../../lib/mongo/utils"
-import { useState, useRef, useEffect } from 'react';
-import { CardItem } from "./CardItem";
+import { useState, useEffect } from 'react';
 import { DragAndDrop } from "./DragAndDrop";
 import ChallengeFooter from "./ChallengeFooter";
-//import { data } from "@/blockTestData";
-import { Status, Data } from "../../lib/interfaces/interfaces";
-import Header from "./Header";
+import { Data } from "../../lib/interfaces/interfaces";
 
 import {
   Code,
@@ -20,61 +17,18 @@ import {
   Link,
 } from "@nextui-org/react";
 
-
-const data: Data[] = [
-  {
-      id: 2,
-      content: '.',
-      status: 'question'
-  },
-  {
-      id: 3,
-      content: 'log',
-      status: 'question'
-  },
-  {
-      id: 1,
-      content: 'console',
-      status: 'question'
-  },
-  {
-      id: 7,
-      content: 'dir',
-      status: 'question'
-  },
-  {
-      id: 4,
-      content: '(',
-      status: 'question'
-  },
-  {
-      id: 5,
-      content: 'hello world',
-      status: 'question'
-  },
-  {
-      id: 9,
-      content: ',',
-      status: 'question'
-  },
-  {
-      id: 6,
-      content: ')',
-      status: 'question'
-  },
-  {
-      id: 8,
-      content: 'hi',
-      status: 'question'
-  },
-  
-]
-
-
 const Block = (challengeData: challenge)=>{
-  const [listItems, setListItems] = useState<Data[]>(data)
+  const initialList:any[] = [...challengeData.challengeSnippets]
+  //convert to data array
+  const numIndexList = []
+  for(let i = 0; i < initialList.length; i++){
+    numIndexList.push(initialList[i])
+    numIndexList[i].id = +numIndexList[i].id
+  }
+
+  const [listItems, setListItems] = useState<Data[]>(numIndexList)
   const [correctState, setCorrectState] = useState(false)
-  const correctAnswer = 'console.log(hello world)'
+  const correctAnswer = challengeData.answer
 
   useEffect(() => {
     let answerString = ''

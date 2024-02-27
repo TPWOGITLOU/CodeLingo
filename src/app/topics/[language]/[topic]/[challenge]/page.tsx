@@ -40,8 +40,8 @@ const mockChallenge : challenge = {
 const Challenge = async ({params}: {params:{language:string, topic:string, challenge:string}}) => {
     const language = params.language;
     const challenge_id = params.challenge;
-    //const result = await fetchChallenge(language, challenge_id)
-    const result = mockChallenge
+    const result = await fetchChallenge(language, challenge_id)
+    //const result = mockChallenge
     if (result){
         const challengeData = result;
         //challengeData.challengeType = "block"  //hard coded to block!
