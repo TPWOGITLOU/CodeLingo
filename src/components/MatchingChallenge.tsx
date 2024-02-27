@@ -1,5 +1,5 @@
 "use client";
-import type {challenge} from "../../lib/mongo/utils"
+import type { challenge } from "../../lib/mongo/utils";
 import { useState, useEffect } from "react";
 import ButtonAGen from "./cardMatchAButtons";
 import ButtonQGen from "./cardMatchQButtons";
@@ -13,9 +13,7 @@ import {
 } from "@nextui-org/react";
 import ChallengeFooter from "./ChallengeFooter";
 
-export default function Matching(
-  challenge: challenge): JSX.Element {
-
+export default function Matching(challenge: challenge): JSX.Element {
   const [selection1, setSelection1] = useState("");
   const [selection1ID, setSelection1ID] = useState("");
   const [selection2, setSelection2] = useState("");
@@ -36,7 +34,6 @@ export default function Matching(
       setSelection1(buttonContent);
       setSelectionType(buttonType);
       setSelection1ID(buttonID);
-
     } else if (selection2 === "" && buttonType !== selectionType) {
       setSelection2(buttonContent);
       setSelectionType("");
@@ -67,7 +64,7 @@ export default function Matching(
           const loop = `correctAns${x + 1}`;
           const answer = challenge.answer[x] as {
             [key: string]: [string, string];
-          }
+          };
           if (
             (answer[loop][0] === ans1[0] &&
               answer[loop][1] === ans1[1] &&
@@ -122,41 +119,55 @@ export default function Matching(
   useEffect(() => {
     const gridElement = document.getElementById("Grid");
     if (gridElement) {
+
       gridElement.className = `
       h-full w-full 
       grid grid-flow-dense matching-grid gap-6`;
   }}, [challenge]);
 
+
   return (
-    <section id="component-container" className=" 
+    <section
+      id="component-container"
+      className=" 
     w-[80%]
     min-w-[450px]
     mt-10 ml-auto mr-auto
     box-border
-    ">
-        <div id="head-container" className="
+    "
+    >
+      <div
+        id="head-container"
+        className="
         flex gap-5
         mb-5
-        ">
-          <Card id="question-card" className="
+        "
+      >
+        <Card
+          id="question-card"
+          className="
             w-full 
             border-8 border-border-colour  bg-nice-yellow bg-opacity-50 
             flex-wrap 
             p-5
-            ">
-            <CardHeader className="flex gap-3">
-                <p className="text-3xl font-bold">{challenge.language} - {challenge.topic}</p>
-            </CardHeader>
-            <Divider />
-            <CardBody>
-              <p>{challenge.challengeQuestion}</p>
-            </CardBody>
-          </Card>
-</div>
+            "
+        >
+          <CardHeader className="flex gap-3">
+            <p className="text-3xl font-bold">
+              {challenge.language} - {challenge.topic}
+            </p>
+          </CardHeader>
+          <Divider />
+          <CardBody>
+            <p>{challenge.challengeQuestion}</p>
+          </CardBody>
+        </Card>
+      </div>
 
-        <div id="activity-container" className="flex flex-wrap gap-5 mb-5">
-          
-          <Card id="activity-card" className="
+      <div id="activity-container" className="flex flex-wrap gap-5 mb-5">
+        <Card
+          id="activity-card"
+          className="
           grow
           border-8 border-border-colour 
           bg-nice-yellow bg-opacity-50
@@ -193,7 +204,8 @@ export default function Matching(
           border-8 border-border-colour bg-nice-yellow bg-opacity-50
           grow 
           p-5
-          ">
+          "
+        >
           <CardBody>
             <p>Click on the two matching items.</p>
           </CardBody>
@@ -205,9 +217,9 @@ export default function Matching(
             />
           </CardFooter>
         </Card>
-        </div>
-        
-        <ChallengeFooter/>
+      </div>
+      <ChallengeFooter finished={finished} />
+
     </section>
   );
 }

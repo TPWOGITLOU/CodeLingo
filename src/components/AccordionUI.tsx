@@ -1,12 +1,13 @@
 "use client";
 
-import { Accordion, AccordionItem, Button } from "@nextui-org/react";
-import TopicProgress from "@/components/TopicProgress";
+import { useContext, useEffect } from "react";
+import { Accordion, AccordionItem, Button, Image } from "@nextui-org/react";
 import { Topic } from "../../lib/mongo/utils";
 import TopicTile from "./TopicTile";
 import ProgressBar from "./ProgressBar";
 import Link from "next/link";
-
+import { GlobalContext } from "../../contexts/globalContext";
+import { FaTrophy } from "react-icons/fa6";
 
 interface Prop {
   list: Topic[]; // may need to be a union for challengeList prop type
@@ -14,10 +15,45 @@ interface Prop {
 }
 
 const AccordionUI = ({ list, language }: Prop): JSX.Element => {
+  let {
+    completedChallenges,
+    pyChallengeIds,
+    jsChallengeIds,
+    setPyChallengeIds,
+    setJsChallengeIds,
+  } = useContext(GlobalContext);
   let topicsOrChallenges: boolean = true;
   if (!list[0].hasOwnProperty("topicInfo")) {
     topicsOrChallenges = false;
   }
+
+  useEffect(() => {
+    if (list[0].answer) {
+      list.map((challenge) => {
+        if (
+          language === "python" &&
+          !completedChallenges.includes(challenge._id) &&
+          !pyChallengeIds.includes(challenge._id)
+        ) {
+          setPyChallengeIds([...pyChallengeIds, challenge._id]);
+          localStorage.setItem(
+            "pyChallengeIds",
+            JSON.stringify(pyChallengeIds)
+          );
+        } else if (
+          language === "javascript" &&
+          !completedChallenges.includes(challenge._id) &&
+          !jsChallengeIds.includes(challenge._id)
+        ) {
+          setJsChallengeIds([...jsChallengeIds, challenge._id]);
+          localStorage.setItem(
+            "jsChallengeIds",
+            JSON.stringify(jsChallengeIds)
+          );
+        }
+      });
+    }
+  }, []);
 
   const topicOrChallengeIds: string[] | false =
     topicsOrChallenges &&
@@ -97,6 +133,7 @@ const AccordionUI = ({ list, language }: Prop): JSX.Element => {
                   title={
                     <span className="flex flex-row justify-between">
                       <p> Challenge {index + 1}</p>
+                      <FaTrophy />
                     </span>
                   }
                 >
@@ -105,11 +142,26 @@ const AccordionUI = ({ list, language }: Prop): JSX.Element => {
                       {challengeData.challengeQuestion}{" "}
                     </p>
                     <Link href={`./${challengeData._id}`}>
-                      {" "}
                       <Button
-                        radius="full"
-                        size="sm"
-                        className="bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg"
+                        disabled={
+                          challengeData._id === pyChallengeIds[0] ||
+                          challengeData._id === jsChallengeIds[0]
+                            ? false
+                            : true
+                        }
+                        color={
+                          challengeData._id === pyChallengeIds[0] ||
+                          challengeData._id === jsChallengeIds[0]
+                            ? "success"
+                            : "primary"
+                        }
+                        variant={
+                          challengeData._id === pyChallengeIds[0] ||
+                          challengeData._id === jsChallengeIds[0]
+                            ? undefined
+                            : "bordered"
+                        }
+                        className="float-right"
                       >
                         GO!
                       </Button>
