@@ -1,4 +1,4 @@
-import { Data } from "./interfaces";
+import { Data } from "../lib/interfaces/interfaces";
 
 export const data: Data[] = [
     {

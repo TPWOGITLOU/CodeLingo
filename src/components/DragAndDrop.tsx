@@ -1,4 +1,4 @@
-import { Status, Data } from "@/interfaces";
+import { Status, Data } from "../../lib/interfaces/interfaces";
 import { ContainerCards } from "./ContainerCards";
 import { useState } from "react";
 

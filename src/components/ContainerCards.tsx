@@ -1,4 +1,4 @@
-import { Data, Status } from "@/interfaces";
+import { Data, Status } from "../../lib/interfaces/interfaces";
 import { CardItem } from "./CardItem";
 
 interface Props {
