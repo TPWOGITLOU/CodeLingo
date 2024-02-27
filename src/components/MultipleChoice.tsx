@@ -2,18 +2,20 @@
 import { challenge } from "../../lib/mongo/utils"
 
 import {
-  Code,
   Card,
   CardHeader,
   CardBody,
   CardFooter,
   Divider,
   Image,
-  Link,
 } from "@nextui-org/react"
 import ChallengeFooter from "./ChallengeFooter"
 
 const MultipleChoice = (challengeData: challenge): JSX.Element => {
+  const defaultButtonStyle = "bg-blue-500 p-4 text-white rounded-lg hover:shadow-lg";
+  const wrongButtonStyle = "bg-red-500 p-4 text-white rounded-lg hover:shadow-lg";
+  const rightButtonStyle = "bg-green-500 p-4 text-white rounded-lg hover:shadow-lg";
+  
   const onClick = (e: any, targetID: string, buttonContent: string) => {
     let correctAns:boolean = false
     for (let x = 0; x < Object.entries(challengeData.challengeSnippets).length; x++) {
@@ -21,8 +23,7 @@ const MultipleChoice = (challengeData: challenge): JSX.Element => {
       if (Object.entries(challengeData.challengeSnippets)[x][0] === challengeData.answer && String(Object.entries(challengeData.challengeSnippets)[x][1]) === buttonContent) {
         const element = document.getElementById(targetID) as HTMLButtonElement
         if (element) {
-          element.className =
-            "bg-green-500 pt-2 pr-2 pl-2 pb-2 border border-black rounded-md hover:shadow-md"
+          element.className = rightButtonStyle
           element.disabled = true
           correctAns = true
         }
@@ -32,12 +33,9 @@ const MultipleChoice = (challengeData: challenge): JSX.Element => {
     if (!correctAns) {
       const element = document.getElementById(targetID)
       if (element) {
-        const defaultColour: string =
-          "pt-2 pr-2 pl-2 pb-2 border border-black rounded-md hover:shadow-md"
-        element.className =
-          "bg-red-500 pt-2 pr-2 pl-2 pb-2 border border-black rounded-md hover:shadow-md"
+        element.className = wrongButtonStyle
         setTimeout(() => {
-          element.className = defaultColour
+          element.className = defaultButtonStyle
         }, 500)
       }
     }
@@ -45,6 +43,7 @@ const MultipleChoice = (challengeData: challenge): JSX.Element => {
   let questionSnippets = Object.values(
     challengeData.challengeSnippets
   )
+  
   return (
     <section id="component-container" className=" 
     w-[80%]
@@ -56,7 +55,7 @@ const MultipleChoice = (challengeData: challenge): JSX.Element => {
         flex gap-5
         mb-5
         ">
-          <Card cid="question-card"
+          <Card id="question-card"
           className="
             w-full 
             border-8 border-border-colour  bg-nice-yellow bg-opacity-50 
@@ -98,7 +97,7 @@ const MultipleChoice = (challengeData: challenge): JSX.Element => {
                             (e.target as HTMLButtonElement)?.textContent || ""
                           )
                         }}
-                        className="bg-blue-500 p-4 text-white rounded-lg hover:shadow-lg"
+                        className={defaultButtonStyle}
                       >
                         {String(question)}
                       </button>
