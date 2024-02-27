@@ -23,11 +23,13 @@ const ButtonQGen: React.FC<ButtonAGenProps> = ({ Qsnippets , selection1 , select
     buttonType: string,
     buttonContent: string
   ) => {
+    let selection1Element;
     if (selection1 === "") {
       setSelection1(buttonContent);
       setSelectionType(buttonType);
       setSelection1ID(buttonID);
-
+      selection1Element = document.getElementById(buttonID)
+      if(selection1Element)selection1Element.style.backgroundColor = "grey";
     } else if (selection2 === "" && buttonType !== selectionType) {
       setSelection2(buttonContent);
       setSelectionType("");
@@ -41,7 +43,7 @@ const ButtonQGen: React.FC<ButtonAGenProps> = ({ Qsnippets , selection1 , select
         <button
           key={index}
           id={`answer${index + 1}`}
-          className={`bg-blue-500 col-start-3 p-4 text-white rounded-lg`}
+          className={`bg-blue-500 col-start-3 p-4 text-white rounded-lg hover:shadow-lg`}
           onClick={(e) => {
             const target = e.target as HTMLButtonElement;
             handleClick(

@@ -91,14 +91,11 @@ export default function Matching(challenge: challenge): JSX.Element {
 
       if (!winningAns) {
         if (element1 && element2) {
-          let e1Colour = element1.style.backgroundColor;
-          let e2Colour = element2.style.backgroundColor;
-
           element1.style.backgroundColor = "red";
           element2.style.backgroundColor = "red";
           setTimeout(() => {
-            element1.style.backgroundColor = e1Colour;
-            element2.style.backgroundColor = e2Colour;
+            element1.style.backgroundColor = "";
+            element2.style.backgroundColor = "";
           }, 500);
         }
       }
@@ -119,7 +116,6 @@ export default function Matching(challenge: challenge): JSX.Element {
   useEffect(() => {
     const gridElement = document.getElementById("Grid");
     if (gridElement) {
-
       gridElement.className = `
       h-full w-full 
       grid grid-flow-dense matching-grid gap-6`;
