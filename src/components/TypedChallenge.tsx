@@ -9,9 +9,7 @@ import ChallengeFooter from "./ChallengeFooter";
 import { handleCompile, Language } from "../../lib/mongo/judge0/judge-utils";
 import { challenge } from "../../lib/mongo/utils";
 
-interface Test {
-  language: string
-}
+
 
 const TypedChallenge = (challengeData: challenge) => {
   const [feedback, setFeedback] = useState<{ feedback: string }>("");
@@ -27,25 +25,8 @@ const TypedChallenge = (challengeData: challenge) => {
   } = useContext(GlobalContext);
 
 
-//   const hardCodedChallenge: challenge[] = [
-//     {
-//       _id: "123456",
-//       topic: "primitives",
-//       language: "javascript",
-//       challengeType: "typed",
-//       challengeQuestion:
-//         "Change the code so that the data type of variable 'a' is changed from a string data type to a number data type",
-//       challengeSnippets: `
-// print()
-// `,
-//       answer: "Coding Rocks!",
-//     },
-//   ];
-
-console.log(challengeData, "challenge snippet")
-
   useEffect(() => {
-    setCode(challengeData.challengeSnippets.trim());
+    setCode(challengeData.challengeSnippets);
   }, []);
 
   const onChange = (action: unknown, data: string) => {
@@ -59,14 +40,14 @@ console.log(challengeData, "challenge snippet")
 
   const checkAnswer = () => {
    
-    if (challengeData.answer === atob(outputDetails.stdout).trim()) {
+    if (challengeData.answer === atob(outputDetails.stdout)) {
       setFeedback("Well Done! You got that right!");
     } else {
       setFeedback("Not quite correct - take another look at your code");
     }
   };
 
-  const languageParams: string = "python";
+  const language: string = challengeData.language.toLowerCase()
 
 
   const fetchHandleCompile = async () => {
@@ -74,7 +55,7 @@ console.log(challengeData, "challenge snippet")
     
     setFeedback("");
 
-    switch (languageParams) {
+    switch (language) {
       case "javascript":
         fetchLanguage = {
           id: 63,
@@ -127,7 +108,7 @@ console.log(challengeData, "challenge snippet")
               <CodeEditor
                 code={code}
                 onChange={onChange}
-                language={languageParams}
+                language={language}
                 theme={theme}
                 height="40vh"
               />

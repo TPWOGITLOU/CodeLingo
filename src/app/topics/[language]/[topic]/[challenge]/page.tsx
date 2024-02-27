@@ -37,7 +37,7 @@ const Challenge = async ({params}: {params:{language:string, topic:string, chall
         case "match":
             return <Matching {...challengeData}/>
         case "typed":
-            return <TypedChallenge {...challengeData} language={language}/>
+            return <TypedChallenge {...challengeData} />
         case "block":
             return <Block {...challengeData}/>
         default:
