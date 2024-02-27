@@ -17,7 +17,8 @@ const MultipleChoice = (challengeData: challenge): JSX.Element => {
   const onClick = (e: any, targetID: string, buttonContent: string) => {
     let correctAns:boolean = false
     for (let x = 0; x < Object.entries(challengeData.challengeSnippets).length; x++) {
-      if (Object.entries(challengeData.challengeSnippets)[x][0] === challengeData.answer && Object.entries(challengeData.challengeSnippets)[x][1][1] === buttonContent) {
+      console.log(`Challenge Object : ${Object.entries(challengeData.challengeSnippets)[x][0]} | Intended Challenge Answer : ${Object.entries(challengeData.challengeSnippets)[x][1]} | Challenge Answer : ${String(Object.entries(challengeData.challengeSnippets)[x][1])} | Provided Answer : ${buttonContent}`)
+      if (Object.entries(challengeData.challengeSnippets)[x][0] === challengeData.answer && String(Object.entries(challengeData.challengeSnippets)[x][1]) === buttonContent) {
         const element = document.getElementById(targetID) as HTMLButtonElement
         if (element) {
           element.className =
@@ -52,15 +53,14 @@ const MultipleChoice = (challengeData: challenge): JSX.Element => {
             <CardHeader className="flex gap-3">
               <div className="flex flex-col">
                 <p className="text-3xl font-bold">
-                  {challengeData.challengeQuestion}
+                 {challengeData.topic}
                 </p>
               </div>
             </CardHeader>
             <Divider />
             <CardBody>
               <p>
-                Thinking about the above question, select the correct answer
-                from the options below:
+              {challengeData.challengeQuestion}
               </p>
             </CardBody>
             <Divider />
@@ -94,7 +94,7 @@ const MultipleChoice = (challengeData: challenge): JSX.Element => {
         </div>
         <Card className="md:max-w-[50%] w-100% h-auto border-8 border-border-colour bg-nice-yellow bg-opacity-50 p-5">
           <CardBody>
-            <p>Explanation of the task and link to the information page</p>
+            <p>{challengeData.challengeQuestion}</p>
           </CardBody>
           <CardFooter className="justify-end">
             <Image
