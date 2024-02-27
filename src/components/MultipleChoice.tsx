@@ -15,13 +15,10 @@ import ChallengeFooter from "./ChallengeFooter"
 
 const MultipleChoice = (challengeData: challenge): JSX.Element => {
   const onClick = (e: any, targetID: string, buttonContent: string) => {
-
     let correctAns:boolean = false
-
     for (let x = 0; x < Object.entries(challengeData.challengeSnippets).length; x++) {
-      if (Object.entries(challengeData.challengeSnippets)[x][0] === challengeData.answer && Object.entries(challengeData.challengeSnippets)[x][1] === buttonContent) {
+      if (Object.entries(challengeData.challengeSnippets)[x][0] === challengeData.answer && Object.entries(challengeData.challengeSnippets)[x][1][1] === buttonContent) {
         const element = document.getElementById(targetID) as HTMLButtonElement
-        console.log(targetID)
         if (element) {
           element.className =
             "bg-green-500 pt-2 pr-2 pl-2 pb-2 border border-black rounded-md hover:shadow-md"
@@ -31,7 +28,6 @@ const MultipleChoice = (challengeData: challenge): JSX.Element => {
         break
       }
     }
-
     if (!correctAns) {
       const element = document.getElementById(targetID)
       if (element) {
@@ -45,11 +41,9 @@ const MultipleChoice = (challengeData: challenge): JSX.Element => {
       }
     }
   }
-
-  let questionSnippets: string[] = Object.values(
+  let questionSnippets = Object.values(
     challengeData.challengeSnippets
   )
-
   return (
     <section className="h-[90%] w-[80%] mt-10 ml-[10%] flex flex-col flex-wrap gap-8 items-center align-middle justify-center ">
       <section className="flex flex-row flex-wrap justify-between gap-5">
@@ -78,8 +72,8 @@ const MultipleChoice = (challengeData: challenge): JSX.Element => {
                   questionSnippets.map((index, question) => {
                     return (
                       <button
-                        key={index}
-                        id={index}
+                        key ={String(index)}
+                        id={String(index)}
                         onClick={(e) => {
                           const target = e.target as HTMLButtonElement
                           onClick(
@@ -90,7 +84,7 @@ const MultipleChoice = (challengeData: challenge): JSX.Element => {
                         }}
                         className="pt-2 pr-2 pl-2 pb-2 border border-black rounded-md hover:shadow-md"
                       >
-                        {questionSnippets[question]}
+                        {question}
                       </button>
                     )
                   })}
@@ -115,5 +109,4 @@ const MultipleChoice = (challengeData: challenge): JSX.Element => {
     </section>
   )
 }
-
 export default MultipleChoice
