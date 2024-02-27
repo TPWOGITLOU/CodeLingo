@@ -36,7 +36,7 @@ const TypedChallenge = (challengeData: challenge) => {
   };
 
   const checkAnswer = () => {
-    if (challengeData.answer === atob(outputDetails.stdout)) {
+    if (challengeData.answer === atob(outputDetails.stdout).trim()) {
       setFeedback("Well Done! You got that right!");
     } else {
       setFeedback("Not quite correct - take another look at your code");
