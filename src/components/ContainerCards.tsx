@@ -24,11 +24,11 @@ export const ContainerCards = ({items = [], status, handleDragging, isDragging, 
     }
     return (
         <div 
-        className="min-h-32 border-2 border-black p-2 m-2"
+        className="min-h-32 border-2 border-black p-2 m-2 rounded"
         onDragOver={handleDragOver}
         onDrop={handleDrop}>
             <p className="underline underline-offset-1">{status} block</p>
-            <div className="flex flex-row">
+            <div className="flex flex-row gap-x-0.5">
 
                 {
                     items.map((item, index) => (

@@ -1,18 +1,18 @@
 import { Status, Data } from "@/interfaces";
 import { ContainerCards } from "./ContainerCards";
-import { data } from "@/blockTestData";
-import { useState, useRef } from "react";
+import { useState } from "react";
 
 const typesBlocks: Status[] = ['answer', 'question']
 
-export const DragAndDrop = () => {
+interface Props {
+    listItems : Data[]
+    setListItems: React.Dispatch<React.SetStateAction<Data[]>>
+}
+
+export const DragAndDrop = ({listItems, setListItems} : Props) => {
 
     const [isDragging, setIsDragging] = useState(false)
-    const [listItems, setListItems] = useState<Data[]>(data)
     const [target, setTarget] = useState('')
-
-    const draggingItem = useRef('')
-    const draggingOverItem = useRef('')
 
     const handleDragging = (dragging: boolean) => setIsDragging(dragging)
 
@@ -35,7 +35,7 @@ export const DragAndDrop = () => {
     }
 
     return (
-        <div className="flex flex-col text-center m-2 gap-8 w-80">
+        <div className="flex flex-col text-center m-2 gap-8 w-96">
             {
                 typesBlocks.map( container => (
                     <ContainerCards
