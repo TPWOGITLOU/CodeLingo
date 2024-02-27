@@ -69,10 +69,10 @@ const MultipleChoice = (challengeData: challenge): JSX.Element => {
             <CardBody>
               <div className="flex flex-wrap gap-4 items-center justify-around">
                 {questionSnippets &&
-                  questionSnippets.map((index, question) => {
+                  questionSnippets.map((question , index) => {
                     return (
                       <button
-                        key ={String(index)}
+                        key ={index}
                         id={String(index)}
                         onClick={(e) => {
                           const target = e.target as HTMLButtonElement
@@ -84,7 +84,7 @@ const MultipleChoice = (challengeData: challenge): JSX.Element => {
                         }}
                         className="pt-2 pr-2 pl-2 pb-2 border border-black rounded-md hover:shadow-md"
                       >
-                        {question}
+                        {String(question)}
                       </button>
                     )
                   })}
