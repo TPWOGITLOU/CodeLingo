@@ -89,7 +89,7 @@ const TypedChallenge = (challengeData: challenge) => {
     <>
       <div className="pt-5 h-full w-[80%] ml-[10%] grid grid-cols-4 grid-rows-4 gap-5">
         <div className="col-start-1 col-end-3 row-span-full">
-          <Card className="h-[96%] bg-nice-yellow bg-opacity-50 border-8 border-border-colour">
+          <Card className="h-[97.7%] bg-nice-yellow bg-opacity-50 border-8 border-border-colour">
             <CardHeader className="flex gap-3">
               <div className="flex flex-col">
                 <p className="text-3xl font-bold">Typing Challenge</p>
