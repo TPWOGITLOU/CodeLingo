@@ -111,7 +111,7 @@ const TypedChallenge = (challengeData: challenge) => {
           </Card>
         </div>
         <div className="h-[34vh] col-start-3  col-span-3 row-start-3 row-span-2 mb-5">
-          <Card className="h-[100%] gap-3 p-5 border-8 border-border-colour bg-nice-yellow bg-opacity-50">
+          <Card className="h-[99.8%] gap-3 p-5 border-8 border-border-colour bg-nice-yellow bg-opacity-50">
             <OutputWindow outputDetails={outputDetails} feedback={feedback} />
             <div className="flex flex-row justify-between">
               <Button
