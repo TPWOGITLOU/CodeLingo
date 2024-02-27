@@ -35,9 +35,7 @@ const AccordionUI = ({ list, language }: Prop): JSX.Element => {
           !completedChallenges.includes(challenge._id) &&
           !pyChallengeIds.includes(challenge._id)
         ) {
-          setPyChallengeIds((currChallenges) => {
-            return [...currChallenges, challenge._id];
-          });
+          setPyChallengeIds([...pyChallengeIds, challenge._id]);
           localStorage.setItem(
             "pyChallengeIds",
             JSON.stringify(pyChallengeIds)
@@ -47,9 +45,7 @@ const AccordionUI = ({ list, language }: Prop): JSX.Element => {
           !completedChallenges.includes(challenge._id) &&
           !jsChallengeIds.includes(challenge._id)
         ) {
-          setJsChallengeIds((currChallenges) => {
-            return [...currChallenges, challenge._id];
-          });
+          setJsChallengeIds([...jsChallengeIds, challenge._id]);
           localStorage.setItem(
             "jsChallengeIds",
             JSON.stringify(jsChallengeIds)
