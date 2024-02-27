@@ -16,10 +16,15 @@ const Header = (): JSX.Element => {
 
   return (
     <>
-      <header className="h-auto flex flex-row justify-between items-center p-2 text-xl border-b-medium border-black shadow-lg bg-header-colour text-slate-900">
+      <header className="h-auto flex flex-row justify-between items-center text-xl pr-2 pl-2 border-b-medium border-black shadow-lg bg-header-colour text-slate-900">
         <div className="flex flex-row">
           <Link href="/">
-            <h1 className="font- text-3xl p-2">CodeLingo</h1>
+            <Image
+              src="/logo-light.png"
+              height={90}
+              width={270}
+              alt="CodeLingo logo"
+            ></Image>
           </Link>
           <ToggleTheme />
         </div>

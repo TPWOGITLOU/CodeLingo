@@ -2,6 +2,8 @@
 import { useRouter } from "next/navigation";
 import { Button } from "@nextui-org/react";
 import Link from "next/link";
+import ChallengeModal from "./ChallengeModal";
+import { useParams } from "next/navigation";
 
 interface ChallengeFooterProps {
   finished?: boolean;
@@ -9,6 +11,7 @@ interface ChallengeFooterProps {
 
 const ChallengeFooter = (props: ChallengeFooterProps): JSX.Element => {
   const router = useRouter();
+  const params = useParams<{ language: string; challengeID: string }>();
 
   const handleBack = () => {
     router.back();
@@ -23,7 +26,7 @@ const ChallengeFooter = (props: ChallengeFooterProps): JSX.Element => {
       >
         Back to Challenges
       </Button>
-      <Link href="/">
+      <Link href={`/topics/${params.language}`}>
         <Button
           isDisabled={props.finished === true ? false : true}
           color={props.finished === true ? "success" : "primary"}
@@ -33,6 +36,7 @@ const ChallengeFooter = (props: ChallengeFooterProps): JSX.Element => {
           Next
         </Button>
       </Link>
+      {props.finished && <ChallengeModal />}
     </div>
   );
 };
