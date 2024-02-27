@@ -11,6 +11,8 @@ import { challenge } from "../../lib/mongo/utils";
 
 const TypedChallenge = (challengeData: challenge) => {
   const [feedback, setFeedback] = useState<string>("");
+  const [finished, setFinished] = useState(false);
+
 
   let {
     outputDetails,
@@ -38,6 +40,7 @@ const TypedChallenge = (challengeData: challenge) => {
   const checkAnswer = () => {
     if (challengeData.answer === atob(outputDetails.stdout).trim()) {
       setFeedback("Well Done! You got that right!");
+      setFinished(true);
     } else {
       setFeedback("Not quite correct - take another look at your code");
     }
@@ -151,7 +154,7 @@ const TypedChallenge = (challengeData: challenge) => {
           </Card>
         </div>
       </div>
-        <ChallengeFooter />
+        <ChallengeFooter finished={finished}/>
     </ section>
   );
 };
