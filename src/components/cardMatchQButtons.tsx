@@ -23,11 +23,13 @@ const ButtonQGen: React.FC<ButtonAGenProps> = ({ Qsnippets , selection1 , select
     buttonType: string,
     buttonContent: string
   ) => {
+    let selection1Element;
     if (selection1 === "") {
       setSelection1(buttonContent);
       setSelectionType(buttonType);
       setSelection1ID(buttonID);
-
+      selection1Element = document.getElementById(buttonID)
+      if(selection1Element)selection1Element.style.backgroundColor = "grey";
     } else if (selection2 === "" && buttonType !== selectionType) {
       setSelection2(buttonContent);
       setSelectionType("");
