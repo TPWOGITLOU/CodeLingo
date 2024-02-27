@@ -27,8 +27,11 @@ const config: Config = {
         "header-colour": "#8fc9a1",
       },
       gridTemplateColumns: {
-        'matching-grid': '  grid-template-columns: 1fr 20px 1fr;',
-      }
+        "matching-grid": "  grid-template-columns: 1fr 20px 1fr;",
+      },
+      fontFamily: {
+        honk: ["Honk", "system-ui"],
+      },
     },
   },
   plugins: [

@@ -15,6 +15,10 @@ interface GlobalContextProps {
   setTheme: (theme: string) => void;
   completedChallenges: string[];
   setCompletedChallenges: (completedChallenges: []) => void;
+  pyChallengeIds: string[];
+  setPyChallengeIds: (pyChallengeIds: string[]) => void;
+  jsChallengeIds: string[];
+  setJsChallengeIds: (jsChallengeIds: string[]) => void;
 }
 
 interface GlobalContextProviderProps {
@@ -36,6 +40,10 @@ export const GlobalContext = React.createContext<GlobalContextProps>({
   setTheme: () => {},
   completedChallenges: [],
   setCompletedChallenges: () => {},
+  pyChallengeIds: [""],
+  setPyChallengeIds: () => {},
+  jsChallengeIds: [""],
+  setJsChallengeIds: () => {},
 });
 
 const GlobalContextProvider = (props: GlobalContextProviderProps) => {
@@ -45,7 +53,9 @@ const GlobalContextProvider = (props: GlobalContextProviderProps) => {
   const [code, setCode] = useState<string>("console.log('hello world!')");
   const [processing, setProcessing] = useState(false);
   const [theme, setTheme] = useState("vs-dark");
-  const [completedChallenges, setCompletedChallenges] = useState([]);
+  const [completedChallenges, setCompletedChallenges] = useState([""]);
+  const [pyChallengeIds, setPyChallengeIds] = useState([""]);
+  const [jsChallengeIds, setJsChallengeIds] = useState([""]);
 
   useEffect(() => {
     const getLanguage = () => {
@@ -63,7 +73,19 @@ const GlobalContextProvider = (props: GlobalContextProviderProps) => {
       return completedChallenges ? JSON.parse(completedChallenges) : [];
     };
 
+    const getPyChallengeIds = () => {
+      const pyChallengeIds = localStorage.getItem("pyChallengeIds");
+      return pyChallengeIds ? JSON.parse(pyChallengeIds) : [];
+    };
+
+    const getJsChallengeIds = () => {
+      const jsChallengeIds = localStorage.getItem("jsChallengeIds");
+      return jsChallengeIds ? JSON.parse(jsChallengeIds) : [];
+    };
+
     if (typeof window !== "undefined") {
+      setJsChallengeIds(getJsChallengeIds());
+      setPyChallengeIds(getPyChallengeIds());
       setCompletedChallenges(getCompletedChallenges());
       setCurrentLanguage(getLanguage());
       setImgUrl(getImage());
@@ -87,6 +109,10 @@ const GlobalContextProvider = (props: GlobalContextProviderProps) => {
         setTheme: setTheme,
         completedChallenges: completedChallenges,
         setCompletedChallenges: setCompletedChallenges,
+        pyChallengeIds: pyChallengeIds,
+        setPyChallengeIds: setPyChallengeIds,
+        jsChallengeIds: jsChallengeIds,
+        setJsChallengeIds: setJsChallengeIds,
       }}
     >
       {props.children}

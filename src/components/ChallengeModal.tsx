@@ -11,14 +11,13 @@ import {
 import SpriteAnimator from "./SpriteAnimator";
 
 const ChallengeModal = (): JSX.Element => {
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const { onOpen, onOpenChange } = useDisclosure();
 
   return (
     <>
-      <Button onPress={onOpen}>Open Modal</Button>
       <Modal
         backdrop="blur"
-        isOpen={isOpen}
+        isOpen={false}
         onOpenChange={onOpenChange}
         isDismissable={false}
         isKeyboardDismissDisabled={true}
