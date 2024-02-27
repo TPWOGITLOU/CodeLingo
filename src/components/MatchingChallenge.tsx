@@ -65,9 +65,6 @@ export default function Matching(challenge: challenge): JSX.Element {
           const answer = challenge.answer[x] as {
             [key: string]: [string, string];
           };
-          // const answer = challenge.answer[x] as {};
-          }
-
           if (
             (answer[loop][0] === ans1[0] &&
               answer[loop][1] === ans1[1] &&
