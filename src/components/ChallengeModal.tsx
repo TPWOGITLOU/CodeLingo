@@ -7,17 +7,20 @@ import {
   ModalFooter,
   Button,
   useDisclosure,
+  Link,
 } from "@nextui-org/react";
+import { useParams } from "next/navigation";
 import SpriteAnimator from "./SpriteAnimator";
 
 const ChallengeModal = (): JSX.Element => {
   const { onOpen, onOpenChange } = useDisclosure();
+  const params = useParams<{ language: string }>();
 
   return (
     <>
       <Modal
         backdrop="blur"
-        isOpen={false}
+        isOpen={true}
         onOpenChange={onOpenChange}
         isDismissable={false}
         isKeyboardDismissDisabled={true}
@@ -52,9 +55,11 @@ const ChallengeModal = (): JSX.Element => {
                 <Button color="danger" variant="light" onPress={onClose}>
                   Close
                 </Button>
-                <Button color="success" onPress={onClose}>
-                  Back to topics
-                </Button>
+                <Link href={`/topics/${params.language}`}>
+                  <Button color="success" onPress={onClose}>
+                    Back to topics
+                  </Button>
+                </Link>
               </ModalFooter>
             </>
           )}

@@ -41,14 +41,14 @@ const ButtonQGen: React.FC<ButtonAGenProps> = ({ Qsnippets , selection1 , select
         <button
           key={index}
           id={`answer${index + 1}`}
-          className={`bg-blue-500 col-start-3 row-start-${index + 1} p-4 text-white rounded-lg`}
+          className={`bg-blue-500 col-start-3 p-4 text-white rounded-lg`}
           onClick={(e) => {
             const target = e.target as HTMLButtonElement;
             handleClick(
               e,
               target.id,
               "answer",
-              ((e.target as HTMLButtonElement)?.textContent) || ""
+              (e.target as HTMLButtonElement)?.textContent || ""
             );
           }}
         >
