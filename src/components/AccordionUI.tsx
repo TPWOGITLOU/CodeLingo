@@ -1,12 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { Accordion, AccordionItem, Button } from "@nextui-org/react";
 import { Topic } from "../../lib/mongo/utils";
 import TopicTile from "./TopicTile";
 import ProgressBar from "./ProgressBar";
 import Link from "next/link";
-// import { GlobalContext } from "../../contexts/globalContext";
+import { GlobalContext } from "../../contexts/globalContext";
 import { FaTrophy } from "react-icons/fa6";
 
 interface AccordianUIProps {
@@ -15,11 +15,14 @@ interface AccordianUIProps {
 }
 
 const AccordionUI = ({ list, language }: AccordianUIProps): JSX.Element => {
-  const [javascriptChallengeIds, setJavasciptChallengeIds] = useState<string[]>(
-    []
-  );
-  const [pythonChallengeIds, setPythonChallengeIds] = useState<string[]>([]);
-  const [completedChallenges, setCompletedChallenges] = useState<string[]>([]);
+  let {
+    completedChallenges,
+    pythonChallengeIds,
+    javascriptChallengeIds,
+    setPythonChallengeIds,
+    setJavascriptChallengeIds,
+    setCompletedChallenges,
+  } = useContext(GlobalContext);
 
   let currentJavascriptChallenges: string[] = [];
   let currentPythonChallenges: string[] = [];
@@ -31,14 +34,6 @@ const AccordionUI = ({ list, language }: AccordianUIProps): JSX.Element => {
     javascriptChallengeIds.filter(
       (challengeId) => !completedChallenges.includes(challengeId)
     )[0];
-
-  // let {
-  //   completedChallenges,
-  //   pyChallengeIds,
-  //   jsChallengeIds,
-  //   setPyChallengeIds,
-  //   setJsChallengeIds,
-  // } = useContext(GlobalContext);
 
   let topicsOrChallenges: boolean = true;
   console.log(list);
@@ -71,14 +66,17 @@ const AccordionUI = ({ list, language }: AccordianUIProps): JSX.Element => {
     console.log(list);
     console.log(nextChallenge);
     setPythonChallengeIds(currentPythonChallenges);
-    setJavasciptChallengeIds(currentJavascriptChallenges);
+    setJavascriptChallengeIds(currentJavascriptChallenges);
     setCompletedChallenges([list[0]._id, list[1]._id]);
   }, [list]);
 
   useEffect(() => {
-    localStorage.setItem("pyChallengeIds", JSON.stringify(pythonChallengeIds));
     localStorage.setItem(
-      "jsChallengeIds",
+      "pythonChallengeIds",
+      JSON.stringify(pythonChallengeIds)
+    );
+    localStorage.setItem(
+      "javascriptChallengeIds",
       JSON.stringify(javascriptChallengeIds)
     );
     localStorage.setItem(
