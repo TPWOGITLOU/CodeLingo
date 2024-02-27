@@ -5,7 +5,7 @@ interface CodeProps {
     stdout: string;
     stderr: string;
   },
-  feedback?: {feedback:string}
+  feedback?: string
 }
 
 

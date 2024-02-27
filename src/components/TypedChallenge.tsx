@@ -9,10 +9,8 @@ import ChallengeFooter from "./ChallengeFooter";
 import { handleCompile, Language } from "../../lib/mongo/judge0/judge-utils";
 import { challenge } from "../../lib/mongo/utils";
 
-
-
 const TypedChallenge = (challengeData: challenge) => {
-  const [feedback, setFeedback] = useState<{ feedback: string }>("");
+  const [feedback, setFeedback] = useState<string>("");
 
   let {
     outputDetails,
@@ -23,7 +21,6 @@ const TypedChallenge = (challengeData: challenge) => {
     setProcessing,
     theme,
   } = useContext(GlobalContext);
-
 
   useEffect(() => {
     setCode(challengeData.challengeSnippets);
@@ -39,7 +36,6 @@ const TypedChallenge = (challengeData: challenge) => {
   };
 
   const checkAnswer = () => {
-   
     if (challengeData.answer === atob(outputDetails.stdout)) {
       setFeedback("Well Done! You got that right!");
     } else {
@@ -47,12 +43,11 @@ const TypedChallenge = (challengeData: challenge) => {
     }
   };
 
-  const language: string = challengeData.language.toLowerCase()
-
+  const language: string = challengeData.language.toLowerCase();
 
   const fetchHandleCompile = async () => {
     let fetchLanguage: Language;
-    
+
     setFeedback("");
 
     switch (language) {
