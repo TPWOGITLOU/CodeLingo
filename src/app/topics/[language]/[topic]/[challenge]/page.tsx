@@ -18,12 +18,11 @@ const fetchChallenge = async (language: string, challenge_id: string) => {
       break;
   }
 
-  try{
-      const result = await getChallenge(collection, challenge_id);
-      return result
-  }catch(err){
-      throw new Error("There was a problem fetching the challenge data");
-
+  try {
+    const result = await getChallenge(collection, challenge_id);
+    return result;
+  } catch (err) {
+    throw new Error("There was a problem fetching the challenge data");
   }
 };
 
@@ -45,7 +44,6 @@ const Challenge = async ({params}: {params:{language:string, topic:string, chall
             return <Block {...challengeData}/>
         default:
             throw new Error ("There was a problem")
-
     }
   }
 };
