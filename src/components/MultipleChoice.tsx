@@ -1,54 +1,121 @@
-"use client";
-import { challenge } from "../../lib/mongo/utils";
+"use client"
+import { challenge } from "../../lib/mongo/utils"
 
 import {
-  Code,
   Card,
   CardHeader,
   CardBody,
   CardFooter,
   Divider,
   Image,
-  Link,
-} from "@nextui-org/react";
-import ChallengeFooter from "./ChallengeFooter";
+} from "@nextui-org/react"
+import ChallengeFooter from "./ChallengeFooter"
+import { useState } from "react"
 
 const MultipleChoice = (challengeData: challenge): JSX.Element => {
+  const defaultButtonStyle = "bg-blue-500 p-4 text-white rounded-lg hover:shadow-lg";
+  const wrongButtonStyle = "bg-red-500 p-4 text-white rounded-lg hover:shadow-lg";
+  const rightButtonStyle = "bg-green-500 p-4 text-white rounded-lg hover:shadow-lg";
+  const [finished, setFinished] = useState(false);
+  
+  const onClick = (e: any, targetID: string, buttonContent: string) => {
+    let correctAns:boolean = false
+    for (let x = 0; x < Object.entries(challengeData.challengeSnippets).length; x++) {
+      console.log(`Challenge Object : ${Object.entries(challengeData.challengeSnippets)[x][0]} | Intended Challenge Answer : ${Object.entries(challengeData.challengeSnippets)[x][1]} | Challenge Answer : ${String(Object.entries(challengeData.challengeSnippets)[x][1])} | Provided Answer : ${buttonContent}`)
+      if (Object.entries(challengeData.challengeSnippets)[x][0] === challengeData.answer && String(Object.entries(challengeData.challengeSnippets)[x][1]) === buttonContent) {
+        const element = document.getElementById(targetID) as HTMLButtonElement
+        if (element) {
+          element.className = rightButtonStyle
+          element.disabled = true
+          correctAns = true
+          setFinished(true)
+        }
+        break
+      }
+    }
+    if (!correctAns) {
+      const element = document.getElementById(targetID)
+      if (element) {
+        element.className = wrongButtonStyle
+        setTimeout(() => {
+          element.className = defaultButtonStyle
+        }, 500)
+      }
+    }
+  }
+  let questionSnippets = Object.values(
+    challengeData.challengeSnippets
+  )
+  
   return (
-    <section className="h-[90%] w-[80%] mt-10 ml-[10%] flex flex-col flex-wrap gap-8 items-center align-middle justify-center ">
-      <section className="flex flex-row flex-wrap justify-between gap-5">
-        <div className="md:max-w-[62%] w-[100%] flex flex-col flex-wrap gap-5">
-          <Card className="w-full border-8 border-border-colour  bg-nice-yellow bg-opacity-50 flex-wrap p-5">
+    <section id="component-container" className=" 
+    w-[80%]
+    min-w-[450px]
+    mt-10 ml-auto mr-auto
+    box-border
+    ">
+      <div id="head-container" className="
+        flex gap-5
+        mb-5
+        ">
+          <Card id="question-card"
+          className="
+            w-full 
+            border-8 border-border-colour  bg-nice-yellow bg-opacity-50 
+            flex-wrap 
+            p-5
+            ">
             <CardHeader className="flex gap-3">
-              <div className="flex flex-col">
-                <p className="text-3xl font-bold">Multiple Choice</p>
-              </div>
+                <p className="text-3xl font-bold">
+                {challengeData.language} - {challengeData.topic}
+                </p>
             </CardHeader>
             <Divider />
             <CardBody>
-              <p>Pick one of the answers below based on the following q:</p>
+              <p>{challengeData.challengeQuestion}</p>
             </CardBody>
-            <div className="flex flex-wrap gap-8 mb-2 p-5 color=success">
-              <Code size="sm">Example question with code?</Code>
-            </div>
-            <Divider />
           </Card>
-          <Card className="gap-3 pt-10 pb-10 border-8 border-border-colour  bg-nice-yellow bg-opacity-50">
-            <CardBody>
-              <div className="flex flex-wrap gap-4 items-center justify-around">
-                <Code color="secondary">A. exampleCode(exampleCode)</Code>
-                <Code color="secondary">B. exampleCode(exampleCode)</Code>
-                <Code color="secondary">C. exampleCode(exampleCode)</Code>
-                <Code color="secondary">D. exampleCode(exampleCode)</Code>
-                <Code color="secondary">E. exampleCode(exampleCode)</Code>
-                <Code color="secondary">F. exampleCode(exampleCode)</Code>
+    </div>
+    <div id="activity-container" className="flex flex-wrap gap-5 mb-5">
+    <Card
+          id="activity-card"
+          className="
+          grow
+          border-8 border-border-colour 
+          bg-nice-yellow bg-opacity-50
+          ">
+            <CardBody  className="p-5">
+              <div className="flex gap-4 items-center justify-around">
+                {questionSnippets &&
+                  questionSnippets.map((question , index) => {
+                    return (
+                      <button
+                        key ={index}
+                        id={String(index)}
+                        onClick={(e) => {
+                          const target = e.target as HTMLButtonElement
+                          onClick(
+                            e,
+                            target.id,
+                            (e.target as HTMLButtonElement)?.textContent || ""
+                          )
+                        }}
+                        className={defaultButtonStyle}
+                      >
+                        {String(question)}
+                      </button>
+                    )
+                  })}
               </div>
             </CardBody>
-          </Card>
-        </div>
-        <Card className="md:max-w-[50%] w-100% h-auto border-8 border-border-colour bg-nice-yellow bg-opacity-50 p-5">
-          <CardBody>
-            <p>Explanation of the task and link to the information page</p>
+      </Card>
+      <Card id="information-card" className="          
+          border-8 border-border-colour bg-nice-yellow bg-opacity-50
+          grow 
+          p-5
+          ">
+          <CardBody className="p-5">
+            <p>Click the right answer.</p>
           </CardBody>
           <CardFooter className="justify-end">
             <Image
@@ -57,11 +124,10 @@ const MultipleChoice = (challengeData: challenge): JSX.Element => {
               className="float-right"
             />
           </CardFooter>
-        </Card>
-      </section>
-      <ChallengeFooter />
+      </Card>
+        </div>
+      <ChallengeFooter  finished={finished} />
     </section>
-  );
-};
-
-export default MultipleChoice;
+  )
+}
+export default MultipleChoice

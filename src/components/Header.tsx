@@ -19,7 +19,7 @@ const Header = (): JSX.Element => {
       <header className="h-auto flex flex-row justify-between items-center p-2 text-xl border-b-medium border-black shadow-lg bg-header-colour text-slate-900">
         <div className="flex flex-row">
           <Link href="/">
-            <h1 className="font-bold text-3xl p-2">CodeLingo</h1>
+            <h1 className="font- text-3xl p-2">CodeLingo</h1>
           </Link>
           <ToggleTheme />
         </div>
@@ -29,9 +29,6 @@ const Header = (): JSX.Element => {
           </Link>
           <Link className="p-2" href="/topics">
             Topics
-          </Link>
-          <Link className="p-2" href="/progress">
-            Progress
           </Link>
           <Link className="p-2" href="/sandbox">
             Sandbox

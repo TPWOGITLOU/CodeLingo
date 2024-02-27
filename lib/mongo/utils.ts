@@ -13,8 +13,8 @@ export interface challenge{
   language: string;
   challengeType: string;
   challengeQuestion:  string;
-  challengeSnippets: {};
-  answer:string|{};
+  challengeSnippets: {[key: string]:string}[];
+  answer:string|{}[];
 }
 
 const getTopics = async (language: string) => {

@@ -6,7 +6,7 @@ import Link from "next/link";
 import { GlobalContext } from "../../contexts/globalContext";
 import { useContext, useEffect } from "react";
 
-const Home: React.FC = (): JSX.Element => {
+const Home = (): JSX.Element => {
   let { language, setLanguage, setImgUrl } = useContext(GlobalContext);
 
   useEffect(() => {
@@ -15,7 +15,6 @@ const Home: React.FC = (): JSX.Element => {
 
   return (
     <main>
-      <Header />
       <div className="h-screen flex flex-col items-center justify-center content-center font-bold text-center font-mono">
         <div className="text-3xl">
           <h2>Welcome to CodeLingo!</h2>
