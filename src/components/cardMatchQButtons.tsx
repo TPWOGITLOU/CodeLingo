@@ -43,7 +43,7 @@ const ButtonQGen: React.FC<ButtonAGenProps> = ({ Qsnippets , selection1 , select
         <button
           key={index}
           id={`answer${index + 1}`}
-          className={`bg-blue-500 col-start-3 p-4 text-white rounded-lg`}
+          className={`bg-blue-500 col-start-3 p-4 text-white rounded-lg hover:shadow-lg`}
           onClick={(e) => {
             const target = e.target as HTMLButtonElement;
             handleClick(

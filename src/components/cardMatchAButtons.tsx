@@ -41,7 +41,7 @@ const ButtonAGen: React.FC<ButtonAGenProps> = ({ snippets, selection1 , selectio
         <button
           key={index}
           id={`snippet${index + 1}`}
-          className={`bg-orange-500 col-start-1 p-4 text-white rounded-lg`}
+          className={`bg-orange-500 col-start-1 p-4 text-white rounded-lg hover:shadow-lg`}
           onClick={(e) => {
             const target = e.target as HTMLButtonElement;
             handleClick(
