@@ -45,33 +45,37 @@ const Block = (challengeData: challenge)=>{
   }, [listItems])
 
   return(
-    <section>
-      <div className="flex flex-col justify-center items-center">
-          <h1 className="text-lg mx-80">Drag and drop the syntax blocks into the answer block</h1>
-      <div className="flex flex-row gap-5">
-        <Card className="w-full border-8 border-border-colour  bg-nice-yellow bg-opacity-50 flex-wrap p-5">
-        <CardHeader className="flex gap-3">
-              <div className="flex flex-col">
-                <p className="text-3xl font-bold">Multiple Choice</p>
-              </div>
-            </CardHeader>
+    <section id="block-game-container" className="flex flex-col gap-5
+    w-[80%] min-w-[450px]
+    mt-10 ml-auto mr-auto
+    box-border">
+      <Card id="question-card" className="w-full border-8 border-border-colour  bg-nice-yellow bg-opacity-50 p-5">
+        <CardHeader>
+          <h1 className="text-3xl font-bold">{challengeData.language} - {challengeData.topic}</h1>
+        </CardHeader>
+        <Divider/>
+        <h1 className="text-lg mx-auto">{challengeData.challengeQuestion}</h1>
+      </Card>
+      <div id="activity-container"className="flex flex-row flex-wrap gap-5">
+        <Card id="activity-card" className="p-5
+          border-8 border-border-colour bg-nice-yellow bg-opacity-50">
         <DragAndDrop 
         listItems={listItems}
         setListItems={setListItems}
         />
         </Card>
-        <Card className="w-full border-8 border-border-colour  bg-nice-yellow bg-opacity-50 flex-wrap p-5">
-
-          <div className="self-center flex flex-col justify-center items-center">
-            <div className="bg-white p-2 m-2 rounded-lg w-80 h-40">{correctState ? <p>correct</p> : <p>{`Order the syntax required to print 'hello world'`}</p>}</div>
-            <Image 
+        <Card id="feedback-card" className="grow p-5 
+        border-8 border-border-colour bg-nice-yellow bg-opacity-50         
+        items-center">
+            <div className="bg-white p-5 rounded-lg w-full min-w-[40px] h-40 text-center">{correctState ? 
+              <p className="text-l text-green-500 font-bold">Well done! That is the correct answer.</p> : 
+              <p className="text-l">drag and drop the code blocks to build the answer</p>}</div>
+            <Image className="mb-2"
             src="/character2.png"
             alt="2d pixel character with her arms in the air"/>
-          </div>
         </Card>
       </div>
-    <ChallengeFooter />
-    </div>
+    <ChallengeFooter finished={correctState}/>
   </section>
   )
 
