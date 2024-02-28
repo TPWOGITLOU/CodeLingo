@@ -32,7 +32,7 @@ export const CardItem = ({data, handleDragging, index, setTarget}: Props) => {
         onDragEnter={(e) => handleDragEnter(e, index)}
         >
             {/* <p>{index}</p> */}
-            <p>{data.content}</p>
+            <p className="dark:text-text-purple">{data.content}</p>
 
         </div>
     )

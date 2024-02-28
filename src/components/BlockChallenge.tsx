@@ -69,7 +69,7 @@ const Block = (challengeData: challenge)=>{
         items-center">
             <div className="bg-white p-5 rounded-lg w-full min-w-[40px] h-40 text-center">{correctState ? 
               <p className="text-l text-green-500 font-bold">Well done! That is the correct answer.</p> : 
-              <p className="text-l">drag and drop the code blocks to build the answer</p>}</div>
+              <p className="text-l dark:text-text-purple">drag and drop the code blocks to build the answer</p>}</div>
             <Image className="mb-2"
             src="/character2.png"
             alt="2d pixel character with her arms in the air"/>
