@@ -53,7 +53,7 @@ const Learning = async ({
             </CardHeader>
             <Divider />
             <CardBody>
-              <ul className="text-base text-fuchsia-700">
+              <ul className="text-base text-fuchsia-700 dark:text-white">
                 {topicData.map((individualInfo: string, index: number) => {
                   const regexTitle = /^([^|\n]+)/
                   const matchTitle = individualInfo.match(regexTitle)
@@ -91,6 +91,6 @@ const Learning = async ({
   );
 };
 
-//
+
 
 export default Learning;

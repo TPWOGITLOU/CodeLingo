@@ -76,6 +76,7 @@ const Block = (challengeData: Challenge) => {
           id="feedback-card"
           className="grow p-5 
         border-8 border-border-colour bg-nice-yellow bg-opacity-50         
+
         items-center"
         >
           <div className="bg-white p-5 rounded-lg w-full min-w-[40px] h-40 text-center">
@@ -84,7 +85,7 @@ const Block = (challengeData: Challenge) => {
                 Well done! That is the correct answer.
               </p>
             ) : (
-              <p className="text-l">
+              <p className="text-l dark:text-text-purple">
                 drag and drop the code blocks to build the answer
               </p>
             )}
