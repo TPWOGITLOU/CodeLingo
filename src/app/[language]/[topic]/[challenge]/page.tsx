@@ -1,4 +1,4 @@
-import {challenge, getChallenge} from "@/../lib/mongo/utils"
+import { getChallenge } from "@/../lib/mongo/utils";
 import MultipleChoice from "@/components/MultipleChoice";
 import Matching from "@/components/MatchingChallenge";
 import Block from "@/components/BlockChallenge";
@@ -18,34 +18,36 @@ const fetchChallenge = async (language: string, challenge_id: string) => {
       break;
   }
 
-
   try {
     const result = await getChallenge(collection, challenge_id);
     return result;
   } catch (err) {
     throw new Error("There was a problem fetching the challenge data");
   }
-}
+};
 
+const Challenge = async ({
+  params,
+}: {
+  params: { language: string; topic: string; challenge: string };
+}) => {
+  const language = params.language;
+  const challenge_id = params.challenge;
+  const result = await fetchChallenge(language, challenge_id);
+  if (result) {
+    const challengeData = result;
+    switch (challengeData.challengeType) {
+      case "multiChoice":
+        return <MultipleChoice {...challengeData} />;
+      case "match":
+        return <Matching {...challengeData} />;
+      case "typed":
+        return <TypedChallenge {...challengeData} />;
 
-const Challenge = async ({params}: {params:{language:string, topic:string, challenge:string}}) => {
-    const language = params.language;
-    const challenge_id = params.challenge;
-    const result = await fetchChallenge(language, challenge_id)
-    if (result){
-        const challengeData = result;
-        switch (challengeData.challengeType) {
-        case "multiChoice":
-            return <MultipleChoice {...challengeData}/>
-        case "match":
-            return <Matching {...challengeData}/>
-        case "typed":
-            return <TypedChallenge {...challengeData} />
-
-        case "block":
-            return <Block {...challengeData}/>
-        default:
-            throw new Error ("There was a problem")
+      case "block":
+        return <Block {...challengeData} />;
+      default:
+        throw new Error("There was a problem");
     }
   }
 };
