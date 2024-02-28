@@ -51,6 +51,7 @@ const JavaScriptPrimitivesContent = (
       <code className='text-10xl text-center'>In JavaScript, we use camel case whereWeUseCapitalsBetweenWords</code>
     </>
   );
+  //
   
   export { JavaScriptPrimitivesContent, JavaScriptConsoleContent, JavaScriptVariablesContent };
   

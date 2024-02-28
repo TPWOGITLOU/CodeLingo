@@ -97,6 +97,7 @@ const PythonVariablesContent = (
       </p>
     </>
   );
+  //
   
   export { PythonPrimitivesContent, PythonPrintContent, PythonVariablesContent };
   
