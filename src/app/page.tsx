@@ -15,7 +15,7 @@ const Home = (): JSX.Element => {
         <div className="flex md:flex-row flex-col justify-between p-2 m-2">
           <Link href="/python">
             <div className="p-2 mb-2 flex flex-col items-center border-8 rounded-medium border-coral bg-nice-yellow bg-opacity-50 md:mr-3">
-              <h3 className="mb-5 p-5 pt-1 text-center text-lg dark:bg-black  bg-white rounded-lg">
+              <h3 className="mb-5 p-5 pt-1 text-center text-lg dark:bg-header  bg-white rounded-lg">
                 Python
               </h3>
               <SpriteAnimator
@@ -35,7 +35,7 @@ const Home = (): JSX.Element => {
           </Link>
           <Link href="/javascript">
             <div className="p-2 flex flex-col items-center border-8 rounded-medium border-coral bg-nice-yellow bg-opacity-50">
-              <h3 className="mb-5 p-5 pt-1 text-center text-lg  dark:bg-black bg-white rounded-lg">
+              <h3 className="mb-5 p-5 pt-1 text-center text-lg  dark:bg-header bg-white rounded-lg">
                 JavaScript
               </h3>
               <SpriteAnimator
