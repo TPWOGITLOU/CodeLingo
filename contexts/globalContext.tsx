@@ -1,10 +1,6 @@
 import React, { useState, ReactNode, useEffect } from "react";
 
 interface GlobalContextProps {
-  language: string;
-  setLanguage: (language: string) => void;
-  imgUrl: string;
-  setImgUrl: (imgUrl: string) => void;
   outputDetails: undefined | any;
   setOutputDetails: (outputDetails: any) => void;
   code: any;
@@ -26,10 +22,6 @@ interface GlobalContextProviderProps {
 }
 
 export const GlobalContext = React.createContext<GlobalContextProps>({
-  language: "",
-  setLanguage: () => {},
-  imgUrl: "",
-  setImgUrl: () => {},
   outputDetails: {},
   setOutputDetails: () => {},
   code: "",
@@ -47,8 +39,6 @@ export const GlobalContext = React.createContext<GlobalContextProps>({
 });
 
 const GlobalContextProvider = (props: GlobalContextProviderProps) => {
-  const [currentLanguage, setCurrentLanguage] = useState<string>("");
-  const [imgUrl, setImgUrl] = useState<string>("");
   const [outputDetails, setOutputDetails] = useState<any>(undefined);
   const [code, setCode] = useState<string>("console.log('hello world!')");
   const [processing, setProcessing] = useState(false);
@@ -58,16 +48,6 @@ const GlobalContextProvider = (props: GlobalContextProviderProps) => {
   const [javascriptChallengeIds, setJavascriptChallengeIds] = useState([""]);
 
   useEffect(() => {
-    const getLanguage = () => {
-      const language = localStorage.getItem("language");
-      return language ? JSON.parse(language) : "";
-    };
-
-    const getImage = () => {
-      const image = localStorage.getItem("image");
-      return image ? JSON.parse(image) : "";
-    };
-
     const getCompletedChallenges = () => {
       const completedChallenges = localStorage.getItem("completedChallenges");
       return completedChallenges ? JSON.parse(completedChallenges) : [];
@@ -89,18 +69,12 @@ const GlobalContextProvider = (props: GlobalContextProviderProps) => {
       setJavascriptChallengeIds(getJsChallengeIds());
       setPythonChallengeIds(getPyChallengeIds());
       setCompletedChallenges(getCompletedChallenges());
-      setCurrentLanguage(getLanguage());
-      setImgUrl(getImage());
     }
   }, []);
 
   return (
     <GlobalContext.Provider
       value={{
-        language: currentLanguage,
-        setLanguage: setCurrentLanguage,
-        imgUrl: imgUrl,
-        setImgUrl: setImgUrl,
         outputDetails: outputDetails,
         setOutputDetails: setOutputDetails,
         code: code,
