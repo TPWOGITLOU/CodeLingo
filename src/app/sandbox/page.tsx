@@ -131,22 +131,22 @@ const Sandbox: React.FC = (): JSX.Element => {
         border-8 border-border-colour 
         bg-nice-yellow bg-opacity-50"
         >
-          <CardBody className="p-5 w-[80%]">
-            <p>
-              Welcome to the sandbox area!
-              <br /> <br />
-              You can use the console on the left to practice what you have
-              learnt so far. You can select the language that you would like to
-              practice from the dropdown menu above, and if you like, you can
-              even change the theme of the console (but this is totally
-              optional!).
-              <br />
-              <br />
-              When you are ready to test out your code, just hit the Run button
-              below, and wait for your code to process in the output box.
-            </p>
-
-            <div className="absolute right-5 bottom-5">
+          <CardBody className="p-5 relative border border-green-500">
+          <div id="speech-bubble" className="bg-white
+          border border-white 
+          rounded-l-full
+          rounded-tr-full
+          rounded-br-0
+          text-center
+          w-[90%]
+          px-12 py-6
+          mb-[24px]
+          ">
+            <h3 className="mb-2 font-bold">Welcome to the sandbox area!</h3>
+            <p className="mb-2">You can use the console on the left to practice what you have learnt so far. You can select the language that you would like to practice from the dropdown menu above, and if you like, you can even change the theme of the console (but this is totally optional!).</p>
+            <p>When you are ready to test out your code, just hit the Run button below, and wait for your code to process in the output box.</p>
+            </div>
+            <div className="absolute bottom-0 right-2">
               <SpriteAnimator
                 spriteWidth={79}
                 spriteHeight={64}
