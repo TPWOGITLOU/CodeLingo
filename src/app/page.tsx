@@ -13,7 +13,7 @@ const Home = (): JSX.Element => {
           <p>Which language would you like to learn?</p>
         </div>
         <div className="flex md:flex-row flex-col justify-between p-2 m-2">
-          <Link href="/topics/python">
+          <Link href="/python">
             <div className="p-2 mb-2 flex flex-col items-center border-8 rounded-medium border-coral bg-nice-yellow bg-opacity-50 md:mr-3">
               <h3 className="mb-5 p-5 pt-1 text-center text-lg dark:bg-black  bg-white rounded-lg">
                 Python
@@ -33,7 +33,7 @@ const Home = (): JSX.Element => {
               />
             </div>
           </Link>
-          <Link href="/topics/javascript">
+          <Link href="/javascript">
             <div className="p-2 flex flex-col items-center border-8 rounded-medium border-coral bg-nice-yellow bg-opacity-50">
               <h3 className="mb-5 p-5 pt-1 text-center text-lg  dark:bg-black bg-white rounded-lg">
                 JavaScript
