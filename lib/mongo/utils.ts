@@ -1,5 +1,5 @@
 import { ObjectId } from "mongodb";
-import client from "./connection";
+import newClient from "./connection";
 
 const databaseName = "CodeLingo";
 
@@ -19,12 +19,14 @@ export interface Challenge {
 
 const getTopics = async (language: string) => {
   try {
+    const client = newClient();
     const topicsCollection = client.db(databaseName).collection(language);
     const topics: Topic[] = await topicsCollection
       .find({})
       .map((topic: Topic) => ({ ...topic, _id: topic._id.toString() }))
       .toArray();
     if (topics) {
+      client.close();
       return topics;
     }
   } catch (error) {
@@ -34,12 +36,14 @@ const getTopics = async (language: string) => {
 
 const getQuestions = async (language: string, topic: string) => {
   try {
+    const client = newClient();
     const questionsCollection = client.db(databaseName).collection(language);
     const questions: Topic[] = await questionsCollection
       .find({ topic })
       .map((question: Topic) => ({ ...question, _id: question._id.toString() }))
       .toArray();
     if (questions) {
+      client.close();
       return questions;
     }
   } catch (error) {
@@ -49,6 +53,7 @@ const getQuestions = async (language: string, topic: string) => {
 
 const getChallenge = async (language: string, challenge: string) => {
   try {
+    const client = newClient();
     const questionsCollection = client.db(databaseName).collection(language);
     const result = await questionsCollection.findOne({
       _id: new ObjectId(challenge),
@@ -63,6 +68,7 @@ const getChallenge = async (language: string, challenge: string) => {
         challengeSnippets: result.challengeSnippets,
         answer: result.answer,
       };
+      client.close();
       return question;
     }
   } catch (error) {
@@ -74,6 +80,7 @@ const getAllChallengesByLanguage = async (language: string) => {
   const collection: string =
     language === "python" ? "PY-Questions" : "JS-Questions";
   try {
+    const client = newClient();
     const questionCollection = client.db(databaseName).collection(collection);
     const questions = await questionCollection
       .find({})
@@ -86,6 +93,7 @@ const getAllChallengesByLanguage = async (language: string) => {
       })
       .toArray();
     if (questions) {
+      client.close();
       return questions;
     }
   } catch (error) {
