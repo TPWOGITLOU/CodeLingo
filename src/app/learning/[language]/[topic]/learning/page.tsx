@@ -1,5 +1,4 @@
 import { getTopics } from "../../../../../../lib/mongo/utils";
-import NextMarkdown from "next-markdown";
 import Link from "next/link";
 import {
   Button,

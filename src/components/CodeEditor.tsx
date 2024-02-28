@@ -29,8 +29,9 @@ const CodeEditor: React.FC<CodeEditorProps> = (props) => {
         onChange={handleEditorChange}
         options={{
           scrollBeyondLastLine:false,
-          fontSize:20,
+          fontSize:18,
           minimap: { enabled: false },
+          wordWrap: "on",
         }}
       />
     </div>
