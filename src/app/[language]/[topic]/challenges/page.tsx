@@ -1,4 +1,4 @@
-import { getQuestions } from "../../../../../../lib/mongo/utils";
+import { getQuestions } from "../../../../../lib/mongo/utils";
 import AccordionUI from "@/components/AccordionUI";
 
 const fetchQuestions = async (language: string, topic: string) => {
