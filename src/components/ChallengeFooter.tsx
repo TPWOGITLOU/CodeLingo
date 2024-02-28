@@ -33,12 +33,12 @@ const ChallengeFooter = (props: ChallengeFooterProps): JSX.Element => {
       (challengeId) => !completedChallenges.includes(challengeId)
     )[0];
 
-  console.log(
-    nextChallenge,
-    pythonChallengeIds,
-    javascriptChallengeIds,
-    completedChallenges
-  );
+  // console.log(
+  //   nextChallenge,
+  //   pythonChallengeIds,
+  //   javascriptChallengeIds,
+  //   completedChallenges
+  // );
 
   return (
     <div className="w-full">
