@@ -17,20 +17,12 @@ const config: Config = {
       },
       colors: {
         "text-purple": "#58355E",
-        "light-purple": "#7E7F9A",
-        "button-coral": "#EB9486",
-        "link-orange": "#FFB400",
         "nice-yellow": "#F6FDC3",
-        "back-green": "#CAE7B9",
         "border-colour": "#85586F",
-        "card-colour": "#F5EEE6",
-        "header-colour": "#8fc9a1",
+        coral: "#d55866",
       },
       gridTemplateColumns: {
         "matching-grid": "  grid-template-columns: 1fr 20px 1fr;",
-      },
-      fontFamily: {
-        honk: ["Honk", "system-ui"],
       },
     },
   },
@@ -40,13 +32,14 @@ const config: Config = {
         light: {
           layout: {},
           colors: {
-            background: "#CDFADB",
             foreground: "#58355E",
           },
         },
         dark: {
           layout: {},
-          colors: {},
+          colors: {
+            background: "#0f0f0f",
+          },
         },
       },
     }),

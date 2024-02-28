@@ -60,11 +60,8 @@ const DropdownCard = (): JSX.Element => {
         <DropdownItem key="about" href="/about">
           About
         </DropdownItem>
-        <DropdownItem key="topics" href="/topics">
-          Topics
-        </DropdownItem>
-        <DropdownItem key="progress" href="/progress">
-          Progress
+        <DropdownItem key="sandbox" href="/sandbox">
+          Sandbox
         </DropdownItem>
       </DropdownMenu>
     </Dropdown>
