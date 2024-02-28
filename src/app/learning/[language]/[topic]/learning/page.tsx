@@ -1,5 +1,5 @@
-import Header from "@/components/Header";
 import { getTopics } from "../../../../../../lib/mongo/utils";
+import NextMarkdown from "next-markdown";
 import Link from "next/link";
 import {
   Button,
@@ -39,7 +39,6 @@ const Learning = async ({
 
   return (
     <>
-      <Header />
       <div className="mt-6 flex flex-row justify-center text-lg">
         <Link href="/">Home</Link>
       </div>
@@ -76,7 +75,7 @@ const Learning = async ({
               </ul>
             </CardBody>
             <CardFooter className="flex justify-center">
-              {/* <Link href={`${props.language}/${props.name}/challenges`}> */}
+              <Link href={`../../../${params.language}/${params.topic}/challenges`}>
               <Button
                 radius="full"
                 size="sm"
@@ -84,7 +83,7 @@ const Learning = async ({
               >
                 Challenges
               </Button>
-              {/* </Link> */}
+              </Link>
             </CardFooter>
           </Card>
         </div>
