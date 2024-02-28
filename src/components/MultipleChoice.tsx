@@ -10,9 +10,11 @@ import {
   CardFooter,
   Divider,
   Image,
+  Button,
 } from "@nextui-org/react";
 import ChallengeFooter from "./ChallengeFooter";
 import { useState } from "react";
+import Link from "next/link";
 
 
 const MultipleChoice = (challengeData: Challenge): JSX.Element => {
@@ -72,62 +74,46 @@ const MultipleChoice = (challengeData: Challenge): JSX.Element => {
   return (
 
     <main
-
       id="component-container"
       className=" 
     w-[80%]
     min-w-[450px]
     mt-10 ml-auto mr-auto
     box-border
-    "
-    >
-      <div
-        id="head-container"
-        className="
-        flex gap-5
-        mb-5
-        "
-      >
+    ">
+      <div id="grid" className="
+        grid
+        lg:grid-cols-2
+        md:grid-cols-1
+        gap-5
+        mb-5">
         <Card
-          id="question-card"
+          id="info-card"
           className="
-            w-full 
             border-8 border-border-colour  bg-nice-yellow bg-opacity-50 
-            flex-wrap 
             p-5
-            "
-        >
+            lg:col-span-2
+          md:col-span-1">
           <CardHeader className="flex gap-3">
-
             <p className="text-4xl">
               {challengeData.language} -{" "}
               {`${challengeData.topic
                 .charAt(0)
                 .toUpperCase()}${challengeData.topic.slice(1)}`}
-
             </p>
           </CardHeader>
           <Divider />
           <CardBody>
-
-            <p className="mt-2 text-2xl">
-              {challengeData.challengeQuestion}
-            </p>
-
+            <p className="mt-2 text-2xl">Click the right answer in the box below.</p>
           </CardBody>
         </Card>
-      </div>
-      <div id="activity-container" className="flex flex-wrap gap-5 mb-5">
         <Card
           id="activity-card"
           className="
-          grow
           border-8 border-border-colour 
-          bg-nice-yellow bg-opacity-50
-          "
-        >
+          bg-nice-yellow bg-opacity-50">
           <CardBody className="p-5">
-            <div className="flex gap-4 items-center justify-around">
+            <div className="flex flex-wrap gap-4 items-center justify-around">
               {questionSnippets &&
                 questionSnippets.map((question, index) => {
                   return (
@@ -152,32 +138,49 @@ const MultipleChoice = (challengeData: Challenge): JSX.Element => {
           </CardBody>
         </Card>
         <Card
-          id="information-card"
+          id="question-card"
           className="          
-          border-8 border-border-colour bg-nice-yellow bg-opacity-50
-          grow 
-          p-5
-          "
-        >
-          <CardBody className="p-5">
+          border-8 border-border-colour bg-nice-yellow bg-opacity-50">
+          <CardBody className="flex w-full flex-row place-content-end p-5 overflow-hidden">
+          <div id="speech-bubble" className="bg-white
+          border border-white 
+          rounded-r-full
+          rounded-tl-full
+          rounded-bl-0
+          text-center
+          w-[90%]
+          flex
+          place-items-center
+          px-12 py-6
+          mb-[60px]          
+          ">
             <p className=" text-2xl">
-              Click the right answer.
+            {challengeData.challengeQuestion}
             </p>
-        
-          </CardBody>
-          <CardFooter className="justify-end">
+          </ div>
+          <div className="absolute bottom-0 left-2 overflow-hidden mb-[-5px]">
             <Image
               src="/character2.png"
               alt="2d pixel character with her arms in the air"
-              className="float-right"
-            />
-          </CardFooter>
+              />
+          </div>
+          <div className="absolute bottom-5 right-5">
+            <Link href={`../../learning/${challengeData.language}/${challengeData.topic}/learning`}>
+              <Button 
+                radius="full" 
+                size="sm" 
+                color="secondary" 
+                variant="bordered"
+                >
+                Learn More
+              </Button>
+            </Link>
+            </div>
+          </CardBody>
         </Card>
       </div>
       <ChallengeFooter finished={finished} />
-
     </main>
-
   );
 };
 export default MultipleChoice;
