@@ -20,6 +20,7 @@ const config: Config = {
         "nice-yellow": "#F6FDC3",
         "border-colour": "#85586F",
         coral: "#d55866",
+        header: "#18181a",
       },
       gridTemplateColumns: {
         "matching-grid": "  grid-template-columns: 1fr 20px 1fr;",
@@ -33,12 +34,6 @@ const config: Config = {
           layout: {},
           colors: {
             foreground: "#58355E",
-          },
-        },
-        dark: {
-          layout: {},
-          colors: {
-            background: "#0f0f0f",
           },
         },
       },
