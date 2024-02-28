@@ -3,9 +3,11 @@
 import SpriteAnimator from "@/components/SpriteAnimator";
 import Link from "next/link";
 
+
 const Home = (): JSX.Element => {
   return (
     <main>
+
       <div className="flex flex-col items-center">
         <div className="inline-block align-middle">
           <div className="h-[80%] mt-[10%] mb-[10%] flex flex-col items-center align-middle font-bold text-center font-mono">
@@ -14,10 +16,21 @@ const Home = (): JSX.Element => {
               <br />
               <p>Which language would you like to learn?</p>
             </div>
+      
+      <div className="inline-block align-middle">
 
-            <div
-              id="sprite container"
-              className="
+      
+      <div className="h-[80%] mt-[10%] mb-[10%] flex flex-col items-center align-middle font-bold text-center font-mono">
+
+        <div id="welcome-text" className="text-3xl pb-8">
+          <h2 className="text-5xl">Welcome to CodeLingo!</h2>
+          <br />
+          <p className="font-fredoka text-3xl">Which language would you like to learn?</p>
+        </div>
+
+        <div
+          id="sprite container"
+          className="
         flex flex-row flex-wrap
         justify-center 
         gap-5
@@ -29,6 +42,7 @@ const Home = (): JSX.Element => {
             p-5 
             border-8 rounded-medium border-border-colour bg-nice-yellow bg-opacity-50
             "
+
               >
                 <div className="gradient-background p-2 mb-5 rounded-lg">
                   <h3

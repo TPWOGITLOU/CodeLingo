@@ -57,9 +57,11 @@ const Block = (challengeData: Challenge) => {
         className="w-full border-8 border-border-colour  bg-nice-yellow bg-opacity-50 p-5"
       >
         <CardHeader>
-          <h1 className="text-3xl font-bold">
-            {challengeData.language} - {challengeData.topic}
-          </h1>
+
+          <h1 className="text-3xl font-bold">{challengeData.language} - {`${challengeData.topic
+                .charAt(0)
+                .toUpperCase()}${challengeData.topic.slice(1)}`}</h1>
+
         </CardHeader>
         <Divider />
         <h1 className="text-lg mx-auto">{challengeData.challengeQuestion}</h1>
