@@ -10,6 +10,7 @@ interface Props {
 export const CardItem = ({data, handleDragging, index, setTarget}: Props) => {
 
     const handleDragStart = (e: React.DragEvent<HTMLDivElement>, index: number) => {
+        e.dataTransfer.clearData()
         e.dataTransfer.setData('text', `${data.id}`)
         e.dataTransfer.setData(`index`, `${index}`)
         handleDragging(true)
@@ -17,7 +18,7 @@ export const CardItem = ({data, handleDragging, index, setTarget}: Props) => {
     }
 
     const handleDragEnter = (e: React.DragEvent<HTMLDivElement>, index: number) => {
-        e.dataTransfer.setData('target', `${index}`)
+        //e.dataTransfer.setData('target', `${index}`)
         setTarget(`${index}`)
     }
 
