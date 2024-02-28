@@ -6,6 +6,12 @@ import Link from "next/link";
 const Home = (): JSX.Element => {
   return (
     <main>
+      <div className="flex flex-col items-center">
+
+      
+      <div className="inline-block align-middle">
+
+      
       <div className="h-[80%] mt-[10%] mb-[10%] flex flex-col items-center align-middle font-bold text-center font-mono">
         <div id="welcome-text" className="text-3xl pb-8">
           <h2>Welcome to CodeLingo!</h2>
@@ -78,6 +84,8 @@ const Home = (): JSX.Element => {
             />
           </Link>
         </div>
+      </div>
+      </div>
       </div>
     </main>
   );
