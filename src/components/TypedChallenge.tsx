@@ -4,7 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "../../contexts/globalContext";
 import CodeEditor from "./CodeEditor";
 import OutputWindow from "./OutputWindow";
-import { Card, CardBody, Button, Image, CardHeader } from "@nextui-org/react";
+import { Card, CardBody, Button, Image, CardHeader, Divider } from "@nextui-org/react";
 import ChallengeFooter from "./ChallengeFooter";
 import { handleCompile, Language } from "../../lib/mongo/judge0/judge-utils";
 import { challenge } from "../../lib/mongo/utils";
@@ -89,14 +89,14 @@ const TypedChallenge = (challengeData: challenge) => {
   };
 
   return (
-    <section id="component-container"
+    <main id="typed-container"
     className=" 
-  w-[80%]
-  min-w-[450px]
-  mt-10 ml-auto mr-auto
-  box-border
-  ">
-    <div id="grid" className="grid grid-cols-2 grid-rows-2 gap-5 mb-5">
+        w-[80%]
+        min-w-[450px]
+        mt-10 ml-auto mr-auto
+        box-border
+        ">
+    <div id="grid" className="grid lg:grid-cols-2 md:grid-cols-1 gap-5 mb-5">
       <Card id="terminal" className="
       col-start-1 row-span-2 h-full 
     bg-nice-yellow bg-opacity-50 
@@ -104,18 +104,20 @@ const TypedChallenge = (challengeData: challenge) => {
         <CardHeader>
           <p className="text-3xl font-bold">{challengeData.language} - {challengeData.topic}</p>
         </CardHeader>
+        <Divider/>
         <CardBody>
           <p className="text-xl">Time to start typing....</p>
-        </CardBody>
-        <div id="code-card-container"className="bg-black">
-          <CodeEditor 
-            code={code}
-            onChange={onChange}
-            language={language}
-            theme={theme}
-            height="400px"
-            />
-        </div>
+        
+          <div id="code-card-container"className="bg-black mt-5 pt-[10px] h-full rounded">
+            <CodeEditor 
+              code={code}
+              onChange={onChange}
+              language={language}
+              theme={theme}
+              height="10rem"
+              />
+          </div>
+          </CardBody>
         </Card>
         <Card className="
         border-8 border-border-colour 
@@ -155,7 +157,7 @@ const TypedChallenge = (challengeData: challenge) => {
         </div>
       </div>
         <ChallengeFooter finished={finished}/>
-    </ section>
+    </ main>
   );
 };
 
