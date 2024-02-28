@@ -21,8 +21,8 @@ export const DragAndDrop = ({listItems, setListItems} : Props) => {
         if (card && card.status !== status){
             card.status = status
             setListItems( prev => ([
-                card!,
-                ...prev.filter(item => item.id !== id)
+                ...prev.filter(item => item.id !== id),
+                card!
             ]))
         } else {
             const listCopy = [...listItems]
