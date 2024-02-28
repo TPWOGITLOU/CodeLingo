@@ -128,8 +128,7 @@ const Sandbox: React.FC = (): JSX.Element => {
         <Card
           id="instructions"
           className="
-        border-8 border-border-colour 
-        bg-nice-yellow bg-opacity-50"
+         bg-opacity-50"
         >
           <CardBody className="p-5 w-[80%]">
             <p>

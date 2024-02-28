@@ -198,22 +198,44 @@ export default function Matching(challenge: Challenge): JSX.Element {
         </Card>
         <Card
           id="information-card"
-          className="          
-          border-8 border-border-colour bg-nice-yellow bg-opacity-50
-          grow 
-          p-5
+          className="lg:w-[35%]
+           bg-opacity-0 shadow-none p-0
+
           "
         >
-          <CardBody>
-            <p>Click on the two matching items.</p>
+          <CardBody className="relative">
+            <div
+              id="speech-bubble"
+              className="bg-white
+          border border-white 
+          rounded-l-full
+          rounded-tr-full
+          rounded-br-0
+          text-center
+          w-[90%]
+          h-[70%]
+          p-10 overflow-scroll
+          
+          "
+            >
+              <p className="dark: text-black p-2">
+                Click on the two matching items! Lorem ipsum dolor sit amet.
+                Maecenas dapibus quam eu velit bibendum, sit amet bibendum neque
+                imperdiet. Maecenas in neque eget sapien mattis dapibus.
+                Phasellus non nisi at sem condimentum vestibulum. Donec
+                consectetur malesuada convallis. Sed massa tellus, tincidunt id
+                hendrerit a, semper at neque.
+              </p>
+            </div>
+            <div className="absolute bottom-0 right-0">
+              <Image
+                src="/character1.png"
+                alt="2d pixel character with her arms in the air"
+                className="float-right"
+              />
+            </div>
+            <div className="absolute bottom-0 right-2"></div>
           </CardBody>
-          <CardFooter className="justify-end">
-            <Image
-              src="/character1.png"
-              alt="2d pixel character with her arms in the air"
-              className="float-right"
-            />
-          </CardFooter>
         </Card>
       </div>
       <ChallengeFooter finished={finished} />

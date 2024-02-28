@@ -19,11 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      className="gradient-background dark:bg-gradient-to-r from-slate-900 to-slate-700"
-      lang="en"
-      suppressHydrationWarning
-    >
+    <html className="gradient-background" lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <Suspense fallback={<Loading />}>
           <Providers>

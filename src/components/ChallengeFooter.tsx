@@ -41,7 +41,7 @@ const ChallengeFooter = (props: ChallengeFooterProps): JSX.Element => {
   }
 
   return (
-    <div className="w-full">
+    <div className="w-full mb-5">
       <Link href={`/${params.language}/${params.topic}/challenges`}>
         <Button
           radius="full"
