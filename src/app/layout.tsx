@@ -1,12 +1,17 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import { Providers } from "../../contexts/providers";
 import { Suspense } from "react";
 import Loading from "./loading";
 import Header from "@/components/Header";
+import { Fredoka } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+const fredoka = Fredoka({
+  subsets: ["latin"],
+  weight: "600",
+  variable: "--font-fredoka",
+  display: "swap"
+});
 
 export const metadata: Metadata = {
   title: "CodeLingo",
@@ -24,7 +29,7 @@ export default function RootLayout({
       lang="en"
       suppressHydrationWarning
     >
-      <body className={inter.className}>
+      <body className={fredoka.className}>
         <Suspense fallback={<Loading />}>
           <Providers>
             <Header />

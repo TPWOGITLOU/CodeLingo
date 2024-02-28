@@ -29,19 +29,33 @@ const Challanges = async ({
   const language = params.language;
   const topic = params.topic;
   const questionList = await fetchQuestions(language, topic);
+  let languageUpperCase: string;
+  if (language === "javascript") {
+    languageUpperCase = `${
+      language.charAt(0).toUpperCase() +
+      language.slice(1, 4) +
+      language.charAt(4).toUpperCase() +
+      language.slice(5)
+    }`;
+  } else {
+    languageUpperCase = `${
+      language.charAt(0).toUpperCase() + language.slice(1)
+    }`;
+  }
 
   return (
-    <section>
-      <div className="h-screen flex flex-col items-center justify-center content-center font-bold text-center font-mono">
-        <h1 className="p-2 text-xl">Challenges: {language}</h1>
-        <h2>Here are the {topic} challenges</h2>
+    <main>
+      <div className="h-screen flex flex-col items-center justify-center content-center text-center ">
+        <h1 className="p-2 text-5xl">
+          {languageUpperCase} Challenges
+        </h1>
         <div className="w-full">
           {questionList && (
             <AccordionUI list={questionList} language={language} />
           )}
         </div>
       </div>
-    </section>
+    </main>
   );
 };
 

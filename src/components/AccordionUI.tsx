@@ -9,6 +9,7 @@ import Link from "next/link";
 import { GlobalContext } from "../../contexts/globalContext";
 import { FaTrophy } from "react-icons/fa6";
 
+
 interface AccordianUIProps {
   list: Topic[]; // may need to be a union for challengeList prop type
   language: string;
@@ -135,7 +136,7 @@ const AccordionUI = ({ list, language }: AccordianUIProps): JSX.Element => {
                   aria-label={`Dropdown menu for ${topicData.topic}`}
                   title={
                     <span className="flex flex-row justify-between">
-                      <p>{topicData.topic}</p>
+                      <p className="text-2xl">{`${topicData.topic.charAt(0).toUpperCase()}${topicData.topic.slice(1)}`}</p>
                       {/* <TopicProgress /> */}
                     </span>
                   }
@@ -156,10 +157,10 @@ const AccordionUI = ({ list, language }: AccordianUIProps): JSX.Element => {
               return (
                 <AccordionItem
                   key={challengeData._id}
-                  aria-label={"Accordion-" + challengeData.topic}
+                  aria-label={`Dropdown menu for ${challengeData.topic}`}
                   title={
                     <span className="flex flex-row justify-between">
-                      <p> Challenge {index + 1}</p>
+                      <p className="text-2xl"> Challenge {index + 1}</p>
                       {completedChallenges.includes(challengeData._id) && (
                         <FaTrophy />
                       )}
@@ -167,7 +168,7 @@ const AccordionUI = ({ list, language }: AccordianUIProps): JSX.Element => {
                   }
                 >
                   <div className="flex flex-row justify-between">
-                    <p className="text-left">
+                    <p className="font-corben text-left">
                       {challengeData.challengeQuestion}
                     </p>
                     <Link href={`./${challengeData._id}`}>

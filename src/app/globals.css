@@ -8,11 +8,6 @@
   src: url("/public/Honk-Regular.ttf");
 }
 
-* {
-  font-family: monospace;
-  color: t;
-}
-
 .gradient-background {
   background-image: linear-gradient(
     to right,

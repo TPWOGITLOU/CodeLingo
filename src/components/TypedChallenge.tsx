@@ -102,7 +102,9 @@ const TypedChallenge = (challengeData: challenge) => {
     bg-nice-yellow bg-opacity-50 
       border-8 border-border-colour">
         <CardHeader>
-          <p className="text-3xl font-bold">{challengeData.language} - {challengeData.topic}</p>
+          <p className="text-3xl font-bold">{challengeData.language} - {`${challengeData.topic
+                .charAt(0)
+                .toUpperCase()}${challengeData.topic.slice(1)}`}</p>
         </CardHeader>
         <Divider/>
         <CardBody>

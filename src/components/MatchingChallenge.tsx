@@ -13,6 +13,7 @@ import {
 } from "@nextui-org/react";
 import ChallengeFooter from "./ChallengeFooter";
 
+
 export default function Matching(challenge: challenge): JSX.Element {
   const [selection1, setSelection1] = useState("");
   const [selection1ID, setSelection1ID] = useState("");
@@ -149,8 +150,11 @@ export default function Matching(challenge: challenge): JSX.Element {
             "
         >
           <CardHeader className="flex gap-3">
-            <p className="text-3xl font-bold">
-              {challenge.language} - {challenge.topic}
+          <p className="text-4xl">
+              {challenge.language} -{" "}
+              {`${challenge.topic
+                .charAt(0)
+                .toUpperCase()}${challenge.topic.slice(1)}`}
             </p>
           </CardHeader>
           <Divider />
