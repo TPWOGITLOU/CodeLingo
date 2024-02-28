@@ -23,11 +23,15 @@ const CodeEditor: React.FC<CodeEditorProps> = (props) => {
     <div>
       <Editor
         height={props.height}
-        width={`100%`}
         language={props.language || "javascript"}
         value={props.code}
         theme={props.theme}
         onChange={handleEditorChange}
+        options={{
+          scrollBeyondLastLine:false,
+          fontSize:20,
+          minimap: { enabled: false },
+        }}
       />
     </div>
   );
