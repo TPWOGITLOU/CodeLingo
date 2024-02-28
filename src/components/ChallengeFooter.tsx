@@ -5,6 +5,7 @@ import ChallengeModal from "./ChallengeModal";
 import { useParams } from "next/navigation";
 import { useContext } from "react";
 import { GlobalContext } from "../../contexts/globalContext";
+import { GlobalContextProps } from "../../contexts/globalContext";
 
 interface ChallengeFooterProps {
   finished?: boolean;
@@ -14,16 +15,14 @@ const ChallengeFooter = (props: ChallengeFooterProps): JSX.Element => {
   const params = useParams<{
     language: string;
     topic: string;
-    challengeID: string;
+    challenge: string;
   }>();
   let {
     completedChallenges,
     pythonChallengeIds,
     javascriptChallengeIds,
-    setPythonChallengeIds,
-    setJavascriptChallengeIds,
     setCompletedChallenges,
-  } = useContext(GlobalContext);
+  }: GlobalContextProps = useContext(GlobalContext);
 
   const nextChallenge =
     pythonChallengeIds.filter(
@@ -33,16 +32,17 @@ const ChallengeFooter = (props: ChallengeFooterProps): JSX.Element => {
       (challengeId) => !completedChallenges.includes(challengeId)
     )[0];
 
-  // console.log(
-  //   nextChallenge,
-  //   pythonChallengeIds,
-  //   javascriptChallengeIds,
-  //   completedChallenges
-  // );
+  if (props.finished && !completedChallenges.includes(params.challenge)) {
+    setCompletedChallenges([...completedChallenges, params.challenge]);
+    localStorage.setItem(
+      "completedChallenges",
+      JSON.stringify([...completedChallenges, params.challenge])
+    );
+  }
 
   return (
     <div className="w-full">
-      <Link href={`/${params.language}/${params.topic}/`}>
+      <Link href={`/${params.language}/${params.topic}/challenges`}>
         <Button
           radius="full"
           className="bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg"
@@ -60,7 +60,7 @@ const ChallengeFooter = (props: ChallengeFooterProps): JSX.Element => {
           Next
         </Button>
       </Link>
-      {/* {props.finished && <ChallengeModal />} */}
+      {props.finished && !nextChallenge && <ChallengeModal />}
     </div>
   );
 };

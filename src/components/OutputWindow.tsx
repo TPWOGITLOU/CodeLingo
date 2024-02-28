@@ -14,7 +14,6 @@ const OutputWindow = (props: CodeProps): JSX.Element => {
     const statusId = props.outputDetails?.status?.id;
 
     if (statusId === 6) {
-      // compilation error
       return <pre>{atob(props.outputDetails?.compile_output)}</pre>;
     } else if (statusId === 3) {
       return (

@@ -8,21 +8,27 @@ import ProgressBar from "./ProgressBar";
 import Link from "next/link";
 import { GlobalContext } from "../../contexts/globalContext";
 import { FaTrophy } from "react-icons/fa6";
+import type { Challenge } from "../../lib/interfaces/interfaces";
+import TopicProgress from "./TopicProgress";
 
 
 interface AccordianUIProps {
   list: Topic[]; // may need to be a union for challengeList prop type
   language: string;
+  challengesByLanguage: Challenge[] | undefined;
 }
 
-const AccordionUI = ({ list, language }: AccordianUIProps): JSX.Element => {
+const AccordionUI = ({
+  list,
+  language,
+  challengesByLanguage,
+}: AccordianUIProps): JSX.Element => {
   let {
     completedChallenges,
     pythonChallengeIds,
     javascriptChallengeIds,
     setPythonChallengeIds,
     setJavascriptChallengeIds,
-    setCompletedChallenges,
   } = useContext(GlobalContext);
 
   let currentJavascriptChallenges: string[] = [];
@@ -36,14 +42,13 @@ const AccordionUI = ({ list, language }: AccordianUIProps): JSX.Element => {
       (challengeId) => !completedChallenges.includes(challengeId)
     )[0];
 
-  let topicsOrChallenges: boolean = true;
-  console.log(list);
+  let isTopicList: boolean = true;
   if (list && !list[0].hasOwnProperty("topicInfo")) {
-    topicsOrChallenges = false;
+    isTopicList = false;
   }
 
   const topicOrChallengeIds: string[] | false =
-    topicsOrChallenges &&
+    list &&
     list.map((data) => {
       return data._id;
     });
@@ -64,11 +69,8 @@ const AccordionUI = ({ list, language }: AccordianUIProps): JSX.Element => {
         }
       });
     }
-    console.log(list);
-    console.log(nextChallenge);
     setPythonChallengeIds(currentPythonChallenges);
     setJavascriptChallengeIds(currentJavascriptChallenges);
-    setCompletedChallenges([list[0]._id, list[1]._id]);
   }, [list]);
 
   useEffect(() => {
@@ -80,11 +82,7 @@ const AccordionUI = ({ list, language }: AccordianUIProps): JSX.Element => {
       "javascriptChallengeIds",
       JSON.stringify(javascriptChallengeIds)
     );
-    localStorage.setItem(
-      "completedChallenges",
-      JSON.stringify(completedChallenges)
-    );
-  }, [pythonChallengeIds, javascriptChallengeIds, completedChallenges]);
+  }, [pythonChallengeIds, javascriptChallengeIds]);
 
   return (
     <section className="mt-6 flex flex-col items-center justify-center w-full">
@@ -128,7 +126,7 @@ const AccordionUI = ({ list, language }: AccordianUIProps): JSX.Element => {
           },
         }}
       >
-        {topicsOrChallenges
+        {isTopicList
           ? list.map((topicData) => {
               return (
                 <AccordionItem
@@ -136,8 +134,16 @@ const AccordionUI = ({ list, language }: AccordianUIProps): JSX.Element => {
                   aria-label={`Dropdown menu for ${topicData.topic}`}
                   title={
                     <span className="flex flex-row justify-between">
+
                       <p className="text-2xl">{`${topicData.topic.charAt(0).toUpperCase()}${topicData.topic.slice(1)}`}</p>
-                      {/* <TopicProgress /> */}
+                 
+                      {
+                        <TopicProgress
+                          challengesByLanguage={challengesByLanguage}
+                          topic={topicData.topic}
+                        />
+                      }
+
                     </span>
                   }
                 >
@@ -171,8 +177,8 @@ const AccordionUI = ({ list, language }: AccordianUIProps): JSX.Element => {
                     <p className="font-corben text-left">
                       {challengeData.challengeQuestion}
                     </p>
-                    <Link href={`./${challengeData._id}`}>
-                      {isChallengeAvailable ? (
+                    {isChallengeAvailable ? (
+                      <Link href={`./${challengeData._id}`}>
                         <Button
                           disabled={isChallengeAvailable ? false : true}
                           color={isChallengeAvailable ? "success" : "primary"}
@@ -183,16 +189,21 @@ const AccordionUI = ({ list, language }: AccordianUIProps): JSX.Element => {
                         >
                           GO!
                         </Button>
-                      ) : (
-                        <p>Complete previous challenges first!</p>
-                      )}
-                    </Link>
+                      </Link>
+                    ) : (
+                      <p>Complete previous challenges first!</p>
+                    )}
                   </div>
                 </AccordionItem>
               );
             })}
       </Accordion>
-      <ProgressBar topicOrChallengeIds={topicOrChallengeIds} />
+      {list[0].topicSlug && (
+        <ProgressBar
+          topicOrChallengeIds={topicOrChallengeIds}
+          challengesByLanguage={challengesByLanguage}
+        />
+      )}
     </section>
   );
 };

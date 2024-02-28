@@ -1,6 +1,13 @@
+
 import { fredoka } from "../../../fonts/font";
-import { getTopics } from "../../../lib/mongo/utils";
+import Link from "next/link";
+import {
+  getAllChallengesByLanguage,
+  getTopics,
+} from "../../../lib/mongo/utils";
+
 import AccordionUI from "@/components/AccordionUI";
+import type { Challenge } from "../../../lib/interfaces/interfaces";
 
 const fetchTopics = async (language: string) => {
   let collection: string;
@@ -40,20 +47,26 @@ const Topics = async ({ params }: { params: { language: string } }) => {
     }`;
   }
 
+  const challengesByLanguage: Challenge[] | undefined =
+    await getAllChallengesByLanguage(language);
+
   return (
     <main>
-      <div className="mt-6 flex flex-col items-center justify-center text-center ">
+    <div className="mt-6 flex flex-col items-center justify-center text-center ">
         <h1 className="p-2 text-5xl"> {languageUpperCase} Topics</h1>
         <h2 className={`${fredoka.variable} font-fredoka p-2 text-3xl`}>
           Get your teeth into these {languageUpperCase} topics!
         </h2>
       </div>
-      {!topics ? (
-        <p>loading</p>
-      ) : (
-        <AccordionUI list={topics} language={language} />
+      {topics && (
+        <AccordionUI
+          list={topics}
+          language={language}
+          challengesByLanguage={challengesByLanguage}
+        />
       )}
     </main>
+
   );
 };
 

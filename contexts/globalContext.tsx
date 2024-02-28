@@ -1,6 +1,6 @@
 import React, { useState, ReactNode, useEffect } from "react";
 
-interface GlobalContextProps {
+export interface GlobalContextProps {
   outputDetails: undefined | any;
   setOutputDetails: (outputDetails: any) => void;
   code: any;

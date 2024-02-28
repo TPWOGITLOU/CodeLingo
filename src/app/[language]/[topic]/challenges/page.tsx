@@ -21,7 +21,7 @@ const fetchQuestions = async (language: string, topic: string) => {
   }
 };
 
-const Challanges = async ({
+const Challenges = async ({
   params,
 }: {
   params: { language: string; topic: string };
@@ -44,14 +44,20 @@ const Challanges = async ({
   }
 
   return (
+
     <main>
       <div className="h-screen flex flex-col items-center justify-center content-center text-center ">
         <h1 className="p-2 text-5xl">
           {languageUpperCase} Challenges
         </h1>
+
         <div className="w-full">
           {questionList && (
-            <AccordionUI list={questionList} language={language} />
+            <AccordionUI
+              list={questionList}
+              language={language}
+              challengesByLanguage={undefined}
+            />
           )}
         </div>
       </div>
@@ -59,4 +65,4 @@ const Challanges = async ({
   );
 };
 
-export default Challanges;
+export default Challenges;

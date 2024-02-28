@@ -1,5 +1,7 @@
 "use client";
-import { challenge } from "../../lib/mongo/utils";
+
+import { Challenge } from "../../lib/mongo/utils";
+
 
 import {
   Card,
@@ -12,7 +14,9 @@ import {
 import ChallengeFooter from "./ChallengeFooter";
 import { useState } from "react";
 
-const MultipleChoice = (challengeData: challenge): JSX.Element => {
+
+const MultipleChoice = (challengeData: Challenge): JSX.Element => {
+
   const defaultButtonStyle =
     "bg-blue-500 p-4 text-white rounded-lg hover:shadow-lg";
   const wrongButtonStyle =
@@ -66,7 +70,9 @@ const MultipleChoice = (challengeData: challenge): JSX.Element => {
   let questionSnippets = Object.values(challengeData.challengeSnippets);
 
   return (
+
     <main
+
       id="component-container"
       className=" 
     w-[80%]
@@ -92,18 +98,22 @@ const MultipleChoice = (challengeData: challenge): JSX.Element => {
             "
         >
           <CardHeader className="flex gap-3">
+
             <p className="text-4xl">
               {challengeData.language} -{" "}
               {`${challengeData.topic
                 .charAt(0)
                 .toUpperCase()}${challengeData.topic.slice(1)}`}
+
             </p>
           </CardHeader>
           <Divider />
           <CardBody>
+
             <p className="mt-2 text-2xl">
               {challengeData.challengeQuestion}
             </p>
+
           </CardBody>
         </Card>
       </div>
@@ -165,7 +175,9 @@ const MultipleChoice = (challengeData: challenge): JSX.Element => {
         </Card>
       </div>
       <ChallengeFooter finished={finished} />
+
     </main>
+
   );
 };
 export default MultipleChoice;

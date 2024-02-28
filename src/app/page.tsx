@@ -7,7 +7,15 @@ import Link from "next/link";
 const Home = (): JSX.Element => {
   return (
     <main>
-      <div className="h-[80%] mt-[10%] mb-[10%] flex flex-col items-center align-middle text-center">
+
+      <div className="flex flex-col items-center">
+
+      
+      <div className="inline-block align-middle">
+
+      
+      <div className="h-[80%] mt-[10%] mb-[10%] flex flex-col items-center align-middle font-bold text-center font-mono">
+
         <div id="welcome-text" className="text-3xl pb-8">
           <h2 className="text-5xl">Welcome to CodeLingo!</h2>
           <br />
@@ -37,7 +45,7 @@ const Home = (): JSX.Element => {
               Python
             </h3>
             <SpriteAnimator
-              spriteWidth={258}
+              spriteWidth={256}
               spriteHeight={256}
               borderWidth={0}
               spacingWidth={0}
@@ -79,6 +87,8 @@ const Home = (): JSX.Element => {
             />
           </Link>
         </div>
+      </div>
+      </div>
       </div>
     </main>
   );
