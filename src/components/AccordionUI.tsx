@@ -173,8 +173,8 @@ const AccordionUI = ({
                     <p className="text-left">
                       {challengeData.challengeQuestion}
                     </p>
-                    <Link href={`./${challengeData._id}`}>
-                      {isChallengeAvailable ? (
+                    {isChallengeAvailable ? (
+                      <Link href={`./${challengeData._id}`}>
                         <Button
                           disabled={isChallengeAvailable ? false : true}
                           color={isChallengeAvailable ? "success" : "primary"}
@@ -185,10 +185,10 @@ const AccordionUI = ({
                         >
                           GO!
                         </Button>
-                      ) : (
-                        <p>Complete previous challenges first!</p>
-                      )}
-                    </Link>
+                      </Link>
+                    ) : (
+                      <p>Complete previous challenges first!</p>
+                    )}
                   </div>
                 </AccordionItem>
               );
