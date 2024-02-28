@@ -1,5 +1,7 @@
 "use client";
+
 import { Challenge } from "../../lib/mongo/utils";
+
 
 import {
   Card,
@@ -12,7 +14,9 @@ import {
 import ChallengeFooter from "./ChallengeFooter";
 import { useState } from "react";
 
+
 const MultipleChoice = (challengeData: Challenge): JSX.Element => {
+
   const defaultButtonStyle =
     "bg-blue-500 p-4 text-white rounded-lg hover:shadow-lg";
   const wrongButtonStyle =
@@ -66,7 +70,9 @@ const MultipleChoice = (challengeData: Challenge): JSX.Element => {
   let questionSnippets = Object.values(challengeData.challengeSnippets);
 
   return (
-    <section
+
+    <main
+
       id="component-container"
       className=" 
     w-[80%]
@@ -92,13 +98,22 @@ const MultipleChoice = (challengeData: Challenge): JSX.Element => {
             "
         >
           <CardHeader className="flex gap-3">
-            <p className="text-3xl font-bold">
-              {challengeData.language} - {challengeData.topic}
+
+            <p className="text-4xl">
+              {challengeData.language} -{" "}
+              {`${challengeData.topic
+                .charAt(0)
+                .toUpperCase()}${challengeData.topic.slice(1)}`}
+
             </p>
           </CardHeader>
           <Divider />
           <CardBody>
-            <p>{challengeData.challengeQuestion}</p>
+
+            <p className="mt-2 text-2xl">
+              {challengeData.challengeQuestion}
+            </p>
+
           </CardBody>
         </Card>
       </div>
@@ -145,7 +160,10 @@ const MultipleChoice = (challengeData: Challenge): JSX.Element => {
           "
         >
           <CardBody className="p-5">
-            <p>Click the right answer.</p>
+            <p className=" text-2xl">
+              Click the right answer.
+            </p>
+        
           </CardBody>
           <CardFooter className="justify-end">
             <Image
@@ -157,7 +175,9 @@ const MultipleChoice = (challengeData: Challenge): JSX.Element => {
         </Card>
       </div>
       <ChallengeFooter finished={finished} />
-    </section>
+
+    </main>
+
   );
 };
 export default MultipleChoice;

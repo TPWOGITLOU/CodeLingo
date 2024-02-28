@@ -3,9 +3,11 @@
 import SpriteAnimator from "@/components/SpriteAnimator";
 import Link from "next/link";
 
+
 const Home = (): JSX.Element => {
   return (
     <main>
+
       <div className="flex flex-col items-center">
 
       
@@ -13,10 +15,11 @@ const Home = (): JSX.Element => {
 
       
       <div className="h-[80%] mt-[10%] mb-[10%] flex flex-col items-center align-middle font-bold text-center font-mono">
+
         <div id="welcome-text" className="text-3xl pb-8">
-          <h2>Welcome to CodeLingo!</h2>
+          <h2 className="text-5xl">Welcome to CodeLingo!</h2>
           <br />
-          <p>Which language would you like to learn?</p>
+          <p className="font-fredoka text-3xl">Which language would you like to learn?</p>
         </div>
 
         <div
@@ -35,7 +38,7 @@ const Home = (): JSX.Element => {
             "
           >
             <h3
-              className="
+              className="font-fredoka
                 mb-5 px-5 py-2 
                 text-center text-2xl dark:bg-header  bg-white rounded-lg"
             >

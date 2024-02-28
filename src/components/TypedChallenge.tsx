@@ -113,13 +113,12 @@ const TypedChallenge = (challengeData: Challenge) => {
           id="terminal"
           className="
       col-start-1 lg:row-span-2 md:row-span-1 h-full 
-    bg-nice-yellow bg-opacity-50 
-      border-8 border-border-colour"
+    bg-nice-yellow bg-opacity-50 border-8 border-border-colour"
         >
           <CardHeader>
-            <p className="text-3xl font-bold">
-              {challengeData.language} - {challengeData.topic}
-            </p>
+             <p className="text-3xl font-bold">{challengeData.language} - {`${challengeData.topic
+                .charAt(0)
+                .toUpperCase()}${challengeData.topic.slice(1)}`}</p>
           </CardHeader>
           <Divider />
           <CardBody>
