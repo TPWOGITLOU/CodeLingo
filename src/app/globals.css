@@ -10,6 +10,15 @@
 
 * {
   font-family: monospace;
+  color: t;
+}
+
+.gradient-background {
+  background-image: linear-gradient(
+    to right,
+    rgba(45, 212, 191, 0.5),
+    rgba(37, 99, 235, 0.5)
+  );
 }
 
 @layer utilities {
