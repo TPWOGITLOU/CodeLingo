@@ -1,5 +1,5 @@
 "use client";
-import type { challenge } from "../../lib/mongo/utils";
+import type { Challenge } from "../../lib/mongo/utils";
 import { useState, useEffect } from "react";
 import ButtonAGen from "./cardMatchAButtons";
 import ButtonQGen from "./cardMatchQButtons";
@@ -13,7 +13,7 @@ import {
 } from "@nextui-org/react";
 import ChallengeFooter from "./ChallengeFooter";
 
-export default function Matching(challenge: challenge): JSX.Element {
+export default function Matching(challenge: Challenge): JSX.Element {
   const [selection1, setSelection1] = useState("");
   const [selection1ID, setSelection1ID] = useState("");
   const [selection2, setSelection2] = useState("");
