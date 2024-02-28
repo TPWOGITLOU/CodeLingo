@@ -2,7 +2,7 @@ import Header from "@/components/Header";
 import Link from "next/link"
 
 
-import { getTopics } from "../../../../lib/mongo/utils";
+import { getTopics } from "../../../lib/mongo/utils";
 import AccordionUI from "@/components/AccordionUI";
 
 const fetchTopics = async (language: string)=>{

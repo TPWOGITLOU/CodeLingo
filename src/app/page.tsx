@@ -22,7 +22,7 @@ const Home = (): JSX.Element => {
           <p>Which language would you like to learn?</p>
         </div>
         <div className="flex flex-row justify-between p-2 m-2">
-          <Link href="/topics/python">
+          <Link href="/python">
             <div
               onClick={() => {
                 setLanguage("python");
@@ -48,7 +48,7 @@ const Home = (): JSX.Element => {
               />
             </div>
           </Link>
-          <Link href="/topics/javascript">
+          <Link href="/javascript">
             <div
               onClick={() => {
                 setLanguage("javascript");
