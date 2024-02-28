@@ -36,7 +36,7 @@ const Home = (): JSX.Element => {
               Python
             </h3>
             <SpriteAnimator
-              spriteWidth={258}
+              spriteWidth={256}
               spriteHeight={256}
               borderWidth={0}
               spacingWidth={0}

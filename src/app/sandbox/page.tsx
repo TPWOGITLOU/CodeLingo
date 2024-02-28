@@ -7,6 +7,7 @@ import { Card, CardBody, Image, Button } from "@nextui-org/react";
 import { handleCompile } from "../../../lib/mongo/judge0/judge-utils";
 import ThemeOptions from "@/components/ThemeOptions";
 import { GlobalContext } from "../../../contexts/globalContext";
+import SpriteAnimator from "@/components/SpriteAnimator";
 
 const languages = [
   {
@@ -82,18 +83,23 @@ const Sandbox: React.FC = (): JSX.Element => {
   };
 
   const fetchHandleCompile = async () => {
-    return await handleCompile(language, code, setProcessing, setOutputDetails)
-  }
+    return await handleCompile(language, code, setProcessing, setOutputDetails);
+  };
 
   return (
-    <main id="sandbox"
-    className=" 
+    <main
+      id="sandbox"
+      className=" 
         w-[80%]
         min-w-[450px]
         mt-10 ml-auto mr-auto
         box-border
-        ">
-      <div id="options"className="flex flex-row flex-wrap justify-center items-center p-4">
+        "
+    >
+      <div
+        id="options"
+        className="flex flex-row flex-wrap justify-center items-center p-4"
+      >
         <LanguageOptions
           onSelectChange={onSelectChange}
           languages={languages}
@@ -102,73 +108,94 @@ const Sandbox: React.FC = (): JSX.Element => {
       </div>
 
       <div id="grid" className="grid lg:grid-cols-2 md:grid-cols-1 gap-5 mb-5">
-          <Card
-            className={
-              theme === "vs"
-                ? "border-8 border-border-colour bg-white col-start-1 md:row-span-1 lg:row-span-2 h-full"
-                : theme === "vs-dark"
-                ? "border-8 border-border-colour bg-neutral-800 col-start-1 md:row-span-1 lg:row-span-2 h-full"
-                : "col-start-1 md:row-span-1 lg:row-span-2 h-full bg-neutral-800 border-8 border-border-colour"
-            }
-          >
-            <CodeEditor
-              code={code}
-              onChange={onChange}
-              language={language?.value}
-              theme={theme}
-              height="31rem"
-            />
-          </Card>
-          <Card id="instructions" className="
+        <Card
+          className={
+            theme === "vs"
+              ? "border-8 border-border-colour bg-white col-start-1 md:row-span-1 lg:row-span-2 h-full"
+              : theme === "vs-dark"
+              ? "border-8 border-border-colour bg-neutral-800 col-start-1 md:row-span-1 lg:row-span-2 h-full"
+              : "col-start-1 md:row-span-1 lg:row-span-2 h-full bg-neutral-800 border-8 border-border-colour"
+          }
+        >
+          <CodeEditor
+            code={code}
+            onChange={onChange}
+            language={language?.value}
+            theme={theme}
+            height="31rem"
+          />
+        </Card>
+        <Card
+          id="instructions"
+          className="
         border-8 border-border-colour 
-        bg-nice-yellow bg-opacity-50">
-          <CardBody className="p-5">
-              <p>
-                Welcome to the sandbox area!
-                <br /> <br />
-                You can use the console on the left to practice what you have
-                learnt so far. You can select the language that you would like
-                to practice from the dropdown menu above, and if you like, you
-                can even change the theme of the console (but this is totally
-                optional!).
-                <br />
-                <br />
-                When you are ready to test out your code, just hit the Run
-                button below, and wait for your code to process in the output
-                box.
-              </p>
-            
+        bg-nice-yellow bg-opacity-50"
+        >
+          <CardBody className="p-5 w-[80%]">
+            <p>
+              Welcome to the sandbox area!
+              <br /> <br />
+              You can use the console on the left to practice what you have
+              learnt so far. You can select the language that you would like to
+              practice from the dropdown menu above, and if you like, you can
+              even change the theme of the console (but this is totally
+              optional!).
+              <br />
+              <br />
+              When you are ready to test out your code, just hit the Run button
+              below, and wait for your code to process in the output box.
+            </p>
+
             <div className="absolute right-5 bottom-5">
-              <Image
-                src="/character2.png"
-                alt="2d pixel character with her arms in the air"
-                className="p-0 h-[100%]"
+              <SpriteAnimator
+                spriteWidth={79}
+                spriteHeight={64}
+                borderWidth={0}
+                spacingWidth={0}
+                animationCycle={[
+                  { x: 0, y: 0 },
+                  { x: 79, y: 0 },
+                  { x: 158, y: 0 },
+                  { x: 237, y: 0 },
+                  { x: 316, y: 0 },
+                  { x: 395, y: 0 },
+                  { x: 474, y: 0 },
+                  { x: 553, y: 0 },
+                  { x: 632, y: 0 },
+                  { x: 711, y: 0 },
+                  { x: 790, y: 0 },
+                ]}
+                animationSpeed={250}
+                imageSrc="/coffeeBeanSprite2.png"
               />
             </div>
           </CardBody>
-          </Card>
-        <Card id="output" className="h-full p-5 
+        </Card>
+        <Card
+          id="output"
+          className="h-full p-5 
         border-8 border-border-colour 
-        bg-nice-yellow bg-opacity-50">
-            <OutputWindow outputDetails={outputDetails} />
-            <div id="buttons" className="mt-3 flex flex-row justify-between">
-              <Button
-                onClick={fetchHandleCompile}
-                disabled={!code}
-                radius="full"
-                className="bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg"
-              >
-                {processing ? "Loading ..." : "Run"}
-              </Button>
-              <Button
-                onClick={handleReset}
-                disabled={!code}
-                radius="full"
-                className="bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg"
-              >
-                Reset
-              </Button>
-            </div>
+        bg-nice-yellow bg-opacity-50"
+        >
+          <OutputWindow outputDetails={outputDetails} />
+          <div id="buttons" className="mt-3 flex flex-row justify-between">
+            <Button
+              onClick={fetchHandleCompile}
+              disabled={!code}
+              radius="full"
+              className="bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg"
+            >
+              {processing ? "Loading ..." : "Run"}
+            </Button>
+            <Button
+              onClick={handleReset}
+              disabled={!code}
+              radius="full"
+              className="bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg"
+            >
+              Reset
+            </Button>
+          </div>
         </Card>
       </div>
     </main>

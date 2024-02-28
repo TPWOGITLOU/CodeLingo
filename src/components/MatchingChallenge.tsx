@@ -119,8 +119,8 @@ export default function Matching(challenge: Challenge): JSX.Element {
       gridElement.className = `
       h-full w-full 
       grid grid-flow-dense matching-grid gap-6`;
-  }}, [challenge]);
-
+    }
+  }, [challenge]);
 
   return (
     <section
@@ -167,36 +167,38 @@ export default function Matching(challenge: Challenge): JSX.Element {
           grow
           border-8 border-border-colour 
           bg-nice-yellow bg-opacity-50
-          ">
-            <CardBody className="p-5">
-                <div id="Grid">
-                  <ButtonQGen
-                    Qsnippets={challenge.challengeSnippets[1]}
-                    selection1={selection1}
-                    setSelection1={setSelection1}
-                    setSelection2={setSelection2}
-                    setSelectionType={setSelectionType}
-                    setSelection1ID={setSelection1ID}
-                    selection2={selection2}
-                    selectionType={selectionType}
-                    setSelection2ID={setSelection2ID}
-                    />
-                    <ButtonAGen
-                    snippets={challenge.challengeSnippets[0]}
-                    selection1={selection1}
-                    setSelection1={setSelection1}
-                    setSelection2={setSelection2}
-                    setSelectionType={setSelectionType}
-                    setSelection1ID={setSelection1ID}
-                    selection2={selection2}
-                    selectionType={selectionType}
-                    setSelection2ID={setSelection2ID}
-                    />
-                  
-                </div>
-            </CardBody>
-          </Card>
-          <Card id="information-card" className="          
+          "
+        >
+          <CardBody className="p-5">
+            <div id="Grid">
+              <ButtonQGen
+                Qsnippets={challenge.challengeSnippets[1]}
+                selection1={selection1}
+                setSelection1={setSelection1}
+                setSelection2={setSelection2}
+                setSelectionType={setSelectionType}
+                setSelection1ID={setSelection1ID}
+                selection2={selection2}
+                selectionType={selectionType}
+                setSelection2ID={setSelection2ID}
+              />
+              <ButtonAGen
+                snippets={challenge.challengeSnippets[0]}
+                selection1={selection1}
+                setSelection1={setSelection1}
+                setSelection2={setSelection2}
+                setSelectionType={setSelectionType}
+                setSelection1ID={setSelection1ID}
+                selection2={selection2}
+                selectionType={selectionType}
+                setSelection2ID={setSelection2ID}
+              />
+            </div>
+          </CardBody>
+        </Card>
+        <Card
+          id="information-card"
+          className="          
           border-8 border-border-colour bg-nice-yellow bg-opacity-50
           grow 
           p-5
@@ -207,7 +209,7 @@ export default function Matching(challenge: Challenge): JSX.Element {
           </CardBody>
           <CardFooter className="justify-end">
             <Image
-              src="/character2.png"
+              src="/character1.png"
               alt="2d pixel character with her arms in the air"
               className="float-right"
             />
@@ -215,7 +217,6 @@ export default function Matching(challenge: Challenge): JSX.Element {
         </Card>
       </div>
       <ChallengeFooter finished={finished} />
-
     </section>
   );
 }

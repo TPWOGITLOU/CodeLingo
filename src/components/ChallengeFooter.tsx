@@ -42,7 +42,7 @@ const ChallengeFooter = (props: ChallengeFooterProps): JSX.Element => {
 
   return (
     <div className="w-full">
-      <Link href={`/${params.language}/${params.topic}`}>
+      <Link href={`/${params.language}/${params.topic}/challenges`}>
         <Button
           radius="full"
           className="bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg"

@@ -13,16 +13,16 @@ import { useParams } from "next/navigation";
 import SpriteAnimator from "./SpriteAnimator";
 
 const ChallengeModal = (): JSX.Element => {
-  const { onOpen, onOpenChange } = useDisclosure();
+  const { isOpen, onOpenChange } = useDisclosure();
   const params = useParams<{ language: string }>();
 
   return (
     <>
       <Modal
         backdrop="blur"
-        isOpen={true}
+        isOpen={isOpen}
         onOpenChange={onOpenChange}
-        isDismissable={false}
+        isDismissable={true}
         isKeyboardDismissDisabled={true}
       >
         <ModalContent>
@@ -55,7 +55,7 @@ const ChallengeModal = (): JSX.Element => {
                 <Button color="danger" variant="light" onPress={onClose}>
                   Close
                 </Button>
-                <Link href={`/topics/${params.language}`}>
+                <Link href={`/${params.language}`}>
                   <Button color="success" onPress={onClose}>
                     Back to topics
                   </Button>
