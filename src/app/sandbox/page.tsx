@@ -131,7 +131,7 @@ const Sandbox: React.FC = (): JSX.Element => {
         border-8 border-border-colour 
         bg-nice-yellow bg-opacity-50"
         >
-          <CardBody className="p-5 relative border border-green-500">
+          <CardBody className="p-5">
           <div id="speech-bubble" className="bg-white
           border border-white 
           rounded-l-full
