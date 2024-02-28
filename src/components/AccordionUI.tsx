@@ -194,10 +194,12 @@ const AccordionUI = ({
               );
             })}
       </Accordion>
-      <ProgressBar
-        topicOrChallengeIds={topicOrChallengeIds}
-        challengesByLanguage={challengesByLanguage}
-      />
+      {list[0].topicSlug && (
+        <ProgressBar
+          topicOrChallengeIds={topicOrChallengeIds}
+          challengesByLanguage={challengesByLanguage}
+        />
+      )}
     </section>
   );
 };
