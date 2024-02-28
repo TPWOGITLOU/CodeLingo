@@ -10,7 +10,7 @@ import { handleCompile, Language } from "../../lib/mongo/judge0/judge-utils";
 import { challenge } from "../../lib/mongo/utils";
 
 const TypedChallenge = (challengeData: challenge) => {
-  const [feedback, setFeedback] = useState<string>("");
+  const [feedback, setFeedback] = useState<string>("update the code, press run to see the result, and then check your answer");
   const [finished, setFinished] = useState(false);
 
 
@@ -98,7 +98,7 @@ const TypedChallenge = (challengeData: challenge) => {
         ">
     <div id="grid" className="grid lg:grid-cols-2 md:grid-cols-1 gap-5 mb-5">
       <Card id="terminal" className="
-      col-start-1 row-span-2 h-full 
+      col-start-1 lg:row-span-2 md:row-span-1 h-full 
     bg-nice-yellow bg-opacity-50 
       border-8 border-border-colour">
         <CardHeader>
@@ -106,7 +106,8 @@ const TypedChallenge = (challengeData: challenge) => {
         </CardHeader>
         <Divider/>
         <CardBody>
-          <p className="text-xl">Time to start typing....</p>
+          <p className="text-xl">Time to start typing...</p>
+          <p>Update the code below then press "run" to see the result and then check your answer.</p>
         
           <div id="code-card-container"className="bg-black mt-5 pt-[10px] h-full rounded">
             <CodeEditor 
@@ -119,7 +120,7 @@ const TypedChallenge = (challengeData: challenge) => {
           </div>
           </CardBody>
         </Card>
-        <Card className="
+        <Card id="question" className="
         border-8 border-border-colour 
         bg-nice-yellow bg-opacity-50">
           <CardBody className="p-5">
@@ -132,12 +133,11 @@ const TypedChallenge = (challengeData: challenge) => {
                 className="p-0 h-[100%]"
               />
             </CardBody>
-          </Card>
-        <div id="output" className="">
-          <Card className="h-full p-5 
+        </Card>
+        <Card id="output" className="h-full p-5 
           border-8 border-border-colour bg-nice-yellow bg-opacity-50">
           <OutputWindow outputDetails={outputDetails} feedback={feedback}/>
-          <div id="buttons" className="mt-3 flex flex-row justify-between">
+          <div id="buttons" className="mt-3 flex flex-row justify-end gap-5">
             <Button
               onClick={fetchHandleCompile}
               disabled={!code}
@@ -153,8 +153,7 @@ const TypedChallenge = (challengeData: challenge) => {
                 Check Answer
             </Button>
             </div>
-          </Card>
-        </div>
+        </Card>
       </div>
         <ChallengeFooter finished={finished}/>
     </ main>
