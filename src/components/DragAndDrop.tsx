@@ -35,7 +35,7 @@ export const DragAndDrop = ({listItems, setListItems} : Props) => {
     }
 
     return (
-        <div id="dNd-container" className="w-[400px]">
+        <div id="dNd-container" className="">
             {
                 typesBlocks.map( container => (
                     <ContainerCards
