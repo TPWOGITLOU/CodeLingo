@@ -18,7 +18,7 @@ export const DragAndDrop = ({listItems, setListItems} : Props) => {
 
     const handleUpdateList = (id: number, status: Status, e: React.DragEvent<HTMLDivElement>, index: string) => {
         let card = listItems.find(item => item.id === id)
-        if (card && card.status != status){
+        if (card && card.status !== status){
             card.status = status
             setListItems( prev => ([
                 card!,
