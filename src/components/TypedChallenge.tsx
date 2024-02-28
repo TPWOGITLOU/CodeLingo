@@ -107,7 +107,7 @@ const TypedChallenge = (challengeData: challenge) => {
         <Divider/>
         <CardBody>
           <p className="text-xl">Time to start typing...</p>
-          <p>Update the code below then press "run" to see the result and then check your answer.</p>
+          <p>Update the code below then press &quot;run&quot; to see the result and then check your answer.</p>
         
           <div id="code-card-container"className="bg-black mt-5 pt-[10px] h-full rounded">
             <CodeEditor 
