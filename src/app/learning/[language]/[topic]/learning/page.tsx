@@ -1,4 +1,6 @@
-import { getTopics } from "../../../../../../lib/mongo/utils";
+'use server'
+import { pythonLearning } from "../../../../../../lib/interfaces/learningUtils";
+import { javascriptLearning } from "../../../../../../lib/interfaces/learningUtils";
 import Link from "next/link";
 import {
   Button,
@@ -9,9 +11,6 @@ import {
   Divider,
 } from "@nextui-org/react";
 
-type TopicInfo = {
-  [key: string]: string;
-};
 
 const Learning = async ({
   params,
@@ -20,20 +19,49 @@ const Learning = async ({
 }) => {
   let language = params.language;
   let topic = params.topic;
-  language === "javascript"
-    ? (language = "JS-Topics")
-    : (language = "PY-Topics");
-  const pageData = await getTopics(language);
 
-  let topicData: string[] = [];
+  let pageTitle:string = ''
+  let pageSlug:string = ''
+  let pageContent:any
 
-  for (let entry in pageData) {
-    if (pageData[Number(entry)]["topic"] === topic) {
-      for (let y in Object(pageData[Number(entry)].topicInfo)) {
-        let yn = String(y);
-        topicData.push(Object(pageData[Number(entry)].topicInfo)[`${yn}`]);
-      }
+  if(language === 'python'){
+    switch(topic){
+
+      case 'variables':
+        pageTitle = pythonLearning.variables.topic
+        pageSlug = pythonLearning.variables.topicSlug
+        pageContent =pythonLearning.variables.topicInfo
+      break
+      case 'print':
+        pageTitle = pythonLearning.print.topic
+        pageSlug = pythonLearning.print.topicSlug
+        pageContent =pythonLearning.print.topicInfo
+      break
+      case 'primitives':
+        pageTitle = pythonLearning.primitives.topic
+        pageSlug = pythonLearning.primitives.topicSlug
+        pageContent =pythonLearning.primitives.topicInfo
+      break
     }
+  }
+  else {
+      switch(topic){
+      case 'variables':
+        pageTitle = javascriptLearning.variables.topic
+        pageSlug = javascriptLearning.variables.topicSlug
+        pageContent =javascriptLearning.variables.topicInfo
+      break
+      case 'console':
+        pageTitle = javascriptLearning.console.topic
+        pageSlug = javascriptLearning.console.topicSlug
+        pageContent =javascriptLearning.console.topicInfo
+      break
+      case 'primitives':
+        pageTitle = javascriptLearning.primitives.topic
+        pageSlug = javascriptLearning.primitives.topicSlug
+        pageContent =javascriptLearning.primitives.topicInfo
+      break
+      }
   }
 
   return (
@@ -48,30 +76,16 @@ const Learning = async ({
               <h1 className="text-3xl font-bold">Welcome to Learning</h1>
               <br></br>
               <p className="text-lg font-semibold ">
-                Here is some useful information about {topic}
+                Here is some useful information about {pageTitle}
+              </p>
+              <br />
+              <p className="text-lg font-semibold ">
+                {pageSlug}
               </p>
             </CardHeader>
             <Divider />
             <CardBody>
-              <ul className="text-base text-fuchsia-700 dark:text-white">
-                {topicData.map((individualInfo: string, index: number) => {
-                  const regexTitle = /^([^|\n]+)/
-                  const matchTitle = individualInfo.match(regexTitle)
-                  const firstWord = matchTitle ? matchTitle[1] : ""
-
-                  const regexBody = /\|(.+)/
-                  const matchBody = individualInfo.match(regexBody);
-                  const wordsAfterHash = matchBody ? matchBody[1] : ""
-                  return (
-                    <section key={100 + index}>
-                      <br key={index}></br>
-                      <h1 className="text-center font-bold underline border-b-2 border-solid border-border-colour">{firstWord}</h1>
-                      <br />
-                      <p className="text-center">{wordsAfterHash}</p>
-                    </section>
-                  );
-                })}
-              </ul>
+              {pageContent}
             </CardBody>
             <CardFooter className="flex justify-center">
               <Link href={`../../../${params.language}/${params.topic}/challenges`}>
@@ -90,6 +104,7 @@ const Learning = async ({
     </>
   );
 };
+//
 
 
 
