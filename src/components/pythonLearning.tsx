@@ -81,19 +81,19 @@ const PythonVariablesContent = (
       <h2 className='text-center font-bold underline text-l'>Printing Syntax</h2>
   
       <p className='text-center text-sm'>
-        The syntax of the print function is straightforward. You start with the keyword print, followed by brackets (). Inside the brackets, you put whatever you want to display, whether it&apos;s text (enclosed in quotes), numbers, variables, or even mathematical expressions. You can print out any text by enclosing it in single quotes &apos; &apos; or double quotes '' ''. For example: <code>print('Hello, world!') print('Python is awesome!')</code>
+        The syntax of the print function is straightforward. You start with the keyword print, followed by brackets (). Inside the brackets, you put whatever you want to display, whether it&apos;s text (enclosed in quotes), numbers, variables, or even mathematical expressions. You can print out any text by enclosing it in single quotes &apos; &apos; or double quotes &apos;&apos; &apos;&apos;. For example: <code>print(&apos;Hello, world!&apos;) print(&apos;Python is awesome!&apos;)</code>
       </p>
   
       <h2 className='text-center font-bold underline text-l'>Variables</h2>
   
       <p className='text-center text-sm'>
-        You can also print the value stored in a variable by passing the variable name inside the print function. For example: <code>name = 'Alice' print ('Hello', name)</code>
+        You can also print the value stored in a variable by passing the variable name inside the print function. For example: <code>name = &apos;Alice&apos; print (&apos;Hello&apos;, name)</code>
       </p>
   
       <h2 className='text-center font-bold underline text-l'>Concatenation</h2>
   
       <p className='text-center text-sm'>
-        If you want to combine text and variables in the same print statement, you can use commas to separate them. Python automatically adds spaces between the items. For example: <code>age = 10 print('My age is', age)</code>
+        If you want to combine text and variables in the same print statement, you can use commas to separate them. Python automatically adds spaces between the items. For example: <code>age = 10 print(&apos;My age is&apos;, age)</code>
       </p>
     </>
   );
