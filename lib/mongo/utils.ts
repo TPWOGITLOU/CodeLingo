@@ -1,20 +1,20 @@
 import { ObjectId } from "mongodb";
 import client from "./connection";
 
-const databaseName = "CodeLingo"
+const databaseName = "CodeLingo";
 
 export interface Topic {
-  [key: string]: string ;
+  [key: string]: string;
 }
 
-export interface challenge{
+export interface Challenge {
   _id: string;
   topic: string;
   language: string;
   challengeType: string;
-  challengeQuestion:  string;
-  challengeSnippets: {[key: string]:string}[];
-  answer:string|{}[];
+  challengeQuestion: string;
+  challengeSnippets: { [key: string]: string }[];
+  answer: string | {}[];
 }
 
 const getTopics = async (language: string) => {
@@ -36,7 +36,7 @@ const getQuestions = async (language: string, topic: string) => {
   try {
     const questionsCollection = client.db(databaseName).collection(language);
     const questions: Topic[] = await questionsCollection
-      .find({topic})
+      .find({ topic })
       .map((question: Topic) => ({ ...question, _id: question._id.toString() }))
       .toArray();
     if (questions) {
@@ -50,10 +50,11 @@ const getQuestions = async (language: string, topic: string) => {
 const getChallenge = async (language: string, challenge: string) => {
   try {
     const questionsCollection = client.db(databaseName).collection(language);
-    const result = await questionsCollection
-      .findOne({_id: new ObjectId(challenge)})
+    const result = await questionsCollection.findOne({
+      _id: new ObjectId(challenge),
+    });
     if (result) {
-      const question: challenge ={
+      const question: Challenge = {
         _id: result._id.toString(),
         topic: result.topic,
         language: result.language,
@@ -69,5 +70,27 @@ const getChallenge = async (language: string, challenge: string) => {
   }
 };
 
+const getAllChallengesByLanguage = async (language: string) => {
+  const collection: string =
+    language === "python" ? "PY-Questions" : "JS-Questions";
+  try {
+    const questionCollection = client.db(databaseName).collection(collection);
+    const questions = await questionCollection
+      .find({})
+      .map((question) => {
+        const data = {
+          _id: question._id.toString(),
+          topic: question.topic,
+        };
+        return data;
+      })
+      .toArray();
+    if (questions) {
+      return questions;
+    }
+  } catch (error) {
+    throw new Error("There was a problem fetching the data");
+  }
+};
 
-export { getTopics, getQuestions, getChallenge };
+export { getTopics, getQuestions, getChallenge, getAllChallengesByLanguage };
