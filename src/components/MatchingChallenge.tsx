@@ -10,8 +10,10 @@ import {
   CardFooter,
   Divider,
   Image,
+  Button,
 } from "@nextui-org/react";
 import ChallengeFooter from "./ChallengeFooter";
+import Link from "next/link";
 
 
 export default function Matching(challenge: Challenge): JSX.Element {
@@ -142,7 +144,7 @@ export default function Matching(challenge: Challenge): JSX.Element {
         "
       >
         <Card
-          id="question-card"
+          id="information-card"
           className="
             w-full 
             border-8 border-border-colour  bg-nice-yellow bg-opacity-50 
@@ -160,7 +162,7 @@ export default function Matching(challenge: Challenge): JSX.Element {
           </CardHeader>
           <Divider />
           <CardBody>
-            <p>{challenge.challengeQuestion}</p>
+            <p className="text-xl">Click on the two matching items below.</p>
           </CardBody>
         </Card>
       </div>
@@ -202,23 +204,46 @@ export default function Matching(challenge: Challenge): JSX.Element {
           </CardBody>
         </Card>
         <Card
-          id="information-card"
+          id="question-card"
           className="          
           border-8 border-border-colour bg-nice-yellow bg-opacity-50
-          grow 
-          p-5
-          "
-        >
-          <CardBody>
-            <p>Click on the two matching items.</p>
-          </CardBody>
-          <CardFooter className="justify-end">
+          grow">
+          <CardBody className="flex w-full flex-row place-content-start p-5 overflow-hidden">
+          <div id="speech-bubble" className="bg-white
+          border border-white 
+          rounded-l-full
+          rounded-tr-full
+          rounded-br-0
+          text-center
+          w-[90%]
+          flex
+          place-items-center
+          px-12 py-6
+          mb-[60px]          
+          ">
+              <p>{challenge.challengeQuestion}</p>
+            </div>
+            <div className="absolute bottom-0 right-2">
             <Image
               src="/character1.png"
               alt="2d pixel character with her arms in the air"
               className="float-right"
             />
-          </CardFooter>
+            </div>
+            <div className="absolute bottom-5 left-5">
+            <Link 
+            href={`../../learning/${challenge.language}/${challenge.topic}/learning`}>
+              <Button 
+                radius="full" 
+                size="sm" 
+                color="secondary" 
+                variant="bordered"
+                >
+                Learn More
+              </Button>
+            </Link>
+            </div>
+          </CardBody>
         </Card>
       </div>
       <ChallengeFooter finished={finished} />
