@@ -15,6 +15,7 @@ import {
 import ChallengeFooter from "./ChallengeFooter";
 import { handleCompile, Language } from "../../lib/mongo/judge0/judge-utils";
 import { Challenge } from "../../lib/mongo/utils";
+import Link from "next/link";
 
 const TypedChallenge = (challengeData: Challenge) => {
   const [feedback, setFeedback] = useState<string>(
@@ -123,9 +124,8 @@ const TypedChallenge = (challengeData: Challenge) => {
           </CardHeader>
           <Divider />
           <CardBody>
-            <p className="text-xl">Time to start typing...</p>
-            <p>
-              Update the code below then press &quot;run&quot; to see the result
+            <p className="text-xl">
+              When we write code, we use an editor like this. Update the code below then press &quot;run&quot; to see the result
               and then check your answer.
             </p>
 
@@ -147,17 +147,45 @@ const TypedChallenge = (challengeData: Challenge) => {
         <Card
           id="question"
           className="
-
         border-8 border-border-colour 
         bg-nice-yellow bg-opacity-50"
         >
-          <CardBody className="p-5">
-            <p className="text-xl">{challengeData.challengeQuestion}</p>
-            <Image
-              src="/character1.png"
-              alt="2d pixel character with her arms in the air"
-              className="p-0 h-[100%]"
-            />
+          <CardBody className="flex w-full flex-row place-content-end p-5 overflow-hidden">
+            <div id="speech-bubble" className="bg-white
+            border border-white 
+            rounded-r-full
+            rounded-tl-full
+            rounded-bl-0
+            text-center
+            w-[90%]   
+            px-12 py-6
+            mb-[35px]
+            ">
+              <p className="text-xl">
+              Time to start typing...<br />
+              {challengeData.challengeQuestion}.
+              </p>
+            </div>
+            <div className="absolute bottom-0 left-2">
+              <Image
+                src="/character1.png"
+                alt="2d pixel character with her arms in the air"
+                className="mb-[-5px] h-[100%]"
+              />
+            </div>
+            <div className="absolute bottom-5 right-5">
+            <Link 
+            href={`../../learning/${language}/${challengeData.topic}/learning`}>
+              <Button 
+                radius="full" 
+                size="sm" 
+                color="secondary" 
+                variant="bordered"
+                >
+                Learn More
+              </Button>
+            </Link>
+            </div>
           </CardBody>
         </Card>
         <Card
