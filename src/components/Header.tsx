@@ -5,23 +5,19 @@ import ToggleTheme from "./ToggleTheme";
 import { Tooltip } from "@nextui-org/react";
 import DropdownCard from "./DropdownCard";
 import { useParams } from "next/navigation";
-import { useTheme } from "next-themes";
 
 const Header = (): JSX.Element => {
-  const { resolvedTheme } = useTheme();
   const params = useParams<{
     language: string;
   }>();
 
   return (
     <>
-      <header className="h-auto flex flex-row justify-between items-center text-xl pr-2 pl-2 border-b-large border-dotted dark:border-white border-black shadow-lgtext-slate-900 p-2 text-black font-bold dark:text-white bg-white dark:bg-black">
+      <header className="h-auto flex flex-row justify-between items-center text-xl pr-2 pl-2 border-b-5 border-double dark:border-opacity-50 dark:border-white border-black p-2 text-black font-bold dark:text-white bg-white dark:bg-header bg-opacity-70 dark:bg-opacity-70">
         <div className="flex flex-row">
           <Link href="/">
             <Image
-              src={
-                resolvedTheme === "light" ? "/logo-dark.png" : "/logo-light.png"
-              }
+              src="/logo-light.png"
               height={65}
               width={405}
               alt="CodeLingo logo"
@@ -29,7 +25,13 @@ const Header = (): JSX.Element => {
           </Link>
           <ToggleTheme />
         </div>
-        <nav className="md:flex md:flex-row md:items-center  hidden">
+        <nav className="md:mr-2 md:flex md:flex-row md:items-center  hidden">
+          <Link
+            className="p-2 transition-transform transform hover:-translate-y-1"
+            href="/"
+          >
+            Home
+          </Link>
           <Link
             className="p-2 transition-transform transform hover:-translate-y-1"
             href="/about"
@@ -60,7 +62,7 @@ const Header = (): JSX.Element => {
                 }
               >
                 <Image
-                  className="p-0, m-0"
+                  className="p-0, mr-2 ml-2"
                   src={`/${params.language}.png`}
                   alt={`${params.language} character icon`}
                   width={64}

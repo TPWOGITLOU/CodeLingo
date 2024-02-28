@@ -1,5 +1,4 @@
 "use client";
-import { useRouter } from "next/navigation";
 import { Button } from "@nextui-org/react";
 import Link from "next/link";
 import ChallengeModal from "./ChallengeModal";
@@ -12,7 +11,6 @@ interface ChallengeFooterProps {
 }
 
 const ChallengeFooter = (props: ChallengeFooterProps): JSX.Element => {
-  const router = useRouter();
   const params = useParams<{
     language: string;
     topic: string;
@@ -26,10 +24,6 @@ const ChallengeFooter = (props: ChallengeFooterProps): JSX.Element => {
     setJavascriptChallengeIds,
     setCompletedChallenges,
   } = useContext(GlobalContext);
-
-  const handleBack = () => {
-    router.back();
-  };
 
   const nextChallenge =
     pythonChallengeIds.filter(
@@ -48,16 +42,15 @@ const ChallengeFooter = (props: ChallengeFooterProps): JSX.Element => {
 
   return (
     <div className="w-full">
-      <Button
-        onClick={handleBack}
-        radius="full"
-        className="bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg"
-      >
-        Back to Challenges
-      </Button>
-      <Link
-        href={`/topics/${params.language}/${params.topic}/${nextChallenge}`}
-      >
+      <Link href={`/${params.language}/${params.topic}/`}>
+        <Button
+          radius="full"
+          className="bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg"
+        >
+          Back to Challenges
+        </Button>
+      </Link>
+      <Link href={`/${params.language}/${params.topic}/${nextChallenge}`}>
         <Button
           isDisabled={props.finished === true ? false : true}
           color={props.finished === true ? "success" : "primary"}

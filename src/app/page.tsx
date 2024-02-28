@@ -14,6 +14,7 @@ const Home = (): JSX.Element => {
           <br />
           <p>Which language would you like to learn?</p>
         </div>
+
         <div id="sprite container" className="
         flex flex-row flex-wrap
         justify-center 
@@ -25,7 +26,7 @@ const Home = (): JSX.Element => {
             ">
               <h3 className="
                 mb-5 px-5 py-2 
-                text-center text-2xl dark:bg-black  bg-white rounded-lg">
+                text-center text-2xl dark:bg-header  bg-white rounded-lg"> 
                 Python
               </h3>
               <SpriteAnimator
@@ -42,12 +43,13 @@ const Home = (): JSX.Element => {
                 imageSrc="/snake.png"
               />
           </Link>
+
           <Link href="/javascript" className="
             p-5 
             border-8 rounded-medium border-border-colour bg-nice-yellow bg-opacity-50
             ">
               <h3 className="mb-5 px-5 py-2 
-                text-center text-2xl dark:bg-black  bg-white rounded-lg">
+                text-center text-2xl dark:bg-header  bg-white rounded-lg">
                 JavaScript
               </h3>
               <SpriteAnimator
