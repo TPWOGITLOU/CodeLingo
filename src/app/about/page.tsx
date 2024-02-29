@@ -29,7 +29,7 @@ const About = (): JSX.Element => {
       <div id="text" className="">
         <p className="font-fredoka text-3xl mb-5">Let J-J and Georgie guide you through a series of fun challenges about writing the code that drives the internet!</p>
 
-        <p className="font-fredoka text-xl leading-10">Choose between <Link className="underline" href="https://developer.mozilla.org/en-US/docs/Glossary/Javascript">JavaScript</Link> (the language that make the internet interactive) and <Link  className="underline" href="https://developer.mozilla.org/en-US/docs/Glossary/Python">Python</Link> ( a powerful tool for processing big-data) and complete the different challenges. Hit the 
+        <p className="font-fredoka text-xl leading-10 text-center">Choose between <Link className="underline" href="https://developer.mozilla.org/en-US/docs/Glossary/Javascript">JavaScript</Link> (the language that make the internet interactive) and <Link  className="underline" href="https://developer.mozilla.org/en-US/docs/Glossary/Python">Python</Link> ( a powerful tool for processing big-data) and complete the different challenges. Hit the 
         <Link href={`../../learning/javascript/primitives/learning`}>
                 <Button
                   className="mx-1"
