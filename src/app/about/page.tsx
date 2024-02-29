@@ -55,33 +55,33 @@ const About = (): JSX.Element => {
         <ul className="my-12 flex flex-wrap gap-5 justify-around">
           <li className="">Choose the correct answer
             <Image
-            src="/drag-screen.png"
-            alt="image of a code-block dragging challenge"
-            className=""
+            className="border border-slate-500"
+            src="/mcq-screen.png"
+            alt="image of a multiple-choice challenge"
             width={400}
             height={400}/>
           </li>
           <li>Match the items
           <Image
-            src="/drag-screen.png"
-            alt="image of a code-block dragging challenge"
-            className=""
+            className="border border-slate-500"
+            src="/match-screen.png"
+            alt="image of a matching challenge"
             width={400}
             height={400}/>
           </li>
           <li>Drag to blocks to make your code
           <Image
+            className="border border-slate-500"
             src="/drag-screen.png"
             alt="image of a code-block dragging challenge"
-            className=""
             width={400}
             height={400}/>
           </li>
           <li>Type into a real code-editor
             <Image
-            src="/drag-screen.png"
-            alt="image of a code-block dragging challenge"
-            className=""
+            className="border border-slate-500"
+            src="/typed-screen.png"
+            alt="image of a code-typing challenge"
             width={400}
             height={400}/></li>
         </ul>
