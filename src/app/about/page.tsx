@@ -1,6 +1,7 @@
 import { Button } from "@nextui-org/react";
 import Image from "next/image";
 import Link from "next/link";
+import { FaTrophy } from "react-icons/fa6";
 
 const About = (): JSX.Element => {
   return (
@@ -40,7 +41,7 @@ const About = (): JSX.Element => {
                   Learn More
                 </Button>
         </Link>
-        buttons to find out about each topic and collect trophies as you go!</p>
+        buttons to find out about each topic and collect trophies as you go! <FaTrophy className="inline text-yellow-400" /></p>
         <div id="nedboi-container" className="flex justify-center items-center">
           <Image
               src="/nerdboi.gif"
@@ -48,7 +49,7 @@ const About = (): JSX.Element => {
               className=""
               width={128}
               height={128}/>
-            <p className="ml-[-24px] font-fredoka text-3xl">Finally, go and play in the <Link className="underline" href="/sandbox">Sandbox</Link> to try out what you've learned.</p>
+            <p className="ml-[-24px] font-fredoka text-3xl">Finally, go and play in the <Link className="underline" href="/sandbox">Sandbox</Link> to try out what you&apos;ve learned.</p>
         </div>
         
         <ul className="my-12 flex flex-wrap gap-5 justify-around">
