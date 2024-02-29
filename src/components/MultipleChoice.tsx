@@ -17,11 +17,11 @@ import Link from "next/link";
 
 const MultipleChoice = (challengeData: Challenge): JSX.Element => {
   const defaultButtonStyle =
-    "bg-blue-500 p-4 text-white rounded-lg hover:shadow-lg";
+    "w-[40%] bg-blue-500 p-4 text-white rounded-lg hover:shadow-lg";
   const wrongButtonStyle =
-    "bg-red-500 p-4 text-white rounded-lg hover:shadow-lg";
+    "w-[40%] bg-red-500 p-4 text-white rounded-lg hover:shadow-lg";
   const rightButtonStyle =
-    "bg-green-500 p-4 text-white rounded-lg hover:shadow-lg";
+    "w-[40%] bg-green-500 p-4 text-white rounded-lg hover:shadow-lg";
   const [finished, setFinished] = useState(false);
 
   const onClick = (e: any, targetID: string, buttonContent: string) => {
@@ -116,8 +116,8 @@ const MultipleChoice = (challengeData: Challenge): JSX.Element => {
           border-8 border-border-colour 
           bg-nice-yellow bg-opacity-50"
         >
-          <CardBody className="p-5 w-full">
-            <div className="h-full flex flex-wrap gap-4 items-center justify-around">
+          <CardBody className="w-full">
+            <div className="p-5 h-full flex flex-wrap gap-4 items-center justify-around">
               {questionSnippets &&
                 questionSnippets.map((question, index) => {
                   return (
@@ -132,7 +132,7 @@ const MultipleChoice = (challengeData: Challenge): JSX.Element => {
                           (e.target as HTMLButtonElement)?.textContent || ""
                         );
                       }}
-                      className={`${defaultButtonStyle} w-[40%]`}
+                      className={defaultButtonStyle}
                     >
                       {String(question)}
                     </button>

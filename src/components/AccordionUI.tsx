@@ -11,7 +11,6 @@ import { FaTrophy } from "react-icons/fa6";
 import type { Challenge } from "../../lib/interfaces/interfaces";
 import TopicProgress from "./TopicProgress";
 
-
 interface AccordianUIProps {
   list: Topic[]; // may need to be a union for challengeList prop type
   language: string;
@@ -134,16 +133,16 @@ const AccordionUI = ({
                   aria-label={`Dropdown menu for ${topicData.topic}`}
                   title={
                     <span className="flex flex-row justify-between">
+                      <p className="text-2xl ">{`${topicData.topic
+                        .charAt(0)
+                        .toUpperCase()}${topicData.topic.slice(1)}`}</p>
 
-                      <p className="text-2xl">{`${topicData.topic.charAt(0).toUpperCase()}${topicData.topic.slice(1)}`}</p>
-                 
                       {
                         <TopicProgress
                           challengesByLanguage={challengesByLanguage}
                           topic={topicData.topic}
                         />
                       }
-
                     </span>
                   }
                 >
@@ -191,7 +190,9 @@ const AccordionUI = ({
                         </Button>
                       </Link>
                     ) : (
-                      <p>Complete previous challenges first!</p>
+                      <p className="pl-2 text-coral">
+                        Complete previous challenges first!
+                      </p>
                     )}
                   </div>
                 </AccordionItem>

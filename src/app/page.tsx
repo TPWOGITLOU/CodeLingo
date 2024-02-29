@@ -10,7 +10,9 @@ const Home = (): JSX.Element => {
         <div className="inline-block align-middle">
           <div className="h-[80%] mt-[10%] mb-[10%] flex flex-col items-center align-middle font-bold text-center">
             <div id="welcome-text" className="text-3xl pb-8">
-              <h2 className="text-5xl">Welcome to CodeLingo!</h2>
+              <h2 className="text-5xl text-header dark:text-white">
+                Welcome to CodeLingo!
+              </h2>
               <br />
               <p className="font-fredoka text-3xl">
                 Which language would you like to learn?
