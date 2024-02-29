@@ -67,25 +67,24 @@ const Learning = async ({
   return (
     <>
       <div className="mt-6 flex flex-row justify-center text-lg">
-        <Link href="/">Home</Link>
       </div>
       <section className="mt-10 flex flex-row justify-center">
         <div className="md:max-w-[65%] w-[100%] flex flex-col flex-wrap gap-5">
           <Card className="w-full border-8 border-border-colour  bg-nice-yellow bg-opacity-50 flex-wrap p-5">
             <CardHeader className="flex flex-col">
               <h1 className="text-3xl font-bold">Welcome to Learning</h1>
-              <br></br>
               <p className="text-lg font-semibold ">
                 Here is some useful information about {pageTitle}
               </p>
-              <br />
               <p className="text-lg font-semibold ">
-                {pageSlug}
+                Learn more about {pageSlug}
               </p>
             </CardHeader>
             <Divider />
             <CardBody>
+              <div className="">
               {pageContent}
+              </div>
             </CardBody>
             <CardFooter className="flex justify-center">
               <Link href={`../../../${params.language}/${params.topic}/challenges`}>
