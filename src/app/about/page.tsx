@@ -1,3 +1,4 @@
+import { Button } from "@nextui-org/react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -24,11 +25,22 @@ const About = (): JSX.Element => {
           height={64}/>        
       </div>
         
-      <div id="text" className="borderleading-10">
+      <div id="text" className="">
         <p className="font-fredoka text-3xl mb-5">Let J-J and Georgie guide you through a series of fun challenges about writing the code that drives the internet!</p>
 
-        <p className="font-fredoka text-xl">Choose between <Link className="underline" href="https://developer.mozilla.org/en-US/docs/Glossary/Javascript">JavaScript</Link> (the language that make the internet interactive) and <Link  className="underline" href="https://developer.mozilla.org/en-US/docs/Glossary/Python">Python</Link> ( a powerful tool for processing big-data) and complete the different challenges. Hit the 'learn more' buttons to find out about each topic and collect trophies as you go!</p>
-
+        <p className="font-fredoka text-xl leading-10">Choose between <Link className="underline" href="https://developer.mozilla.org/en-US/docs/Glossary/Javascript">JavaScript</Link> (the language that make the internet interactive) and <Link  className="underline" href="https://developer.mozilla.org/en-US/docs/Glossary/Python">Python</Link> ( a powerful tool for processing big-data) and complete the different challenges. Hit the 
+        <Link href={`../../learning/javascript/primitives/learning`}>
+                <Button
+                  className="mx-1"
+                  radius="full" 
+                  size="sm" 
+                  color="secondary" 
+                  variant="bordered"
+                  >
+                  Learn More
+                </Button>
+        </Link>
+        buttons to find out about each topic and collect trophies as you go!</p>
         <div id="nedboi-container" className="flex justify-center items-center">
           <Image
               src="/nerdboi.gif"
