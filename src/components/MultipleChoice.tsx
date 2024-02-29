@@ -111,37 +111,6 @@ const MultipleChoice = (challengeData: Challenge): JSX.Element => {
           </CardBody>
         </Card>
         <Card
-          id="activity-card"
-          className="
-          border-8 border-border-colour 
-          bg-nice-yellow bg-opacity-50"
-        >
-          <CardBody className="p-5 w-full">
-            <div className="h-full flex flex-wrap gap-4 items-center justify-around">
-              {questionSnippets &&
-                questionSnippets.map((question, index) => {
-                  return (
-                    <button
-                      key={index}
-                      id={String(index)}
-                      onClick={(e) => {
-                        const target = e.target as HTMLButtonElement;
-                        onClick(
-                          e,
-                          target.id,
-                          (e.target as HTMLButtonElement)?.textContent || ""
-                        );
-                      }}
-                      className={`${defaultButtonStyle} w-[40%]`}
-                    >
-                      {String(question)}
-                    </button>
-                  );
-                })}
-            </div>
-          </CardBody>
-        </Card>
-        <Card
           id="question-card"
           className="
           bg-opacity-0 shadow-none p-0"
@@ -189,6 +158,38 @@ const MultipleChoice = (challengeData: Challenge): JSX.Element => {
             </div>
           </CardBody>
         </Card>
+        <Card
+          id="activity-card"
+          className="
+          border-8 border-border-colour 
+          bg-nice-yellow bg-opacity-50"
+        >
+          <CardBody className="p-5 w-full">
+            <div className="h-full flex flex-wrap gap-4 items-center justify-around">
+              {questionSnippets &&
+                questionSnippets.map((question, index) => {
+                  return (
+                    <button
+                      key={index}
+                      id={String(index)}
+                      onClick={(e) => {
+                        const target = e.target as HTMLButtonElement;
+                        onClick(
+                          e,
+                          target.id,
+                          (e.target as HTMLButtonElement)?.textContent || ""
+                        );
+                      }}
+                      className={`${defaultButtonStyle} w-[40%]`}
+                    >
+                      {String(question)}
+                    </button>
+                  );
+                })}
+            </div>
+          </CardBody>
+        </Card>
+        
       </div>
       <ChallengeFooter finished={finished} />
     </main>
