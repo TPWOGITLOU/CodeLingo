@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Modal,
   ModalContent,
@@ -13,7 +13,8 @@ import { useParams } from "next/navigation";
 import SpriteAnimator from "./SpriteAnimator";
 
 const ChallengeModal = (): JSX.Element => {
-  const { isOpen, onOpenChange } = useDisclosure();
+  const { onOpenChange } = useDisclosure();
+  const [isOpen, setIsOpen] = useState<boolean>(true);
   const params = useParams<{ language: string }>();
 
   return (
@@ -52,7 +53,13 @@ const ChallengeModal = (): JSX.Element => {
                 />
               </ModalBody>
               <ModalFooter className="flex justify-between">
-                <Button color="danger" variant="light" onPress={onClose}>
+                <Button
+                  color="danger"
+                  variant="light"
+                  onPress={() => {
+                    setIsOpen(false);
+                  }}
+                >
                   Close
                 </Button>
                 <Link href={`/${params.language}`}>
