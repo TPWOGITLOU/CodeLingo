@@ -116,7 +116,7 @@ export default function Matching(challenge: Challenge): JSX.Element {
   }, [progress]);
 
   useEffect(() => {
-    const gridElement = document.getElementById("Grid");
+    const gridElement = document.getElementById("activity-grid");
     if (gridElement) {
       gridElement.className = `
       h-full w-full 
@@ -125,30 +125,26 @@ export default function Matching(challenge: Challenge): JSX.Element {
   }, [challenge]);
 
   return (
-    <section
-      id="component-container"
+    <main
+      id="matching-game-container"
       className=" 
     w-[80%]
     min-w-[450px]
-    mt-10 ml-auto mr-auto
+    mt-10 mx-auto
     box-border
     "
     >
       <div
-        id="head-container"
-        className="
-        flex gap-5
-        mb-5
-        "
+        id="grid"
+        className="grid 
+        lg:grid-cols-2
+        md:grid-cols-1 
+        gap-5 mb-5"
       >
         <Card
-          id="information-card"
-          className="
-            w-full 
-            border-8 border-border-colour  bg-nice-yellow bg-opacity-50 
-            flex-wrap 
-            p-5
-            "
+          id="info-card"
+          className="border-8 border-border-colour  bg-nice-yellow bg-opacity-50 p-5 lg:col-span-2
+        md:col-span-1"
         >
           <CardHeader className="flex gap-3">
             <p className="text-4xl">
@@ -163,47 +159,9 @@ export default function Matching(challenge: Challenge): JSX.Element {
             <p className="text-xl">Click on the two matching items below.</p>
           </CardBody>
         </Card>
-      </div>
-
-      <div id="activity-container" className="flex flex-wrap gap-5 mb-5">
-        <Card
-          id="activity-card"
-          className="
-          grow
-          border-8 border-border-colour 
-          bg-nice-yellow bg-opacity-50
-          "
-        >
-          <CardBody className="p-5">
-            <div id="Grid">
-              <ButtonQGen
-                Qsnippets={challenge.challengeSnippets[1]}
-                selection1={selection1}
-                setSelection1={setSelection1}
-                setSelection2={setSelection2}
-                setSelectionType={setSelectionType}
-                setSelection1ID={setSelection1ID}
-                selection2={selection2}
-                selectionType={selectionType}
-                setSelection2ID={setSelection2ID}
-              />
-              <ButtonAGen
-                snippets={challenge.challengeSnippets[0]}
-                selection1={selection1}
-                setSelection1={setSelection1}
-                setSelection2={setSelection2}
-                setSelectionType={setSelectionType}
-                setSelection1ID={setSelection1ID}
-                selection2={selection2}
-                selectionType={selectionType}
-                setSelection2ID={setSelection2ID}
-              />
-            </div>
-          </CardBody>
-        </Card>
         <Card
           id="question-card"
-          className="lg:w-[35%]
+          className="
           bg-opacity-0 shadow-none p-0"
         >
           <CardBody className="flex w-full flex-row place-content-start p-5 overflow-hidden">
@@ -226,9 +184,7 @@ export default function Matching(challenge: Challenge): JSX.Element {
           "
             >
               <p>
-                {challenge.challengeQuestion} Lorem ipsum dolor sit amet,
-                consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                labore et dolore magna aliqua.{" "}
+                {challenge.challengeQuestion}
               </p>
             </div>
             <div className="absolute bottom-0 right-2">
@@ -254,8 +210,43 @@ export default function Matching(challenge: Challenge): JSX.Element {
             </div>
           </CardBody>
         </Card>
+        <Card
+          id="activity-card"
+          className="
+          border-8 border-border-colour 
+          bg-nice-yellow bg-opacity-50
+          "
+        >
+          <CardBody className="">
+            <div id="activity-grid">
+              <ButtonQGen
+                Qsnippets={challenge.challengeSnippets[1]}
+                selection1={selection1}
+                setSelection1={setSelection1}
+                setSelection2={setSelection2}
+                setSelectionType={setSelectionType}
+                setSelection1ID={setSelection1ID}
+                selection2={selection2}
+                selectionType={selectionType}
+                setSelection2ID={setSelection2ID}
+              />
+              <ButtonAGen
+                snippets={challenge.challengeSnippets[0]}
+                selection1={selection1}
+                setSelection1={setSelection1}
+                setSelection2={setSelection2}
+                setSelectionType={setSelectionType}
+                setSelection1ID={setSelection1ID}
+                selection2={selection2}
+                selectionType={selectionType}
+                setSelection2ID={setSelection2ID}
+              />
+            </div>
+          </CardBody>
+        </Card>
+        
       </div>
       <ChallengeFooter finished={finished} />
-    </section>
+    </main>
   );
 }

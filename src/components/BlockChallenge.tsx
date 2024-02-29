@@ -78,16 +78,9 @@ const Block = (challengeData: Challenge) => {
           </CardBody>
         </Card>
         <Card
-          id="activity-card"
-          className="p-5
-        border-8 border-border-colour bg-nice-yellow bg-opacity-50"
-        >
-          <DragAndDrop listItems={listItems} setListItems={setListItems} />
-        </Card>
-        <Card
           id="feedback-card"
           className="
-           bg-opacity-0 shadow-none p-0"
+          bg-opacity-0 shadow-none p-0"
         >
           <CardBody className="flex w-full flex-row place-content-end p-5 overflow-hidden">
             <div
@@ -140,6 +133,14 @@ const Block = (challengeData: Challenge) => {
             </div>
           </CardBody>
         </Card>
+        <Card
+          id="activity-card"
+          className="p-5
+        border-8 border-border-colour bg-nice-yellow bg-opacity-50"
+        >
+          <DragAndDrop listItems={listItems} setListItems={setListItems} />
+        </Card>
+        
       </div>
       <ChallengeFooter finished={correctState} />
     </main>
