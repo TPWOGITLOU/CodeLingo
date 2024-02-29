@@ -35,10 +35,11 @@ const Home = (): JSX.Element => {
                 <h3
                   className="font-fredoka
                 mb-5 px-5 py-2 
-                text-center text-2xl dark:bg-header  bg-white rounded-lg"
+                text-center text-3xl dark:bg-header  bg-white rounded-lg"
                 >
                   Python
                 </h3>
+                <div className="w-[100%] flex flex-col">
                 <SpriteAnimator
                   spriteWidth={256}
                   spriteHeight={256}
@@ -52,6 +53,14 @@ const Home = (): JSX.Element => {
                   animationSpeed={200}
                   imageSrc="/snake.png"
                 />
+                </div>
+                <h3
+              className="
+                mt-6 px-5 py-2
+                text-center text-2xl dark:bg-header  bg-white rounded-lg"
+            >
+            Python is powerful <br></br> at crunching numbers!
+            </h3>
               </Link>
 
               <Link
@@ -63,10 +72,11 @@ const Home = (): JSX.Element => {
               >
                 <h3
                   className="mb-5 px-5 py-2 
-                text-center text-2xl dark:bg-header  bg-white rounded-lg"
+                text-center text-3xl dark:bg-header  bg-white rounded-lg"
                 >
                   JavaScript
                 </h3>
+                <div className="w-[100%] flex flex-col">
                 <SpriteAnimator
                   spriteWidth={256}
                   spriteHeight={256}
@@ -80,6 +90,14 @@ const Home = (): JSX.Element => {
                   animationSpeed={200}
                   imageSrc="/coffeebean.png"
                 />
+                </div>
+                <h3
+              className="
+                mt-6 px-6 py-2
+                text-center text-2xl dark:bg-header  bg-white rounded-lg"
+            >
+              JavaScript is the <br></br> language of the web!
+            </h3>
               </Link>
             </div>
           </div>
