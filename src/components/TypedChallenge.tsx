@@ -117,15 +117,19 @@ const TypedChallenge = (challengeData: Challenge) => {
     bg-nice-yellow bg-opacity-50 border-8 border-border-colour"
         >
           <CardHeader>
-             <p className="text-3xl font-bold">{challengeData.language} - {`${challengeData.topic
+            <p className="text-3xl font-bold">
+              {challengeData.language} -{" "}
+              {`${challengeData.topic
                 .charAt(0)
-                .toUpperCase()}${challengeData.topic.slice(1)}`}</p>
+                .toUpperCase()}${challengeData.topic.slice(1)}`}
+            </p>
           </CardHeader>
           <Divider />
           <CardBody>
             <p className="text-xl">
-              When we write code, we use an editor like this. Update the code below then press &quot;run&quot; to see the result
-              and then check your answer.
+              When we write code, we use an editor like this. Update the code
+              below then press &quot;run&quot; to see the result and then check
+              your answer.
             </p>
 
             <div
@@ -146,23 +150,29 @@ const TypedChallenge = (challengeData: Challenge) => {
         <Card
           id="question"
           className="
-        border-8 border-border-colour 
-        bg-nice-yellow bg-opacity-50"
+          bg-opacity-0 shadow-none p-0"
         >
           <CardBody className="flex w-full flex-row place-content-end p-5 overflow-hidden">
-            <div id="speech-bubble" className="bg-white
+            <div
+              id="speech-bubble"
+              className="bg-white
             border border-white 
             rounded-r-full
             rounded-tl-full
             rounded-bl-0
             text-center
             w-[90%]   
+            h-[75%]
             px-12 py-6
             mb-[35px]
-            ">
+            dark:text-header
+            overflow-scroll
+            "
+            >
               <p className="text-xl">
-              Time to start typing...<br />
-              {challengeData.challengeQuestion}.
+                Time to start typing...
+                <br />
+                {challengeData.challengeQuestion}.
               </p>
             </div>
             <div className="absolute bottom-0 left-2">
@@ -173,17 +183,18 @@ const TypedChallenge = (challengeData: Challenge) => {
               />
             </div>
             <div className="absolute bottom-5 right-5">
-            <Link 
-            href={`../../learning/${language}/${challengeData.topic}/learning`}>
-              <Button 
-                radius="full" 
-                size="sm" 
-                color="secondary" 
-                variant="bordered"
+              <Link
+                href={`../../learning/${language}/${challengeData.topic}/learning`}
+              >
+                <Button
+                  radius="full"
+                  size="sm"
+                  color="secondary"
+                  variant="bordered"
                 >
-                Learn More
-              </Button>
-            </Link>
+                  Learn More
+                </Button>
+              </Link>
             </div>
           </CardBody>
         </Card>
@@ -204,9 +215,13 @@ const TypedChallenge = (challengeData: Challenge) => {
             </Button>
             <Button
               onClick={checkAnswer}
-              disabled={!code}
+              disabled={!outputDetails}
               radius="full"
-              className="bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg"
+              className={
+                outputDetails
+                  ? "bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg"
+                  : "bg-slate-500"
+              }
             >
               Check Answer
             </Button>

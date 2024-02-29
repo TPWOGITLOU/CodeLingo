@@ -91,8 +91,9 @@ const Sandbox: React.FC = (): JSX.Element => {
       id="sandbox"
       className=" 
         w-[80%]
+        h-[90%]
         min-w-[450px]
-        mt-10 ml-auto mr-auto
+        ml-auto mr-auto
         box-border
         "
     >
@@ -125,14 +126,11 @@ const Sandbox: React.FC = (): JSX.Element => {
             height="31rem"
           />
         </Card>
-        <Card
-          id="instructions"
-          className="
-        border-8 border-border-colour 
-        bg-nice-yellow bg-opacity-50"
-        >
+        <Card id="instructions" className="bg-opacity-0 shadow-none p-0">
           <CardBody className="p-5">
-          <div id="speech-bubble" className="bg-white
+            <div
+              id="speech-bubble"
+              className="bg-white
           border border-white 
           rounded-l-full
           rounded-tr-full
@@ -141,10 +139,23 @@ const Sandbox: React.FC = (): JSX.Element => {
           w-[90%]
           px-12 py-6
           mb-[24px]
-          ">
-            <h3 className="mb-2 font-bold">Welcome to the sandbox area!</h3>
-            <p className="mb-2">You can use the console on the left to practice what you have learnt so far. You can select the language that you would like to practice from the dropdown menu above, and if you like, you can even change the theme of the console (but this is totally optional!).</p>
-            <p>When you are ready to test out your code, just hit the Run button below, and wait for your code to process in the output box.</p>
+          dark:text-header
+          overflow-scroll
+          "
+            >
+              <h3 className="mb-2 font-bold">Welcome to the sandbox area!</h3>
+              <p className="mb-2">
+                You can use the console on the left to practice what you have
+                learnt so far. You can select the language that you would like
+                to practice from the dropdown menu above, and if you like, you
+                can even change the theme of the console (but this is totally
+                optional!).
+              </p>
+              <p>
+                When you are ready to test out your code, just hit the Run
+                button below, and wait for your code to process in the output
+                box.
+              </p>
             </div>
             <div className="absolute bottom-0 right-2">
               <SpriteAnimator
