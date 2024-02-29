@@ -44,10 +44,9 @@ const Challenges = async ({
   }
 
   return (
-
-    <main>
-      <div className="h-screen flex flex-col items-center justify-center content-center text-center ">
-        <h1 className="p-2 text-5xl">
+    <main className="h-full mt-[60px]">
+      <div className="mt-6 mb-6 flex flex-col items-center justify-center text-center ">
+        <h1 className="p-2 text-5xl text-header dark:text-white">
           {languageUpperCase} Challenges
         </h1>
 
