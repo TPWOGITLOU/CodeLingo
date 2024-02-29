@@ -114,8 +114,8 @@ const Sandbox: React.FC = (): JSX.Element => {
             theme === "vs"
               ? "border-8 border-border-colour bg-white col-start-1 md:row-span-1 lg:row-span-2 h-full"
               : theme === "vs-dark"
-              ? "border-8 border-border-colour bg-neutral-800 col-start-1 md:row-span-1 lg:row-span-2 h-full"
-              : "col-start-1 md:row-span-1 lg:row-span-2 h-full bg-neutral-800 border-8 border-border-colour"
+              ? "border-8 border-border-colour bg-code-editor-dark col-start-1 md:row-span-1 lg:row-span-2 h-full"
+              : "col-start-1 md:row-span-1 lg:row-span-2 h-full bg-black border-8 border-border-colour"
           }
         >
           <CodeEditor
