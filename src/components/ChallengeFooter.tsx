@@ -41,7 +41,7 @@ const ChallengeFooter = (props: ChallengeFooterProps): JSX.Element => {
   }
 
   return (
-    <div className="w-full">
+    <div className="w-full mb-5">
       <Link href={`/${params.language}/${params.topic}/challenges`}>
         <Button
           radius="full"
@@ -50,17 +50,30 @@ const ChallengeFooter = (props: ChallengeFooterProps): JSX.Element => {
           Back to Challenges
         </Button>
       </Link>
-      <Link href={`/${params.language}/${params.topic}/${nextChallenge}`}>
-        <Button
-          isDisabled={props.finished === true ? false : true}
-          color={props.finished === true ? "success" : "primary"}
-          variant={props.finished === true ? undefined : "bordered"}
-          className="float-right"
-        >
-          Next
-        </Button>
-      </Link>
-      {props.finished && !nextChallenge && <ChallengeModal />}
+      {nextChallenge ? (
+        <Link href={`/${params.language}/${params.topic}/${nextChallenge}`}>
+          <Button
+            isDisabled={props.finished === true ? false : true}
+            color={props.finished === true ? "success" : "primary"}
+            variant={props.finished === true ? undefined : "bordered"}
+            className="float-right text-white"
+          >
+            Next
+          </Button>
+        </Link>
+      ) : (
+        <Link href={`/${params.language}/${params.topic}/challenges`}>
+          <Button
+            isDisabled={props.finished === true ? false : true}
+            color={props.finished === true ? "success" : "primary"}
+            variant={props.finished === true ? undefined : "bordered"}
+            className="float-right text-white"
+          >
+            Finished
+          </Button>
+        </Link>
+      )}
+      {props.finished === true && !nextChallenge && <ChallengeModal />}
     </div>
   );
 };
