@@ -15,9 +15,7 @@ import {
 import ChallengeFooter from "./ChallengeFooter";
 import Link from "next/link";
 
-
 export default function Matching(challenge: Challenge): JSX.Element {
-
   const [selection1, setSelection1] = useState("");
   const [selection1ID, setSelection1ID] = useState("");
   const [selection2, setSelection2] = useState("");
@@ -153,7 +151,7 @@ export default function Matching(challenge: Challenge): JSX.Element {
             "
         >
           <CardHeader className="flex gap-3">
-          <p className="text-4xl">
+            <p className="text-4xl">
               {challenge.language} -{" "}
               {`${challenge.topic
                 .charAt(0)
@@ -205,43 +203,54 @@ export default function Matching(challenge: Challenge): JSX.Element {
         </Card>
         <Card
           id="question-card"
-          className="          
-          border-8 border-border-colour bg-nice-yellow bg-opacity-50
-          grow">
+          className="lg:w-[35%]
+          bg-opacity-0 shadow-none p-0"
+        >
           <CardBody className="flex w-full flex-row place-content-start p-5 overflow-hidden">
-          <div id="speech-bubble" className="bg-white
+            <div
+              id="speech-bubble"
+              className="bg-white
           border border-white 
           rounded-l-full
           rounded-tr-full
           rounded-br-0
           text-center
           w-[90%]
+          h-[75%]
           flex
+          overflow-scroll
           place-items-center
           px-12 py-6
-          mb-[60px]          
-          ">
-              <p>{challenge.challengeQuestion}</p>
+          mb-[60px]   
+          dark:text-header       
+          "
+            >
+              <p>
+                {challenge.challengeQuestion} Lorem ipsum dolor sit amet,
+                consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                labore et dolore magna aliqua.{" "}
+              </p>
             </div>
             <div className="absolute bottom-0 right-2">
-            <Image
-              src="/character1.png"
-              alt="2d pixel character with her arms in the air"
-              className="float-right"
-            />
+              <Image
+                src="/character1.png"
+                alt="2d pixel character with her arms in the air"
+                className="float-right"
+              />
             </div>
             <div className="absolute bottom-5 left-5">
-            <Link 
-            href={`../../learning/${challenge.language}/${challenge.topic}/learning`}>
-              <Button 
-                radius="full" 
-                size="sm" 
-                color="secondary" 
-                variant="bordered"
+              <Link
+                href={`../../learning/${challenge.language}/${challenge.topic}/learning`}
+              >
+                <Button
+                  radius="full"
+                  size="sm"
+                  color="secondary"
+                  variant="bordered"
                 >
-                Learn More
-              </Button>
-            </Link>
+                  Learn More
+                </Button>
+              </Link>
             </div>
           </CardBody>
         </Card>
