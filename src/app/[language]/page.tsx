@@ -1,6 +1,4 @@
-
 import { fredoka } from "../../../fonts/font";
-import Link from "next/link";
 import {
   getAllChallengesByLanguage,
   getTopics,
@@ -51,9 +49,12 @@ const Topics = async ({ params }: { params: { language: string } }) => {
     await getAllChallengesByLanguage(language);
 
   return (
-    <main>
-    <div className="mt-6 flex flex-col items-center justify-center text-center ">
-        <h1 className="p-2 text-5xl"> {languageUpperCase} Topics</h1>
+    <main className="h-full mt-[60px]">
+      <div className="mt-6 mb-6 flex flex-col items-center justify-center text-center ">
+        <h1 className="p-2 text-5xl text-header dark:text-white">
+          {" "}
+          {languageUpperCase} Topics
+        </h1>
         <h2 className={`${fredoka.variable} font-fredoka p-2 text-3xl`}>
           Get your teeth into these {languageUpperCase} topics!
         </h2>
@@ -66,7 +67,6 @@ const Topics = async ({ params }: { params: { language: string } }) => {
         />
       )}
     </main>
-
   );
 };
 

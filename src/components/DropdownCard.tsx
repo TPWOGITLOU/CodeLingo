@@ -10,10 +10,7 @@ import {
 const DropdownCard = (): JSX.Element => {
   const [expanded, setExpanded] = useState<boolean>(false);
   const { setTheme, resolvedTheme } = useTheme();
-
-  let stroke: string;
-  resolvedTheme === "light" ? (stroke = "white") : (stroke = "black");
-
+  
   const toggleExpand = () => {
     setExpanded((previousValue) => !previousValue);
   };
@@ -28,11 +25,10 @@ const DropdownCard = (): JSX.Element => {
           {expanded ? (
             // If expanded is true, render this SVG (arrow pointing upwards)
             <svg
-              className="h-6 w-6"
+              className="h-6 w-6 stroke-black dark:stroke-white"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
-              stroke={resolvedTheme === "light" ? "black" : "white"}
             >
               <path
                 strokeLinecap="round"
@@ -44,11 +40,10 @@ const DropdownCard = (): JSX.Element => {
           ) : (
             // If expanded is false, render this SVG (hamburger menu icon)
             <svg
-              className="h-6 w-6"
+              className="h-6 w-6 stroke-black dark:stroke-white"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
-              stroke={resolvedTheme === "light" ? "black" : "white"}
             >
               <path
                 strokeLinecap="round"

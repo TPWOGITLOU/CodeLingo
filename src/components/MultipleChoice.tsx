@@ -17,11 +17,11 @@ import Link from "next/link";
 
 const MultipleChoice = (challengeData: Challenge): JSX.Element => {
   const defaultButtonStyle =
-    "bg-blue-500 p-4 text-white rounded-lg hover:shadow-lg";
+    "w-[40%] bg-blue-500 p-4 text-white rounded-lg hover:shadow-lg";
   const wrongButtonStyle =
-    "bg-red-500 p-4 text-white rounded-lg hover:shadow-lg";
+    "w-[40%] bg-red-500 p-4 text-white rounded-lg hover:shadow-lg";
   const rightButtonStyle =
-    "bg-green-500 p-4 text-white rounded-lg hover:shadow-lg";
+    "w-[40%] bg-green-500 p-4 text-white rounded-lg hover:shadow-lg";
   const [finished, setFinished] = useState(false);
 
   const onClick = (e: any, targetID: string, buttonContent: string) => {
@@ -110,8 +110,7 @@ const MultipleChoice = (challengeData: Challenge): JSX.Element => {
             </p>
           </CardBody>
         </Card>
-        <Card
-          id="question-card"
+        <Card id="question-card"
           className="
           bg-opacity-0 shadow-none p-0"
         >
