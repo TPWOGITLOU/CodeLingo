@@ -140,7 +140,8 @@ const Sandbox: React.FC = (): JSX.Element => {
           px-12 py-6
           mb-[24px]
           dark:text-header
-          overflow-scroll
+          overflow-x-hidden     
+          overflow-y-auto
           "
             >
               <h3 className="mb-2 font-bold">Welcome to the sandbox area!</h3>

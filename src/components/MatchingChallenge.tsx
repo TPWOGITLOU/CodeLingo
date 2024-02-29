@@ -128,15 +128,14 @@ export default function Matching(challenge: Challenge): JSX.Element {
     <main
       id="matching-game-container"
       className=" 
-    w-[80%]
-    min-w-[450px]
+    w-[80%] min-w-[450px] max-w-[1440px]
     mt-10 mx-auto
-    box-border
-    "
-    >
+    box-border">
       <div
         id="grid"
-        className="grid 
+        className="max-w-[80%]
+        mx-auto
+        grid 
         lg:grid-cols-2
         md:grid-cols-1 
         gap-5 mb-5"
@@ -176,7 +175,8 @@ export default function Matching(challenge: Challenge): JSX.Element {
           w-[90%]
           h-[75%]
           flex
-          overflow-scroll
+          overflow-x-hidden     
+          overflow-y-auto   
           place-items-center
           px-12 py-6
           mb-[60px]   
@@ -246,7 +246,9 @@ export default function Matching(challenge: Challenge): JSX.Element {
         </Card>
         
       </div>
-      <ChallengeFooter finished={finished} />
+      <div className="max-w-[80%] mx-auto">
+        <ChallengeFooter finished={finished} />
+      </div>
     </main>
   );
 }
