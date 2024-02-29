@@ -102,14 +102,11 @@ const TypedChallenge = (challengeData: Challenge) => {
     <main
       id="typed-container"
       className=" 
-        w-[80%]
-        min-w-[450px]
-        mt-10 ml-auto mr-auto
-        box-border
-
-        "
-    >
-      <div id="grid" className="grid lg:grid-cols-2 md:grid-cols-1 gap-5 mb-5">
+        w-[80%] min-w-[450px] max-w-[1440px]
+        mt-10 mx-auto
+        box-border">
+      <div id="grid" className="grid max-w-[80%]
+        mx-auto lg:grid-cols-2 md:grid-cols-1 gap-5 mb-5">
         <Card
           id="terminal"
           className="
@@ -229,7 +226,9 @@ const TypedChallenge = (challengeData: Challenge) => {
           </div>
         </Card>
       </div>
-      <ChallengeFooter finished={finished} />
+      <div className="max-w-[80%] mx-auto">
+        <ChallengeFooter finished={finished} />
+      </div>
     </main>
   );
 };

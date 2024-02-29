@@ -72,15 +72,15 @@ const MultipleChoice = (challengeData: Challenge): JSX.Element => {
     <main
       id="component-container"
       className="h-[90%]
-    w-[80%]
-    min-w-[450px]
-    mt-[5%] mb-[5%] ml-auto mr-auto
+    w-[80%] min-w-[450px] max-w-[1440px]
+    mt-[5%] mb-[5%] mx-auto
     box-border
     "
     >
       <div
         id="grid"
-        className="
+        className="max-w-[80%]
+        mx-auto
         grid
         lg:grid-cols-2
         md:grid-cols-1
@@ -191,7 +191,9 @@ const MultipleChoice = (challengeData: Challenge): JSX.Element => {
         </Card>
         
       </div>
-      <ChallengeFooter finished={finished} />
+      <div className="max-w-[80%] mx-auto">
+        <ChallengeFooter finished={finished} />
+      </div>
     </main>
   );
 };

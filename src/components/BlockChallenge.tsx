@@ -46,13 +46,14 @@ const Block = (challengeData: Challenge) => {
   return (
     <main
       id="block-game-container"
-      className="w-[80%] min-w-[450px]
+      className="w-[80%] min-w-[450px] max-w-[1440px]
     mt-10 mx-auto
     box-border"
     >
       <div
         id="grid"
-        className="grid 
+        className="max-w-[80%]
+        mx-auto grid 
         lg:grid-cols-2
         md:grid-cols-1 
         gap-5 mb-5"
@@ -143,7 +144,9 @@ const Block = (challengeData: Challenge) => {
         </Card>
         
       </div>
-      <ChallengeFooter finished={correctState} />
+      <div className="max-w-[80%] mx-auto">
+        <ChallengeFooter finished={correctState} />
+      </div>
     </main>
   );
 };
