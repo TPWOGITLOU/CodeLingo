@@ -25,7 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      className="gradient-background dark:bg-gradient-to-r from-slate-900 to-slate-700"
+      className="gradient-background dark:bg-gradient-to-r from-slate-900 to-slate-700 min-w-[460px]"
       lang="en"
       suppressHydrationWarning
     >
