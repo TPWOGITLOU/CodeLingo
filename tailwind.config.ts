@@ -21,6 +21,7 @@ const config: Config = {
         "border-colour": "#85586F",
         coral: "#d55866",
         header: "#18181a",
+        "code-editor-dark": "#1e1e1e",
       },
       gridTemplateColumns: {
         "matching-grid": "  grid-template-columns: 1fr 20px 1fr;",

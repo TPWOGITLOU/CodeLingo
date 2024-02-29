@@ -134,7 +134,7 @@ const TypedChallenge = (challengeData: Challenge) => {
 
             <div
               id="code-card-container"
-              className="bg-black mt-5 pt-[10px] h-full rounded"
+              className="bg-code-editor-dark mt-5 pt-[10px] h-full rounded"
             >
               <CodeEditor
                 code={code}
