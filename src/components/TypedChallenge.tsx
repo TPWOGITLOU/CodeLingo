@@ -166,7 +166,8 @@ const TypedChallenge = (challengeData: Challenge) => {
             px-12 py-6
             mb-[35px]
             dark:text-header
-            overflow-scroll
+            overflow-x-hidden     
+            overflow-y-auto   
             "
             >
               <p className="text-xl">

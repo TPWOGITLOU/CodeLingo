@@ -130,7 +130,8 @@ const MultipleChoice = (challengeData: Challenge): JSX.Element => {
           mb-[60px]
           h-[70%]
           dark:text-header    
-          overflow-scroll      
+          overflow-x-hidden     
+          overflow-y-auto         
           "
             >
               <p className=" text-2xl">{challengeData.challengeQuestion}</p>

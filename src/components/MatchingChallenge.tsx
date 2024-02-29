@@ -176,7 +176,8 @@ export default function Matching(challenge: Challenge): JSX.Element {
           w-[90%]
           h-[75%]
           flex
-          overflow-scroll
+          overflow-x-hidden     
+          overflow-y-auto   
           place-items-center
           px-12 py-6
           mb-[60px]   

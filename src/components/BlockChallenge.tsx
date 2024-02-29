@@ -98,7 +98,8 @@ const Block = (challengeData: Challenge) => {
             flex
             place-items-center
             dark:text-header
-            overflow-scroll     
+            overflow-x-hidden     
+            overflow-y-auto   
             "
             >
               {correctState ? (

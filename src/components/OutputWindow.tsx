@@ -32,7 +32,7 @@ const OutputWindow = (props: CodeProps): JSX.Element => {
   return (
     <>
       <h1 className="text-xl font-bold ml-2">Output:</h1>
-      <div className="h-36 border-small dark:text-header bg-white border-slate-300 rounded-small p-5 overflow-scroll text-small">
+      <div className="h-36 border-small dark:text-header bg-white border-slate-300 rounded-small p-5 overflow-x-hidden overflow-y-auto text-small">
         {props.outputDetails ? (
           <>
             {getOutput()} <br></br>{" "}
