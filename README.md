@@ -40,7 +40,7 @@ You can build the site using:
 > `npm run build`
 
 ## Team
-| [David](https://github.com/WolfieKnee) - Junior Software Developer | [Oliver](https://github.com/WolfieKnee) - Junior Software Developer |
+| [David](https://github.com/WolfieKnee) - Junior Software Developer | [Oliver](https://github.com/sudo-ollie) - Junior Software Developer |
 |-------------------------------------------------------------------|------------------------------------------------------------------|
 | **[Jessica](https://github.com/jessieharper) - Junior Software Developer** | **[Jack](https://github.com/jack-204) - Junior Software Developer**    |
 | **[Alex](https://github.com/adunners) - Junior Software Developer**    | **[Aimée](https://github.com/aimeemuter) - Junior Software Developer** |
