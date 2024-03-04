@@ -29,7 +29,7 @@ export const ContainerCards = ({items = [], status, handleDragging, isDragging, 
         onDragOver={handleDragOver}
         onDrop={handleDrop}>
             <p className="underline underline-offset-2 text-lg">{status} block</p>
-            <div className="flex flex-row gap-x-1 justify-center my-8">
+            <div className="flex flex-row flex-wrap gap-x-1 justify-center my-8">
 
                 {
                     items.map((item, index) => (
