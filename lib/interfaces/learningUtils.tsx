@@ -2,12 +2,12 @@ import {
   PythonPrimitivesContent,
   PythonPrintContent,
   PythonVariablesContent,
-} from "@/components/PythonLearning";
+} from "../../src/components/PythonLearning";
 import {
   JavaScriptPrimitivesContent,
   JavaScriptConsoleContent,
   JavaScriptVariablesContent,
-} from "@/components/JavascriptLearning";
+} from "../../src/components/JavascriptLearning";
 import { ReactElement } from "react";
 
 interface LearningTopic {
