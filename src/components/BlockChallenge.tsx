@@ -17,9 +17,9 @@ import {
 } from "@nextui-org/react";
 
 const Block = (challengeData: Challenge) => {
-  const initialList: any[] = [...challengeData.challengeSnippets];
+  const initialList: Data[] = [...challengeData.challengeSnippets];
   //convert to data array
-  const numIndexList = [];
+  const numIndexList: Data[] = [];
   for (let i = 0; i < initialList.length; i++) {
     numIndexList.push(initialList[i]);
     numIndexList[i].id = +numIndexList[i].id;
@@ -142,7 +142,6 @@ const Block = (challengeData: Challenge) => {
         >
           <DragAndDrop listItems={listItems} setListItems={setListItems} />
         </Card>
-        
       </div>
       <div className="max-w-[80%] mx-auto">
         <ChallengeFooter finished={correctState} />

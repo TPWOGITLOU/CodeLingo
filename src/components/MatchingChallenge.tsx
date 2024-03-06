@@ -1,13 +1,12 @@
 "use client";
 import type { Challenge } from "../../lib/mongo/utils";
 import { useState, useEffect } from "react";
-import ButtonAGen from "./cardMatchAButtons";
-import ButtonQGen from "./cardMatchQButtons";
+import ButtonAGen from "./CardMatchAButtons";
+import ButtonQGen from "./CardMatchQButtons";
 import {
   Card,
   CardHeader,
   CardBody,
-  CardFooter,
   Divider,
   Image,
   Button,
@@ -25,23 +24,6 @@ export default function Matching(challenge: Challenge): JSX.Element {
   const [selectionType, setSelectionType] = useState("");
   const [progress, setProgress] = useState(0);
   const [finished, setFinished] = useState(false);
-
-  const handleClick = (
-    e: any,
-    buttonID: string,
-    buttonType: string,
-    buttonContent: string
-  ) => {
-    if (selection1 === "") {
-      setSelection1(buttonContent);
-      setSelectionType(buttonType);
-      setSelection1ID(buttonID);
-    } else if (selection2 === "" && buttonType !== selectionType) {
-      setSelection2(buttonContent);
-      setSelectionType("");
-      setSelection2ID(buttonID);
-    }
-  };
 
   useEffect(() => {
     if (selection1 !== "" && selection2 !== "") {
@@ -130,7 +112,8 @@ export default function Matching(challenge: Challenge): JSX.Element {
       className=" 
     w-[80%] min-w-[450px] max-w-[1440px]
     mt-10 mx-auto
-    box-border">
+    box-border"
+    >
       <div
         id="grid"
         className="max-w-[80%]
@@ -183,9 +166,7 @@ export default function Matching(challenge: Challenge): JSX.Element {
           dark:text-header       
           "
             >
-              <p>
-                {challenge.challengeQuestion}
-              </p>
+              <p>{challenge.challengeQuestion}</p>
             </div>
             <div className="absolute bottom-0 right-2">
               <Image
@@ -244,7 +225,6 @@ export default function Matching(challenge: Challenge): JSX.Element {
             </div>
           </CardBody>
         </Card>
-        
       </div>
       <div className="max-w-[80%] mx-auto">
         <ChallengeFooter finished={finished} />

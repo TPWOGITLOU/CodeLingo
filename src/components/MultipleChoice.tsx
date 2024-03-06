@@ -24,7 +24,11 @@ const MultipleChoice = (challengeData: Challenge): JSX.Element => {
     "w-[40%] bg-green-500 p-4 text-white rounded-lg hover:shadow-lg";
   const [finished, setFinished] = useState(false);
 
-  const onClick = (e: any, targetID: string, buttonContent: string) => {
+  const onClick = (
+    e: React.MouseEvent,
+    targetID: string,
+    buttonContent: string
+  ) => {
     let correctAns: boolean = false;
     for (
       let x = 0;
@@ -110,7 +114,8 @@ const MultipleChoice = (challengeData: Challenge): JSX.Element => {
             </p>
           </CardBody>
         </Card>
-        <Card id="question-card"
+        <Card
+          id="question-card"
           className="
           bg-opacity-0 shadow-none p-0"
         >
@@ -189,7 +194,6 @@ const MultipleChoice = (challengeData: Challenge): JSX.Element => {
             </div>
           </CardBody>
         </Card>
-        
       </div>
       <div className="max-w-[80%] mx-auto">
         <ChallengeFooter finished={finished} />

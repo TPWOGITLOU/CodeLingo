@@ -3,10 +3,10 @@ import { useState, useEffect, useContext } from "react";
 import OutputWindow from "../../components/OutputWindow";
 import CodeEditor from "../../components/CodeEditor";
 import LanguageOptions from "../../components/LanguageOptions";
-import { Card, CardBody, Image, Button } from "@nextui-org/react";
+import { Card, CardBody, Button } from "@nextui-org/react";
 import { handleCompile } from "../../../lib/mongo/judge0/judge-utils";
 import ThemeOptions from "@/components/ThemeOptions";
-import { GlobalContext } from "../../../contexts/globalContext";
+import { GlobalContext, OutputDetails } from "../../../contexts/globalContext";
 import SpriteAnimator from "@/components/SpriteAnimator";
 
 const languages = [
@@ -57,20 +57,16 @@ const Sandbox: React.FC = (): JSX.Element => {
 
   const handleReset = () => {
     setOutputDetails(undefined);
-    setCode(() => {
-      return language.value === "javascript"
-        ? javascriptDefault
-        : pythonDefault;
-    });
+    setCode(
+      language.value === "javascript" ? javascriptDefault : pythonDefault
+    );
   };
 
   useEffect(() => {
     setOutputDetails(undefined);
-    setCode(() => {
-      return language.value === "javascript"
-        ? javascriptDefault
-        : pythonDefault;
-    });
+    setCode(
+      language.value === "javascript" ? javascriptDefault : pythonDefault
+    );
   }, [language]);
 
   const onChange = (action: unknown, data: string) => {
@@ -83,7 +79,12 @@ const Sandbox: React.FC = (): JSX.Element => {
   };
 
   const fetchHandleCompile = async () => {
-    return await handleCompile(language, code, setProcessing, setOutputDetails);
+    return await handleCompile(
+      language,
+      code as string,
+      setProcessing,
+      setOutputDetails
+    );
   };
 
   return (
@@ -119,7 +120,7 @@ const Sandbox: React.FC = (): JSX.Element => {
           }
         >
           <CodeEditor
-            code={code}
+            code={code as string}
             onChange={onChange}
             language={language?.value}
             theme={theme}
@@ -189,7 +190,7 @@ const Sandbox: React.FC = (): JSX.Element => {
         border-8 border-border-colour 
         bg-nice-yellow bg-opacity-50"
         >
-          <OutputWindow outputDetails={outputDetails} />
+          <OutputWindow outputDetails={outputDetails as OutputDetails} />
           <div id="buttons" className="mt-3 flex flex-row justify-between">
             <Button
               onClick={fetchHandleCompile}
