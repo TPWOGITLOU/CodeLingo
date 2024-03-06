@@ -2,7 +2,7 @@ import {
   PythonPrimitivesContent,
   PythonPrintContent,
   PythonVariablesContent,
-} from "../../src/components/javascriptLearning";
+} from "../../src/components/pythonLearning";
 import {
   JavaScriptPrimitivesContent,
   JavaScriptConsoleContent,
