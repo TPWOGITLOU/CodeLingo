@@ -1,7 +1,7 @@
 "use client";
 
 import { useContext, useEffect, useState } from "react";
-import { GlobalContext } from "../../contexts/globalContext";
+import { GlobalContext, OutputDetails } from "../../contexts/globalContext";
 import CodeEditor from "./CodeEditor";
 import OutputWindow from "./OutputWindow";
 import {
@@ -14,8 +14,8 @@ import {
 } from "@nextui-org/react";
 import ChallengeFooter from "./ChallengeFooter";
 import { handleCompile, Language } from "../../lib/mongo/judge0/judge-utils";
-import { Challenge } from "../../lib/mongo/utils";
 import Link from "next/link";
+import { Challenge } from "../../lib/mongo/utils";
 
 const TypedChallenge = (challengeData: Challenge) => {
   const [feedback, setFeedback] = useState<string>(
@@ -48,11 +48,13 @@ const TypedChallenge = (challengeData: Challenge) => {
   };
 
   const checkAnswer = () => {
-    if (challengeData.answer === atob(outputDetails.stdout).trim()) {
-      setFeedback("Well Done! You got that right!");
-      setFinished(true);
-    } else {
-      setFeedback("Not quite correct - take another look at your code");
+    if (outputDetails && "stdout" in outputDetails) {
+      if (challengeData.answer === atob(outputDetails.stdout).trim()) {
+        setFeedback("Well Done! You got that right!");
+        setFinished(true);
+      } else {
+        setFeedback("Not quite correct - take another look at your code");
+      }
     }
   };
 
@@ -92,7 +94,7 @@ const TypedChallenge = (challengeData: Challenge) => {
 
     return await handleCompile(
       fetchLanguage,
-      code,
+      code as string,
       setProcessing,
       setOutputDetails
     );
@@ -104,9 +106,13 @@ const TypedChallenge = (challengeData: Challenge) => {
       className=" 
         w-[80%] min-w-[450px] max-w-[1440px]
         mt-10 mx-auto
-        box-border">
-      <div id="grid" className="grid max-w-[80%]
-        mx-auto lg:grid-cols-2 md:grid-cols-1 gap-5 mb-5">
+        box-border"
+    >
+      <div
+        id="grid"
+        className="grid max-w-[80%]
+        mx-auto lg:grid-cols-2 md:grid-cols-1 gap-5 mb-5"
+      >
         <Card
           id="terminal"
           className="
@@ -134,7 +140,7 @@ const TypedChallenge = (challengeData: Challenge) => {
               className="bg-code-editor-dark mt-5 pt-[10px] h-full rounded"
             >
               <CodeEditor
-                code={code}
+                code={code as string}
                 onChange={onChange}
                 language={language}
                 theme={theme}
@@ -201,7 +207,10 @@ const TypedChallenge = (challengeData: Challenge) => {
           className="h-full p-5 
           border-8 border-border-colour bg-nice-yellow bg-opacity-50"
         >
-          <OutputWindow outputDetails={outputDetails} feedback={feedback} />
+          <OutputWindow
+            outputDetails={outputDetails as OutputDetails}
+            feedback={feedback}
+          />
           <div id="buttons" className="mt-3 flex flex-row justify-end gap-5">
             <Button
               onClick={fetchHandleCompile}

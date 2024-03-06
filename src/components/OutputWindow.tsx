@@ -1,10 +1,7 @@
+import { OutputDetails } from "../../contexts/globalContext";
+
 interface CodeProps {
-  outputDetails: {
-    status: { id: number };
-    compile_output: string;
-    stdout: string;
-    stderr: string;
-  };
+  outputDetails: OutputDetails;
   feedback?: string;
 }
 

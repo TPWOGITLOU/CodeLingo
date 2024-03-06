@@ -1,12 +1,20 @@
 import React, { useState, ReactNode, useEffect } from "react";
+import { Data } from "../lib/interfaces/interfaces";
+
+export interface OutputDetails {
+  status: { id: number };
+  compile_output: string;
+  stdout: string;
+  stderr: string;
+}
 
 export interface GlobalContextProps {
-  outputDetails: undefined | any;
-  setOutputDetails: (outputDetails: any) => void;
-  code: any;
-  setCode: (code: any) => void;
+  outputDetails: {} | OutputDetails | undefined;
+  setOutputDetails: (outputDetails: OutputDetails | {} | undefined) => void;
+  code: string | Data[];
+  setCode: (code: string | Data[]) => void;
   processing: boolean;
-  setProcessing: (processing: boolean) => void;
+  setProcessing: (processing: boolean) => void | (() => string);
   theme: string;
   setTheme: (theme: string) => void;
   completedChallenges: string[];
@@ -17,12 +25,8 @@ export interface GlobalContextProps {
   setJavascriptChallengeIds: (javascriptChallengeIds: string[]) => void;
 }
 
-interface GlobalContextProviderProps {
-  children: ReactNode;
-}
-
 export const GlobalContext = React.createContext<GlobalContextProps>({
-  outputDetails: {},
+  outputDetails: undefined,
   setOutputDetails: () => {},
   code: "",
   setCode: () => {},
@@ -38,9 +42,17 @@ export const GlobalContext = React.createContext<GlobalContextProps>({
   setJavascriptChallengeIds: () => {},
 });
 
+interface GlobalContextProviderProps {
+  children: ReactNode;
+}
+
 const GlobalContextProvider = (props: GlobalContextProviderProps) => {
-  const [outputDetails, setOutputDetails] = useState<any>(undefined);
-  const [code, setCode] = useState<string>("console.log('hello world!')");
+  const [outputDetails, setOutputDetails] = useState<
+    {} | undefined | OutputDetails
+  >(undefined);
+  const [code, setCode] = useState<Data[] | string>(
+    "console.log('hello world!')"
+  );
   const [processing, setProcessing] = useState(false);
   const [theme, setTheme] = useState("vs-dark");
   const [completedChallenges, setCompletedChallenges] = useState([""]);

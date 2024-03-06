@@ -1,5 +1,6 @@
 import { ObjectId } from "mongodb";
 import newClient from "./connection";
+import { Data } from "../interfaces/interfaces";
 
 const databaseName = "CodeLingo";
 
@@ -13,7 +14,7 @@ export interface Challenge {
   language: string;
   challengeType: string;
   challengeQuestion: string;
-  challengeSnippets: { [key: string]: string }[];
+  challengeSnippets: Data[];
   answer: string | {}[];
 }
 
