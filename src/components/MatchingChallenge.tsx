@@ -1,8 +1,8 @@
 "use client";
 import type { Challenge } from "../../lib/mongo/utils";
 import { useState, useEffect } from "react";
-import ButtonAGen from "./CardMatchAButtons";
-import ButtonQGen from "./CardMatchQButtons";
+import ButtonAGen from "./cardMatchAButtons";
+import ButtonQGen from "./cardMatchQButtons";
 import {
   Card,
   CardHeader,
